@@ -130,6 +130,17 @@
                 outlined
               ></v-text-field>
             </v-col>
+            <v-col cols="12" md="6">
+              <v-select
+                v-model="formData.bloodtype"
+                :items="bloodTypes"
+                :rules="bloodtypeRules"
+                label="Blood Type"
+                placeholder="Blood Type"
+                required
+                outlined
+              ></v-select>
+            </v-col>
           </v-row>
 
           <v-row>
@@ -172,10 +183,10 @@
 </template>
 
 <script>
-// import firebase from "../../plugins/firebaseConfig";
+import firebase from "../../plugins/firebaseConfig";
 
-// var moment = require("moment");
-// moment().format();
+var moment = require("moment");
+moment().format();
 
 export default {
   name: "DonorSignupForm",
@@ -193,8 +204,10 @@ export default {
         img: "",
         email: "",
         password: "",
-        password1: ""
+        password1: "",
+        bloodtype: ""
       },
+      bloodTypes: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       nameRules: [
         v => !!v || "Name is required",
         v => v.length <= 20 || "Name must be less than 20 characters"
@@ -213,6 +226,7 @@ export default {
         v => !!v || "Email is required",
         v => /.+@.+/.test(v) || "E-mail must be valid"
       ],
+      bloodtypeRules: [v => !!v || "Blood Type is required"],
       pswdRules: [v => !!v || "Password is required"]
     };
   },
@@ -226,88 +240,90 @@ export default {
   methods: {
     reset() {
       this.$refs.form.reset();
+    },
+    addDonor() {
+      var that = this;
+      event.preventDefault();
+      var now = moment().format();
+      //   axios
+      //     .post("http://localhost:4200/api/signup/donor", {
+      //       firstName: this.$data.fname,
+      //       lastName: this.$data.lname,
+      //       nic: this.$data.nic,
+      //       dob: this.$data.dob,
+      //       address: this.$data.inputAddress,
+      //       contactNo: this.$data.contactNo,
+      //       radios: this.$data.radios,
+      //       img: this.$data.img,
+      //       email: this.$data.email,
+      //       password: this.$data.password
+      //     })
+      //     .then(function(response) {
+      //       console.log(response);
+      //     })
+      //     .catch(function(error) {
+      //       console.log(error);
+      //     });
+      // }
+      //////////////////////
+      var uidTemp = "";
+      var sendToLogin = false;
+      firebase.auth
+        .createUserWithEmailAndPassword(
+          this.formData.email,
+          this.formData.password
+        )
+        .then(function(data) {
+          console.log("uid", data.user.uid);
+          uidTemp = data.user.uid;
+          sendToLogin = true;
+          // var r = confirm("Error in sign up!");
+          // if (r == true) {
+          //   this.router.push("/login");
+          // } else {
+          //   this.router.push("/signup/donor");
+          // }
+
+          console.log("send to login", sendToLogin);
+          if (sendToLogin == true) {
+            firebase.db
+              .collection("users")
+              .doc("donors")
+              .collection("donors")
+              .add({
+                uid: uidTemp,
+                fname: that.formData.fname,
+                lname: that.formData.lname,
+                email: that.formData.email,
+                nic: that.formData.nic,
+                dob: that.formData.dob,
+                address: that.formData.inputAddress,
+                contactNo: that.formData.contactNo,
+                gender: that.formData.radios,
+                bloodType: that.formData.bloodtype,
+                role: "donor",
+                status: "1",
+                createdAt: now
+              })
+              .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+                this.$router.push("/login");
+              })
+              .catch(function(error) {
+                console.error("Error adding document: ", error);
+              });
+          } else {
+            this.$router.push("/signup/donor");
+          }
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+          console.log("Error occured : ", errorCode, errorMessage);
+        });
     }
-    // addDonor() {
-    //   event.preventDefault();
-    //   var now = moment().format();
-    //   axios
-    //     .post("http://localhost:4200/api/signup/donor", {
-    //       firstName: this.$data.fname,
-    //       lastName: this.$data.lname,
-    //       nic: this.$data.nic,
-    //       dob: this.$data.dob,
-    //       address: this.$data.inputAddress,
-    //       contactNo: this.$data.contactNo,
-    //       radios: this.$data.radios,
-    //       img: this.$data.img,
-    //       email: this.$data.email,
-    //       password: this.$data.password
-    //     })
-    //     .then(function(response) {
-    //       console.log(response);
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error);
-    //     });
-    // }
-    //////////////////////
-    //   var uidTemp = "";
-    //   var sendToLogin = false;
-    //   firebase.auth
-    //     .createUserWithEmailAndPassword(
-    //       this.formData.email,
-    //       this.formData.password
-    //     )
-    //     .then(function(data) {
-    //       console.log("uid", data.user.uid);
-    //       uidTemp = data.user.uid;
-    //       sendToLogin = true;
-    //       var r = confirm("Error in sign up!");
-    //       if (r == true) {
-    //         this.$router.push("/login");
-    //       } else {
-    //         this.$router.push("/signup/donor");
-    //       }
-    //     })
-    //     .catch(function(error) {
-    //       // Handle Errors here.
-    //       var errorCode = error.code;
-    //       var errorMessage = error.message;
-    //       // ...
-    //       console.log("Error occured : ", errorMessage);
-    //     });
-    //   console.log(sendToLogin);
-    //   if (sendToLogin == true) {
-    //     firebase.db
-    //       .collection("users")
-    //       .doc("donors")
-    //       .collection("donors")
-    //       .add({
-    //         uid: uidTemp,
-    //         fname: this.formData.fname,
-    //         lname: this.formData.lname,
-    //         email: this.formData.email,
-    //         nic: this.formData.nic,
-    //         dob: this.formData.dob,
-    //         address: this.formData.inputAddress,
-    //         contactNo: this.formData.contactNo,
-    //         gender: this.formData.radios,
-    //         role: "donor",
-    //         status: "1",
-    //         createdAt: now
-    //       })
-    //       .then(function(docRef) {
-    //         console.log("Document written with ID: ", docRef.id);
-    //         this.$router.push("/login");
-    //       })
-    //       .catch(function(error) {
-    //         console.error("Error adding document: ", error);
-    //       });
-    //   } else {
-    //     this.$router.push("/signup/donor");
-    //   }
-    // }
   }
 };
 </script>
-

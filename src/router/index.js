@@ -2,11 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 
-import AdminCampaigns from '../views/admin/AdminCampaigns.vue'
-import AdminDonors from '../views/admin/AdminDonors.vue'
-import AdminCharts from '../views/admin/AdminCharts.vue'
+import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
+import AdminDonors from "../views/admin/AdminDonors.vue";
+import AdminCharts from "../views/admin/AdminCharts.vue";
 
-import DonorSignupForm from '../views/donor/DonorSignupForm.vue'
+import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 
 Vue.use(VueRouter);
 
@@ -44,7 +44,7 @@ const routes = [
     path: "/donor/signup",
     name: "donorSignup",
     component: DonorSignupForm
-  },
+  }
 
 ];
 

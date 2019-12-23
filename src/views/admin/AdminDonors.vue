@@ -49,7 +49,7 @@ export default {
       headers: [
         { text: "First Name", value: "fname" },
         { text: "Last Name", value: "lname" },
-        { text: "Blood Type", value: "BloodType" },
+        { text: "Blood Type", value: "bloodType" },
         { text: "Address", value: "address" },
         { text: "Contact No", value: "contactNo" },
         { text: "NIC", value: "nic" },
