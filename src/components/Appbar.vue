@@ -1,0 +1,46 @@
+<template>
+  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="grey darken-3" dark>
+    <!-- <v-app-bar-nav-icon @click="drawer = !drawer" /> -->
+    <v-toolbar-title class="ml-0 pr-4 pl-4">
+      <span>
+        <v-img src="../assets/noblered logo 30x100.png" alt="Vuetify" />
+      </span>
+    </v-toolbar-title>
+    <!-- <v-text-field
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="mdi-magnify"
+        label="Search"
+        class="hidden-sm-and-down"
+    />-->
+    <v-spacer />
+    <v-btn icon>
+      <v-icon>mdi-apps</v-icon>
+    </v-btn>
+    <v-btn icon>
+      <v-icon>mdi-bell</v-icon>
+    </v-btn>
+    <v-btn icon large>
+      <v-avatar size="32px" item>
+        <v-img
+          src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/user_pro_pic%2FPSX_20181208_195134.jpg?alt=media&token=fab833a7-50d9-4efe-a40c-0b43f61c2757"
+          alt="Vuetify"
+        />
+      </v-avatar>
+    </v-btn>
+  </v-app-bar>
+</template>
+
+<script>
+// import { bus } from "../main";
+export default {
+  name: "Appbar",
+  data() {
+    return {
+      drawer: null
+    };
+  },
+  props: {}
+};
+</script>
