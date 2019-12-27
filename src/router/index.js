@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
+import AdminMap from "../components/Map.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 
@@ -30,6 +31,11 @@ const routes = [
     path: "/admin/charts",
     name: "adminCharts",
     component: AdminCharts
+  },
+  {
+    path: "/admin/map",
+    name: "adminMap",
+    component: AdminMap
   },
   {
     path: "/about",
