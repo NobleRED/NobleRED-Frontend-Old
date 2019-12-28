@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */ /* eslint-disable no-unused-vars */
 <template>
   <v-container>
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/donor/signup">
+        <v-btn small color="success" class="ml-3" @click="addCoordinate">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
@@ -16,10 +15,14 @@
 
 <script>
 const google = window.google;
+var map;
+var geocoder;
+var infowindow;
 export default {
-  name: "map",
+  name: "CampaignMap",
   data() {
     return {
+      tempMarker: "",
       marker1: "",
       marker2: "",
       marker3: "",
@@ -34,11 +37,13 @@ export default {
     var coords3 = { lat: 7.09115, lng: 79.999634 };
     var coords4 = { lat: 8.31219, lng: 80.418716 };
 
-    var map = new google.maps.Map(document.getElementById("campaignMap"), {
+    map = new google.maps.Map(document.getElementById("campaignMap"), {
       zoom: 8,
       center: coords,
       scrollwheel: true
     });
+
+    geocoder = new google.maps.Geocoder();
 
     this.marker1 = new google.maps.Marker({
       position: coords1,
@@ -68,7 +73,36 @@ export default {
       title: "Sri Lanka"
     });
   },
-  addCoordinate: function() {}
+  methods: {
+    addCoordinate: function() {
+      //var that = this;
+      var address = "71, Mihindu Mawatha, Malwattha, Nittambuwa";
+      geocoder.geocode({ address: address }, function(results, status) {
+        if (status == "OK") {
+          map.setCenter(results[0].geometry.location);
+          console.log(results[0].formatted_address);
+
+          infowindow = new google.maps.InfoWindow({
+            content: results[0].formatted_address
+          });
+
+          this.tempMarker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            animation: google.maps.Animation.DROP
+          });
+
+          this.tempMarker.addListener("click", function() {
+            infowindow.open(map, this);
+          });
+        } else {
+          alert(
+            "Geocode was not successful for the following reason: " + status
+          );
+        }
+      });
+    }
+  }
 };
 </script>
 

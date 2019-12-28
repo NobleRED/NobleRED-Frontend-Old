@@ -136,10 +136,14 @@ export default {
       {
         icon: "mdi-map-marker-multiple",
         text: "Blood Donation Campaigns",
-        link: "/admin/campaigns"
+        link: "/admin/map"
       },
       { icon: "mdi-water", text: "Donation Posts" },
-      { icon: "mdi-calendar-multiple-check", text: "Campaign Posts" },
+      {
+        icon: "mdi-calendar-multiple-check",
+        text: "Campaign Posts",
+        link: "/admin/campaigns"
+      },
       { icon: "mdi-message-text", text: "Notifications" }
     ]
   })
