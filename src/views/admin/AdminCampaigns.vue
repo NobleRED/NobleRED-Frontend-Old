@@ -23,7 +23,7 @@
         <v-toolbar-title>Blood Donation Campaigns</v-toolbar-title>
         <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/donor/signup">
+        <v-btn small color="success" class="ml-3" to="/newcampaign">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>

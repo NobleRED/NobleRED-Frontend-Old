@@ -28,7 +28,7 @@
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="posts" :search="search" :loading="loading"></v-data-table>
+      <v-data-table :headers="headers" :items="donors" :search="search" :loading="loading"></v-data-table>
     </v-card>
   </v-container>
 </template>
@@ -58,11 +58,11 @@ export default {
         { text: "Ago", value: "registeredDateTimeAgo" },
         { text: "Status", value: "status" }
       ],
-      posts: []
+      donors: []
     };
   },
   methods: {
-    loadPosts: function() {
+    loadDonors: function() {
       // to access "this" variable in the file
       var _this = this;
 
@@ -71,7 +71,7 @@ export default {
         .get("http://localhost:4200/api/donors")
         .then(response => {
           // push data to the array
-          _this.posts = response.data;
+          _this.donors = response.data;
           _this.loading = false;
         })
         .catch(e => {
@@ -81,7 +81,7 @@ export default {
   },
   beforeMount() {
     // to call the function on load of the page
-    this.loadPosts();
+    this.loadDonors();
   }
 };
 </script>

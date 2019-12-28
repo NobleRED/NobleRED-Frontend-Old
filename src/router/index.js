@@ -9,6 +9,8 @@ import AdminMap from "../components/Map.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 
+import NewCampaignForm from "../components/NewCampaignForm.vue"
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -50,6 +52,11 @@ const routes = [
     path: "/donor/signup",
     name: "donorSignup",
     component: DonorSignupForm
+  },
+  {
+    path: "/newcampaign",
+    name: "newCampaign",
+    component: NewCampaignForm
   }
 
 ];

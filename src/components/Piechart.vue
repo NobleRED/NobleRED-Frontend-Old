@@ -1,10 +1,20 @@
 <script>
 import { Pie } from "vue-chartjs";
+import axios from "axios";
 
 export default {
   extends: Pie,
+  data() {
+    return {
+      donors: []
+    };
+  },
+  beforeMount() {
+    this.getData();
+  },
   mounted() {
     // Overwriting base render method with actual data.
+
     this.renderChart({
       labels: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       datasets: [
@@ -23,6 +33,32 @@ export default {
         }
       ]
     });
+  },
+  methods: {
+    getData: function() {
+      var _this = this;
+
+      // calling th API and get data
+      axios
+        .get("http://localhost:4200/api/donors")
+        .then(response => {
+          // push data to the array
+          _this.donors = response.data;
+          // _this.loading = false;
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+      console.log("here");
+      // console.log(_this.donors);
+      // for (var i = 0; i < _this.donors.length; i++) {
+      //   console.log(_this.donors[i].bloodType);
+      // }
+      this.donors.forEach(function(item) {
+        console.log(item.bloodType);
+      });
+      console.log("here2");
+    }
   }
 };
 </script>
