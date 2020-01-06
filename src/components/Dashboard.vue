@@ -138,7 +138,11 @@ export default {
         text: "Blood Donation Campaigns",
         link: "/admin/map"
       },
-      { icon: "mdi-water", text: "Donation Posts" },
+      {
+        icon: "mdi-water",
+        text: "Donation Posts",
+        link: "/admin/BloodDonationPosts"
+      },
       {
         icon: "mdi-calendar-multiple-check",
         text: "Campaign Posts",

@@ -9,7 +9,9 @@ import AdminMap from "../components/Map.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 
-import NewCampaignForm from "../components/NewCampaignForm.vue"
+import NewCampaignForm from "../components/NewCampaignForm.vue";
+import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
+import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
 
 Vue.use(VueRouter);
 
@@ -40,6 +42,11 @@ const routes = [
     component: AdminMap
   },
   {
+    path: "/admin/BloodDonationPosts",
+    name: "adminBloodDonationPost",
+    component: AdminBloodDonationPosts
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting
@@ -57,8 +64,13 @@ const routes = [
     path: "/newcampaign",
     name: "newCampaign",
     component: NewCampaignForm
-  }
+  },
 
+  {
+    path: "/bloodDonation", //newly added component,router path settings pending
+    Name: "bloodDonation",
+    component: NewBloodDonationForm
+  }
 ];
 
 const router = new VueRouter({
