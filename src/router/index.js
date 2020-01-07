@@ -12,6 +12,7 @@ import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
 import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
+import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 
 Vue.use(VueRouter);
 
@@ -70,6 +71,11 @@ const routes = [
     path: "/bloodDonation", //newly added component,router path settings pending
     Name: "bloodDonation",
     component: NewBloodDonationForm
+  },
+  {
+    path:"/bloodNeedPost", //newly added component for show blood need post to every one
+    name:"bloodNeedPost",
+    component:BloodNeedPosts
   }
 ];
 

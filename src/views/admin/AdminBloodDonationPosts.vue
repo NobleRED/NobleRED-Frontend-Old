@@ -28,7 +28,12 @@
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="posts" :search="search" :loading="loading"></v-data-table>
+      <v-data-table
+        :headers="headers"
+        :items="blood_need_posts"
+        :search="search"
+        :loading="loading"
+      ></v-data-table>
     </v-card>
   </v-container>
 </template>
@@ -37,7 +42,7 @@
 import axios from "axios";
 
 export default {
-  name: "CampaignDetailsTable",
+  name: "NeededPostDetailsTable",
 
   data() {
     return {
@@ -47,11 +52,11 @@ export default {
         { text: "User ID", value: "userID" },
         { text: "User Name", value: "userName" },
         { text: "Address", value: "address" },
-        { text: "Contact Number", value: "contact" },
+        { text: "Contact Number", value: "phoneNumber" },
         { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" }
       ],
-      bloodNeedposts: []
+      blood_need_posts: []
     };
   },
   methods: {
@@ -61,10 +66,10 @@ export default {
 
       // calling th API and get data
       axios
-        .get("http://localhost:4200/api/campaigns")
+        .get("http://localhost:4200/api/blood_needed_posts")
         .then(response => {
           // push data to the array
-          _this.bloodNeedposts = response.data;
+          _this.blood_need_posts = response.data;
           _this.loading = false;
         })
         .catch(e => {

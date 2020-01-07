@@ -2,7 +2,7 @@
   <v-container>
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
-        <v-toolbar-title>Blood Needed Post</v-toolbar-title>
+        <v-toolbar-title>New Blood Need Post Form</v-toolbar-title>
       </v-toolbar>
 
       <v-form ref="form1">
@@ -62,7 +62,7 @@
                 name="contact"
                 label="Contact No"
                 placeholder="Contact No"
-                v-model="formData.contact"
+                v-model="formData.phoneNumber"
                 type="text"
                 :rules="phnRules"
                 required
@@ -129,7 +129,7 @@ var moment = require("moment");
 moment().format();
 
 export default {
-  name: "NewCampaignForm",
+  name: "NewBloodDonationForm",
   data() {
     return {
       show: true,
@@ -151,7 +151,7 @@ export default {
         userName: "",
         address: "",
         bloodType: "",
-        contat: "",
+        PhoneNumber: "",
         time: ""
       }
     };
