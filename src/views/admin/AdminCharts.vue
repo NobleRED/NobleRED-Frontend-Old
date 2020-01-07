@@ -22,7 +22,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col cols="12" sm="6">
         <v-card class="mx-auto" max-width="400">
           <v-toolbar flat color="grey darken-3" dark>
@@ -43,7 +43,7 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
+    </v-row> -->
   </v-container>
 </template>
 
