@@ -6,6 +6,9 @@
         <v-img src="../assets/noblered logo 30x100.png" alt="Vuetify" />
       </span>
     </v-toolbar-title>
+    <v-btn small color="success" class="ml-3" to="/bloodNeedPost">
+          Blood Need Post
+    </v-btn>
     <!-- <v-text-field
         flat
         solo-inverted
@@ -28,7 +31,7 @@
           alt="Vuetify"
         />
       </v-avatar>
-    </v-btn>
+   </v-btn>
   </v-app-bar>
 </template>
 
