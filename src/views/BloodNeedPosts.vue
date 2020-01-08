@@ -1,28 +1,41 @@
 <template>
-  <v-card class="mx-auto" max-width="300" max-height="300">
-    <v-row>
-      <v-col cols="12" v-for="blood_need_post in blood_need_posts" :key="blood_need_post.bloodType">
-        <v-card>
-          <v-layout>
-            <v-flex>
-              <v-img :src="blood_need_post.imgSrc" max-height="300" max-width="300"></v-img>
-              <v-card-text>
+  <v-container fluid>
+    <v-row dense>
+      <v-col v-for="blood_need_post in blood_need_posts"
+            :key="blood_need_post.publishedDateTime"
+            :cols="blood_need_post.flex"
+            class="v-flex">
+           <v-card class="v-flex auto"  dark=true>
+              <v-img
+                :src="blood_need_post.imgSrc"
+                class="white--text align-center"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                height="300px"
+                
+              >
+              </v-img>
+             <v-card-text>
                 Urgently required
-                <b>{{blood_need_post.bloodType}}</b> type of blood
-                for patient.
-                Volunteers please come forward and help us.
-                If you are willing to donate blood please contact
-                <b>{{blood_need_post.userName}}</b> via
-                <b>{{blood_need_post.phoneNumber}}</b>
-                <b>. DONATE BLOOD AND SAVE LIFE</b>
-              </v-card-text>
-            </v-flex>
-          </v-layout>
-        </v-card>
-      </v-col>
+              <b>{{blood_need_post.bloodType}}</b> type of blood
+              for patient.
+              Volunteers please come forward and help us.
+              If you are willing to donate blood please contact
+              <b>{{blood_need_post.userName}}</b> via
+              <b>{{blood_need_post.phoneNumber}}</b>
+              <b>. DONATE BLOOD AND SAVE LIFE</b>
+          
+            <template v-slot:footer>
+              <small class="text-muted">{{blood_need_post.publishedDateTimeAgo}}</small>
+            </template>
+             </v-card-text>
+
+              </v-card>
+
+            </v-col>
     </v-row>
-  </v-card>
+  </v-container>
 </template>
+
 <script>
 import axios from "axios";
 export default {
