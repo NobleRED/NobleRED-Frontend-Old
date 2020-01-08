@@ -14,7 +14,9 @@
       <v-col cols="12" sm="6">
         <v-card class="mx-auto" max-width="400">
           <v-toolbar flat color="grey darken-3" dark>
-            <v-toolbar-title>Registerd Blood Donors in This Month</v-toolbar-title>
+            <v-toolbar-title
+              >Registerd Blood Donors in This Month</v-toolbar-title
+            >
           </v-toolbar>
           <v-card-text>
             <Doughnutchart></Doughnutchart>
