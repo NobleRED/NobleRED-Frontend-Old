@@ -2,7 +2,7 @@
   <v-container>
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
-        <v-toolbar-title>Register New Campaign</v-toolbar-title>
+        <v-toolbar-title>New Blood Need Post Form</v-toolbar-title>
       </v-toolbar>
 
       <v-form ref="form1">
@@ -10,11 +10,11 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
-                name="organizerID"
-                label="Organizer ID"
+                name="userID"
+                label="User ID"
                 placeholder="XXXX"
-                id="organizerID"
-                v-model="formData.organizerID"
+                id="userID"
+                v-model="formData.userID"
                 type="text"
                 required
                 outlined
@@ -25,11 +25,11 @@
 
             <v-col cols="12" sm="6">
               <v-text-field
-                name="organizerName"
-                label="Organizer Name"
+                name="userName"
+                label="User Name"
                 placeholder="John Doe"
-                id="organizerName"
-                v-model="formData.organizerName"
+                id="userName"
+                v-model="formData.userName"
                 type="text"
                 :rules="nameRules"
                 required
@@ -59,10 +59,10 @@
 
             <v-col cols="12" sm="6">
               <v-text-field
-                name="contactno"
+                name="contact"
                 label="Contact No"
                 placeholder="Contact No"
-                v-model="formData.contactNo"
+                v-model="formData.phoneNumber"
                 type="text"
                 :rules="phnRules"
                 required
@@ -76,81 +76,18 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-select
-                name="province"
-                label="Province"
-                placeholder="Province"
-                id="province"
-                v-model="formData.province"
-                :items="provinces"
+                name="bloodType"
+                label="Blood Type"
+                placeholder="Blood Type"
+                id="bloodType"
+                v-model="formData.bloodType"
+                :items="bloodTypes"
                 :rules="requiredRule"
                 required
                 outlined
                 style="background-color: transparent;"
                 small
               ></v-select>
-            </v-col>
-
-            <v-col cols="12" sm="6">
-              <v-select
-                name="district"
-                label="District"
-                placeholder="District"
-                id="district"
-                :items="districts"
-                :rules="requiredRule"
-                required
-                v-model="formData.district"
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6" justify="center">
-              <!-- <v-text-field
-                name="date"
-                label="Date"
-                placeholder
-                id="date"
-                type="date"
-                :rules="requiredRule"
-                v-model="formData.date"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>-->
-              <v-date-picker
-                v-model="formData.date"
-                color="grey darken-3"
-                full-width
-                :landscape="$vuetify.breakpoint.smAndUp"
-              ></v-date-picker>
-            </v-col>
-
-            <v-col cols="12" sm="6">
-              <!-- <v-text-field
-                name="time"
-                label="Time"
-                placeholder
-                id="time"
-                type="time"
-                :rules="requiredRule"
-                v-model="formData.time"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>-->
-              <v-time-picker
-                v-model="formData.time"
-                :landscape="$vuetify.breakpoint.smAndUp"
-                ampm-in-title
-                color="grey darken-3"
-                full-width
-              ></v-time-picker>
             </v-col>
           </v-row>
 
@@ -192,7 +129,7 @@ var moment = require("moment");
 moment().format();
 
 export default {
-  name: "NewCampaignForm",
+  name: "NewBloodDonationForm",
   data() {
     return {
       show: true,
@@ -207,53 +144,14 @@ export default {
         v => /\d{10}/.test(v) || "Contact No must have 10 digits"
       ],
       requiredRule: [v => !!v || "Required"],
-      provinceKeyword: " Province ",
-      districtKeyword: " District ",
-      provinces: [
-        "Central",
-        "Eastern",
-        "North Central",
-        "Northern",
-        "North Western",
-        "Sabaragamuwa",
-        "Southern",
-        "Uva",
-        "Western"
-      ],
-      districts: [
-        "Ampara",
-        "Anuradhapura",
-        "Badulla",
-        "Batticaloa",
-        "Colombo",
-        "Galle",
-        "Gampaha",
-        "Hambantota",
-        "Jaffna",
-        "Kalutara",
-        "Kandy",
-        "Kegalle",
-        "Kilinochchi",
-        "Kurunegala",
-        "Mannar",
-        "Matale",
-        "Matara",
-        "Monaragala",
-        "Mullaitivu",
-        "Nuwara Eliya",
-        "Polonnaruwa",
-        "Puttalam",
-        "Ratnapura",
-        "Trincomalee",
-        "Vavuniya"
-      ],
+
+      bloodTypes: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       formData: {
-        organizerID: "",
-        organizerName: "",
+        userID: "",
+        userName: "",
         address: "",
-        province: "",
-        district: "",
-        date: new Date().toISOString().substr(0, 10),
+        bloodType: "",
+        PhoneNumber: "",
         time: ""
       }
     };
@@ -269,19 +167,17 @@ export default {
       // firebase function call to add data to the database
       firebase.db
         .collection("posts")
-        .doc("campaign_posts")
-        .collection("campaign_posts")
+        .doc("blood_needed_posts")
+        .collection("blood_needed_posts")
         .add({
-          organizerID: this.formData.organizerID,
-          organizerName: this.formData.organizerName,
+          userID: this.formData.userID,
+          userName: this.formData.userName,
           address: this.formData.address,
-          province: this.formData.province,
-          district: this.formData.district,
-          date: this.formData.date,
-          time: this.formData.time,
+          bloodType: this.formData.bloodType,
+          contact: this.formData.contact,
           publishedDateTime: now,
           imgSrc:
-            "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
+            "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -293,8 +189,6 @@ export default {
     reset() {
       // reset function to clear text fields of the form
       this.$refs.form1.reset();
-      this.formData.date = new Date().toISOString().substr(0, 10);
-      this.formData.time = "";
     }
   }
 };

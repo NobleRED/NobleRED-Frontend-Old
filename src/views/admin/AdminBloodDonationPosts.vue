@@ -20,23 +20,17 @@
     </b-modal>-->
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
-        <v-toolbar-title>Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
+        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/newcampaign">
-          <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
+        <v-btn small color="success" class="ml-3" to="/bloodDonation">
+          <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
         </v-btn>
       </v-toolbar>
 
       <v-data-table
         :headers="headers"
-        :items="posts"
+        :items="blood_need_posts"
         :search="search"
         :loading="loading"
       ></v-data-table>
@@ -46,28 +40,23 @@
 
 <script>
 import axios from "axios";
-// import NewCampaignForm from "../NewCampaignForm";
 
 export default {
-  name: "CampaignDetailsTable",
-  components: {
-    // NewCampaignForm
-  },
+  name: "NeededPostDetailsTable",
+
   data() {
     return {
       search: "",
       loading: true,
       headers: [
-        { text: "Organizer ID", value: "organizerID" },
-        { text: "Organizer Name", value: "organizerName" },
+        { text: "User ID", value: "userID" },
+        { text: "User Name", value: "userName" },
         { text: "Address", value: "address" },
-        { text: "District", value: "district" },
-        { text: "Province", value: "province" },
-        { text: "Date", value: "date" },
-        { text: "Time", value: "time" },
+        { text: "Contact Number", value: "phoneNumber" },
+        { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" }
       ],
-      posts: []
+      blood_need_posts: []
     };
   },
   methods: {
@@ -77,10 +66,10 @@ export default {
 
       // calling th API and get data
       axios
-        .get("http://localhost:4200/api/campaigns")
+        .get("http://localhost:4200/api/blood_needed_posts")
         .then(response => {
           // push data to the array
-          _this.posts = response.data;
+          _this.blood_need_posts = response.data;
           _this.loading = false;
         })
         .catch(e => {
