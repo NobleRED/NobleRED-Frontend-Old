@@ -108,8 +108,8 @@
           </v-row>
 
           <v-row>
-            <v-col cols="12" sm="6">
-              <v-text-field
+            <v-col cols="12" sm="6" justify="center">
+              <!-- <v-text-field
                 name="date"
                 label="Date"
                 placeholder
@@ -121,11 +121,17 @@
                 outlined
                 style="background-color: transparent;"
                 small
-              ></v-text-field>
+              ></v-text-field>-->
+              <v-date-picker
+                v-model="formData.date"
+                color="grey darken-3"
+                full-width
+                :landscape="$vuetify.breakpoint.smAndUp"
+              ></v-date-picker>
             </v-col>
 
             <v-col cols="12" sm="6">
-              <v-text-field
+              <!-- <v-text-field
                 name="time"
                 label="Time"
                 placeholder
@@ -137,15 +143,20 @@
                 outlined
                 style="background-color: transparent;"
                 small
-              ></v-text-field>
+              ></v-text-field>-->
+              <v-time-picker
+                v-model="formData.time"
+                :landscape="$vuetify.breakpoint.smAndUp"
+                ampm-in-title
+                color="grey darken-3"
+                full-width
+              ></v-time-picker>
             </v-col>
           </v-row>
 
           <v-row>
             <v-col cols="12" sm="6">
-              <v-btn type="submit" @click="onSubmit" color="primary"
-                >Submit</v-btn
-              >
+              <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
           </v-row>
@@ -242,7 +253,7 @@ export default {
         address: "",
         province: "",
         district: "",
-        date: "",
+        date: new Date().toISOString().substr(0, 10),
         time: ""
       }
     };
@@ -282,6 +293,8 @@ export default {
     reset() {
       // reset function to clear text fields of the form
       this.$refs.form1.reset();
+      this.formData.date = new Date().toISOString().substr(0, 10);
+      this.formData.time = "";
     }
   }
 };
