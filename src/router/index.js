@@ -5,11 +5,11 @@ import Home from "../views/Home.vue";
 import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
-import AdminMap from "../components/Map.vue";
+import AdminMap from "../components/Map1.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 
-import NewCampaignForm from "../components/NewCampaignForm.vue"
+import NewCampaignForm from "../components/NewCampaignForm.vue";
 
 Vue.use(VueRouter);
 
@@ -58,7 +58,6 @@ const routes = [
     name: "newCampaign",
     component: NewCampaignForm
   }
-
 ];
 
 const router = new VueRouter({
