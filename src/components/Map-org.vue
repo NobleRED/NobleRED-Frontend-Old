@@ -4,7 +4,10 @@
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" @click="addCoordinate">
+        <!-- <v-btn small color="success" class="ml-3" @click="addCampaign">
+          <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
+        </v-btn> -->
+        <v-btn small color="success" class="ml-3" to="/donor/newcampaign">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
@@ -16,8 +19,12 @@
 <script>
 const google = window.google;
 var map;
-var geocoder;
-var infowindow;
+var srilankan_bounds = {
+  north: 10.02,
+  south: 5.715,
+  west: 79.4,
+  east: 82
+};
 
 export default {
   name: "CampaignMap",
@@ -40,14 +47,19 @@ export default {
       coords4: { center: { lat: 8.31219, lng: 80.418716 } }
     };
     var adrs = { center: { lat: 8.31219, lng: 80.418716 } };
-    // var image = "//home.png";
     map = new google.maps.Map(document.getElementById("campaignMap"), {
       zoom: 13.25,
       center: adrs.center,
-      scrollwheel: true
+      scrollwheel: true,
+      //map doesn't go away from sri lanka
+      restriction: {
+        latLngBounds: srilankan_bounds,
+        strictBounds: false
+      }
     });
 
-    geocoder = new google.maps.Geocoder();
+    // geocoder =
+    new google.maps.Geocoder();
 
     // var radius =
     new google.maps.Circle({
@@ -71,42 +83,16 @@ export default {
       });
     }
     new google.maps.Marker({
+      // icon: {
+      //   path: "../assets/blue.png"
+      // },
       position: adrs.center,
       map: map,
-      animation: google.maps.Animation.DROP,
+      // animation: google.maps.Animation.DROP,
       title: "Your Home",
-      label: "Home"
+      // label: "Home",
+      fillColor: "yellow"
     });
-  },
-  methods: {
-    addCoordinate: function() {
-      //var that = this;
-      var address = "71, Mihindu Mawatha, Malwattha, Nittambuwa";
-      geocoder.geocode({ address: address }, function(results, status) {
-        if (status == "OK") {
-          map.setCenter(results[0].geometry.location);
-          console.log(results[0].formatted_address);
-
-          infowindow = new google.maps.InfoWindow({
-            content: results[0].formatted_address
-          });
-
-          this.tempMarker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location,
-            animation: google.maps.Animation.DROP
-          });
-
-          this.tempMarker.addListener("click", function() {
-            infowindow.open(map, this);
-          });
-        } else {
-          alert(
-            "Geocode was not successful for the following reason: " + status
-          );
-        }
-      });
-    }
   }
 };
 </script>
