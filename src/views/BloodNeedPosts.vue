@@ -1,6 +1,10 @@
 /* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */g
 <template>
   <v-container fluid>
+    <v-btn small color="success" class="ml-6" to="/bloodDonation" rounded right="true"
+    >
+      <v-icon class="pr-1">mdi-plus</v-icon>Add New Blood Need Post
+    </v-btn>
     <v-row
       dense
       align-content-sm="12"

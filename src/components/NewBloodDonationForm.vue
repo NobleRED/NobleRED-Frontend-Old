@@ -104,24 +104,24 @@
     </v-card>
 
     <!-- <v-card
-        width="50%"
-        height="100%"
-        :title="formData.district + districtKeyword"
-        :sub-title="formData.province + provinceKeyword"
-        img-src="https://i.ibb.co/4fmcVct/blood-donation-campaign.jpg"
-        img-alt="Image"
-        img-top
-        border-variant="secondary"
-      >
-        <v-card-text>
-          A Blood Donation Campaign organized by
-          <b>{{formData.organizerName}}</b>
-          will be held on
-          <b>{{formData.date}}</b> at
-          <b>{{formData.address}}</b> from
-          <b>{{formData.time}}</b> onwards.
-        </v-card-text>
-    </v-card>-->
+      v-if="formData.bloodType == 'A+'"
+      width="50%"
+      height="100%"
+      :title="formData.bloodType"
+      img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A%2B.jpg?alt=media&token=efe377c0-fa5c-4047-a130-3d601384a336"
+      img-alt="Image"
+      img-top
+      border-variant="secondary"
+    >
+      <v-card-text>
+        Urgently required
+        <b>{{ formData.bloodType }}</b> type of blood for patient. Volunteers
+        please come forward and help us. If you are willing to donate blood
+        please contact <b>{{ formData.userName }}</b> via
+        <b>{{ formData.phoneNumber }}</b>
+        <b>. DONATE BLOOD AND SAVE LIFE</b>
+      </v-card-text>
+    </v-card> -->
   </v-container>
 </template>
 
@@ -176,10 +176,9 @@ export default {
           userName: this.formData.userName,
           address: this.formData.address,
           bloodType: this.formData.bloodType,
-          contact: this.formData.contact,
+          contact: this.formData.PhoneNumber,
           publishedDateTime: now,
-          imgSrc:
-            "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
+          imgSrc: this.select_image(this.formData.bloodType)
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -191,6 +190,37 @@ export default {
     reset() {
       // reset function to clear text fields of the form
       this.$refs.form1.reset();
+    },
+    //function to get relevent blood type image to the request form
+    select_image(blood_type) {
+      switch (blood_type) {
+        case "A+":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A%2B.jpg?alt=media&token=efe377c0-fa5c-4047-a130-3d601384a336";
+
+        case "A-":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A-.jpg?alt=media&token=a1ba920d-0522-4e66-877a-68d8bbd0e8ae";
+
+        case "B+":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B%2B.jpg?alt=media&token=c13b9eba-b47a-4cc6-b0fb-0e1077b735b8";
+
+        case "B-":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B-.jpg?alt=media&token=56349c4c-9879-4f35-be71-a4384860d538";
+
+        case "AB+":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB%2B.jpg?alt=media&token=b4e06190-69b2-4492-89b3-38a5fb3e080c";
+
+        case "AB-":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB-.jpg?alt=media&token=db39abab-301d-48f1-86a9-290c92f717c2";
+
+        case "O+":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O%2B.jpg?alt=media&token=5bbd7bf4-bd54-435c-ae12-9ad94d0066e6";
+
+        case "O-":
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O-.jpg?alt=media&token=e8ca3834-f6ea-4cca-89f4-e60a1788e47a";
+
+        default:
+          return "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d";
+      }
     }
   }
 };
