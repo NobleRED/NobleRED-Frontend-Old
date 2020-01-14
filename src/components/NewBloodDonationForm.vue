@@ -175,9 +175,9 @@ export default {
           address: this.formData.address,
           bloodType: this.formData.bloodType,
           contact: this.formData.contact,
-          publishedDateTime: now,
-          imgSrc:
-            "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
+          publishedDateTime: now
+          // imgSrc:
+          //   "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
