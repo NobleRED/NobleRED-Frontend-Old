@@ -11,10 +11,12 @@
       align-content-md="6"
       align-content-lg="4"
     >
+    <v-row dense>
       <v-col
         v-for="blood_need_post in blood_need_posts"
         :key="blood_need_post.publishedDateTime"
         :cols="blood_need_post.flex"
+
         class="d-flex"
       >
         <v-card
@@ -45,7 +47,7 @@
               <small class="text-muted">{{
                 blood_need_post.publishedDateTimeAgo
               }}</small>
-            </v-slot:footer>
+            </v-slot:footer>        
           </v-card-text>
         </v-card>
       </v-col>

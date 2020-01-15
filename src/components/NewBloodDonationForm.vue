@@ -179,6 +179,7 @@ export default {
           contact: this.formData.PhoneNumber,
           publishedDateTime: now,
           imgSrc: this.select_image(this.formData.bloodType)
+
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
