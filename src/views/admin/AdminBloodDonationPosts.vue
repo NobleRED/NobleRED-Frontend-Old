@@ -21,7 +21,13 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
-        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/bloodDonation">
           <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
@@ -51,7 +57,6 @@ export default {
       headers: [
         { text: "User ID", value: "userID" },
         { text: "User Name", value: "userName" },
-        { text: "Address", value: "address" },
         { text: "Contact Number", value: "phoneNumber" },
         { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" }
