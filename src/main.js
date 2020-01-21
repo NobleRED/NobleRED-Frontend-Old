@@ -8,6 +8,8 @@ import axios from "axios";
 import "./registerServiceWorker";
 
 import vuetify from "./plugins/vuetify";
+import VueParticles from 'vue-particles';
+Vue.use(VueParticles)
 
 Vue.config.productionTip = false;
 export const bus = new Vue();

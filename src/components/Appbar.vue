@@ -1,5 +1,12 @@
 <template>
-  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="grey darken-3" dark>
+  <v-app-bar
+    :clipped-left="$vuetify.breakpoint.mdAndUp"
+    app
+    color="grey darken-3"
+    dark
+    :fixed="true"
+    mobile-break-point
+  >
     <!-- <v-app-bar-nav-icon @click="drawer = !drawer" /> -->
     <v-toolbar-title class="ml-0 pr-4 pl-4">
       <span>
