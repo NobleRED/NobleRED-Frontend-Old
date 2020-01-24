@@ -6,6 +6,7 @@
         <v-img src="../assets/noblered logo 30x100.png" alt="Vuetify" />
       </span>
     </v-toolbar-title>
+    <v-btn small color="success" class="ml-3" to="/bloodNeedPost">Blood Need Post</v-btn>
     <!-- <v-text-field
         flat
         solo-inverted
@@ -21,7 +22,7 @@
     <v-btn icon>
       <v-icon>mdi-bell</v-icon>
     </v-btn>
-    <v-btn icon large>
+    <v-btn icon large v-show="loggedIn">
       <v-avatar size="32px" item>
         <v-img
           src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/user_pro_pic%2FPSX_20181208_195134.jpg?alt=media&token=fab833a7-50d9-4efe-a40c-0b43f61c2757"
@@ -38,7 +39,8 @@ export default {
   name: "Appbar",
   data() {
     return {
-      drawer: null
+      drawer: null,
+      loggedIn: true
     };
   },
   props: {}

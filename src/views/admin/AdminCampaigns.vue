@@ -20,15 +20,33 @@
     </b-modal>-->
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
-        <v-toolbar-title>Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
+        <v-text-field v-model="search1" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/donor/newcampaign">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="posts" :search="search" :loading="loading"></v-data-table>
+      <v-data-table :headers="headers1" :items="campaigns" :search="search1" :loading="loading"></v-data-table>
+    </v-card>
+
+    <v-card width="100%" height="100%" class="mt-5">
+      <v-toolbar flat color="grey darken-3" dark>
+        <v-toolbar-title>Blood Donation Campaigns Requests</v-toolbar-title>
+        <v-text-field v-model="search2" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-spacer></v-spacer>
+        <v-btn small color="success" class="ml-3" to="/newcampaign">
+          <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
+        </v-btn>
+      </v-toolbar>
+
+      <v-data-table
+        :headers="headers2"
+        :items="campaignRequests"
+        :search="search2"
+        :loading="loading"
+      ></v-data-table>
     </v-card>
   </v-container>
 </template>
@@ -44,9 +62,10 @@ export default {
   },
   data() {
     return {
-      search: "",
+      search1: "",
+      search2: "",
       loading: true,
-      headers: [
+      headers1: [
         { text: "Organizer ID", value: "organizerID" },
         { text: "Organizer Name", value: "organizerName" },
         { text: "Address", value: "address" },
@@ -56,11 +75,38 @@ export default {
         { text: "Time", value: "time" },
         { text: "Ago", value: "publishedDateTimeAgo" }
       ],
-      posts: []
+      headers2: [
+        { text: "Organizer ID", value: "organizerID" },
+        { text: "Organizer Name", value: "organizerName" },
+        { text: "Address", value: "address" },
+        { text: "District", value: "district" },
+        { text: "Province", value: "province" },
+        { text: "Date", value: "date" },
+        { text: "Time", value: "time" },
+        { text: "Ago", value: "publishedDateTimeAgo" }
+      ],
+      campaignRequests: [],
+      campaigns: []
     };
   },
   methods: {
-    loadPosts: function() {
+    loadCampaignRequests: function() {
+      // to access "this" variable in the file
+      var _this = this;
+
+      // calling th API and get data
+      axios
+        .get("http://localhost:4200/api/campaignreq")
+        .then(response => {
+          // push data to the array
+          _this.campaignRequests = response.data;
+          _this.loading = false;
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+    },
+    loadCampaigns: function() {
       // to access "this" variable in the file
       var _this = this;
 
@@ -69,7 +115,7 @@ export default {
         .get("http://localhost:4200/api/campaigns")
         .then(response => {
           // push data to the array
-          _this.posts = response.data;
+          _this.campaigns = response.data;
           _this.loading = false;
         })
         .catch(e => {
@@ -79,7 +125,8 @@ export default {
   },
   beforeMount() {
     // to call the function on load of the page
-    this.loadPosts();
+    this.loadCampaignRequests();
+    this.loadCampaigns();
   }
 };
 </script>

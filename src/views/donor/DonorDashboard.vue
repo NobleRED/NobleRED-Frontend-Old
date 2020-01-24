@@ -9,6 +9,10 @@
       :mini-variant="$vuetify.breakpoint.smAndDown"
       app
     >
+      <v-flex :class="`d-flex justify-center pt-5 `" style="background-color:#424242">
+        <p style="font-size:24px; color:white" class="font-weight-medium">Donor</p>
+      </v-flex>
+
       <v-list dense>
         <v-list-item-group v-model="item" color="light">
           <v-list-item v-for="(item, i) in items" :key="i" :to="item.link">
@@ -138,7 +142,11 @@ export default {
         text: "Blood Donation Campaigns",
         link: "/admin/map"
       },
-      { icon: "mdi-water", text: "Donation Posts" },
+      {
+        icon: "mdi-water",
+        text: "Donation Posts",
+        link: "/admin/BloodDonationPosts"
+      },
       {
         icon: "mdi-calendar-multiple-check",
         text: "Campaign Posts",

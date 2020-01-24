@@ -108,8 +108,8 @@
           </v-row>
 
           <v-row>
-            <v-col cols="12" sm="6">
-              <v-text-field
+            <v-col cols="12" sm="6" justify="center">
+              <!-- <v-text-field
                 name="date"
                 label="Date"
                 placeholder
@@ -121,11 +121,17 @@
                 outlined
                 style="background-color: transparent;"
                 small
-              ></v-text-field>
+              ></v-text-field>-->
+              <v-date-picker
+                v-model="formData.date"
+                color="grey darken-3"
+                full-width
+                :landscape="$vuetify.breakpoint.smAndUp"
+              ></v-date-picker>
             </v-col>
 
             <v-col cols="12" sm="6">
-              <v-text-field
+              <!-- <v-text-field
                 name="time"
                 label="Time"
                 placeholder
@@ -137,7 +143,14 @@
                 outlined
                 style="background-color: transparent;"
                 small
-              ></v-text-field>
+              ></v-text-field>-->
+              <v-time-picker
+                v-model="formData.time"
+                :landscape="$vuetify.breakpoint.smAndUp"
+                ampm-in-title
+                color="grey darken-3"
+                full-width
+              ></v-time-picker>
             </v-col>
           </v-row>
 
@@ -181,9 +194,11 @@
 </template>
 
 <script>
+
 import firebase from "../plugins/firebaseConfig";
 import axios from "axios";
 import Qrcode from "vue-qrcode";
+
 var moment = require("moment");
 moment().format();
 
@@ -256,7 +271,7 @@ export default {
         address: "",
         province: "",
         district: "",
-        date: "",
+        date: new Date().toISOString().substr(0, 10),
         time: ""
       }
     };
@@ -269,6 +284,7 @@ export default {
       var now = moment().format();
       console.log("time :" + now);
       // this.getCoords();
+
 
       axios
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
@@ -283,6 +299,32 @@ export default {
 
           var lat = response.data.results[0].geometry.location.lat;
           var lng = response.data.results[0].geometry.location.lng;
+          
+            axios
+        .post("http://localhost:4200/api/campaignreq", {
+             organizerID: _this.formData.organizerID,
+              organizerName: _this.formData.organizerName,
+              address: _this.formData.address,
+              province: _this.formData.province,
+              district: _this.formData.district,
+              date: _this.formData.date,
+              time: _this.formData.time,
+              publishedDateTime: now,
+              lat: lat,
+              lng: lng,
+              imgSrc:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
+        })
+         .then(function(docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              _this.value = docRef.id;
+              this.$router.push("/admin/map");
+            })
+            .catch(function(error) {
+              console.error("Error adding document: ", error);
+            });
+            
+            /*
 
           firebase.db
             .collection("posts")
@@ -310,16 +352,41 @@ export default {
             .catch(function(error) {
               console.error("Error adding document: ", error);
             });
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
 
-      // firebase function call to add data to the database
+     
+
+      axios
+        .post("http://localhost:4200/api/campaignreq", {
+             organizerID: _this.formData.organizerID,
+              organizerName: _this.formData.organizerName,
+              address: _this.formData.address,
+              province: _this.formData.province,
+              district: _this.formData.district,
+              date: _this.formData.date,
+              time: _this.formData.time,
+              publishedDateTime: now,
+              lat: lat,
+              lng: lng,
+              imgSrc:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
+        })
+         .then(function(docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              _this.value = docRef.id;
+              this.$router.push("/admin/map");
+            })
+            .catch(function(error) {
+              console.error("Error adding document: ", error);
+            });
+            
+            */
+
     },
     reset() {
       // reset function to clear text fields of the form
       this.$refs.form1.reset();
+      this.formData.date = new Date().toISOString().substr(0, 10);
+      this.formData.time = "";
     }
   }
 };
