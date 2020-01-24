@@ -45,7 +45,7 @@
               <v-text-field
                 name="address"
                 label="Address"
-                placeholder="No. 5, Flower Road, Colombo"
+                placeholder="Address"
                 id="address"
                 v-model="formData.address"
                 type="text"
@@ -143,11 +143,16 @@
 
           <v-row>
             <v-col cols="12" sm="6">
-              <v-btn type="submit" @click="onSubmit" color="primary"
-                >Submit</v-btn
-              >
+              <router-link to="/admin/campaigns" tag="v-btn">
+                <v-btn type="submit" @click="onSubmit" color="primary"
+                  >Submit</v-btn
+                >
+              </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
+          </v-row>
+          <v-row>
+            <qrcode :value="value" color="color" />
           </v-row>
         </v-card-text>
       </v-form>
@@ -178,14 +183,19 @@
 <script>
 import firebase from "../plugins/firebaseConfig";
 import axios from "axios";
-
+import Qrcode from "vue-qrcode";
 var moment = require("moment");
 moment().format();
 
 export default {
   name: "NewCampaignForm",
+  components: {
+    Qrcode
+  },
   data() {
     return {
+      value: "",
+      color: { dark: "#FFFFFF", light: "#000000" },
       show: true,
       date: "",
       latitude: "",
@@ -270,14 +280,6 @@ export default {
         .then(function(response) {
           // log full response
           console.log(" ressss", response.data.results[0].geometry.location);
-          // this.latitude = response.data.results[0]zeometry.location.lng;
-          // console.log(response.data.results[0]);
-          // formatted Address
-          // var formattedAddress = response.data.results[0].formatted_address;
-          // var formattedAddressOutput =
-          //     <ul class = "list-group">
-          //         <li class="list-group-item">${formattedAddress}</li>
-          //     </ul>
 
           var lat = response.data.results[0].geometry.location.lat;
           var lng = response.data.results[0].geometry.location.lng;
@@ -302,6 +304,8 @@ export default {
             })
             .then(function(docRef) {
               console.log("Document written with ID: ", docRef.id);
+              _this.value = docRef.id;
+              this.$router.push("/admin/map");
             })
             .catch(function(error) {
               console.error("Error adding document: ", error);

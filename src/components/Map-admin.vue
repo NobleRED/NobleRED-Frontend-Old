@@ -32,10 +32,11 @@ const google = window.google;
 var map;
 // var campaigns;
 // var geocoder;
-// var infowindow;
+var infowindow;
 // var __this = this;
 // var userType;
-var _this_;
+// var _this_;
+// var pos;
 var srilankan_bounds = {
   north: 10.02,
   south: 5.715,
@@ -50,7 +51,8 @@ export default {
       campaigns: [],
       userType: "admin",
       pos: [],
-      loading: true //organizer
+      image: "blue.png"
+      // loading: true //organizer
     };
   },
   mounted: function() {
@@ -65,7 +67,13 @@ export default {
             position: { lat: campaign.lat, lng: campaign.lng },
             map: map,
             animation: google.maps.Animation.DROP,
-            title: "Campaign Marker"
+            title:
+              "Address: " +
+              campaign.address +
+              "\nDate: " +
+              campaign.date +
+              "\nTime: " +
+              campaign.time
           });
         });
       })
@@ -74,7 +82,7 @@ export default {
       });
 
     map = new google.maps.Map(document.getElementById("campaignMap"), {
-      zoom: 10,
+      zoom: 12,
       // center: adrs.center,
       scrollwheel: true,
       //map doesn't go away from sri lanka
@@ -83,7 +91,7 @@ export default {
         strictBounds: false
       }
     });
-    // var __this = this;
+    var _this = this;
     // var infowindow = new google.maps.InfoWindow();
 
     // geocoder =
@@ -94,48 +102,45 @@ export default {
       // infowindow = new google.maps.InfoWindow();
       navigator.geolocation.getCurrentPosition(
         function(position) {
-          var pos = {
+          _this.pos = {
             lat: position.coords.latitude,
-            lng: position.coords.latitude
+            lng: position.coords.longitude
           };
-          _this_ = this;
+          // _this_ = this;
           // __this.infoWindow.setPosition(pos);
           // __this.infoWindow.setContent("Your Location");
           // __this.infoWindow.open(map);
-          map.setCenter(pos);
+          map.setCenter(_this.pos);
+          new google.maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.2,
+            map: map,
+            center: _this.pos,
+            radius: 5000
+          });
+          new google.maps.Marker({
+            position: { lat: _this.pos.lat, lng: _this.pos.lng },
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: "Campaign Marker"
+            // icon: "https://img.icons8.com/officel/16/000000/map-pin.png",
+            // size: [500, 500]
+          });
+          console.log("HEReeeeeeeE", _this.pos);
         },
         function() {
           // handleLocationError(true, infowindow, map.getCenter());
         }
       );
+    } else {
+      // if browser doesn't support Geolocation
+      this.handleLocationError(false, infowindow, map.getCenter());
     }
-    // else {
-    //   // if browser doesn't support Geolocation
-    //   handleLocationError(false, infowindow, map.getCenter());
-    // }
-    // if donor or org
-    // new google.maps.Marker({
-    //   position: adrs.center,
-    //   map: map,
-    //   animation: google.maps.Animation.DROP,
-    //   title: "Your Home",
-    //   label: "Home",
-    //   color: "#0000FF"
-    // });
 
     // if (userType === "organizer" || userType === "donor") {
-    // var radius =
-    new google.maps.Circle({
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: "#FF0000",
-      fillOpacity: 0.2,
-      map: map,
-      center: _this_.pos,
-      radius: 4000
-    });
-    // }
   },
   methods: {
     loadMarkers: function() {
