@@ -6,8 +6,8 @@ import Chart from "chart.js";
 import firebaseConfig from "./plugins/firebaseConfig";
 import axios from "axios";
 import "./registerServiceWorker";
-
 import vuetify from "./plugins/vuetify";
+import Qrcode from "vue-qrcode";
 
 Vue.config.productionTip = false;
 export const bus = new Vue();
@@ -19,5 +19,6 @@ new Vue({
   Chart,
   firebaseConfig,
   axios,
+  Qrcode,
   render: h => h(App)
 }).$mount("#app");
