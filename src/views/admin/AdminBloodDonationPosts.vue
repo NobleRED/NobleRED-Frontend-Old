@@ -51,7 +51,6 @@ export default {
       headers: [
         { text: "User ID", value: "userID" },
         { text: "User Name", value: "userName" },
-        { text: "Address", value: "address" },
         { text: "Contact Number", value: "phoneNumber" },
         { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" }

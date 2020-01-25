@@ -14,6 +14,12 @@
         <OrganizerDashboard></OrganizerDashboard>
       </div>
     </div>
+    <div v-if="!loggedIn">
+      <Appbar></Appbar>
+      <v-container>
+        <Home></Home>
+      </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -22,6 +28,7 @@ import AdminDashboard from "./views/admin/AdminDashboard";
 import DonorDashboard from "./views/donor/DonorDashboard";
 import OrganizerDashboard from "./views/organizer/OrganizerDashboard";
 import Appbar from "./components/Appbar";
+import Home from "./views/Home";
 
 export default {
   name: "App",
@@ -30,7 +37,8 @@ export default {
     AdminDashboard,
     DonorDashboard,
     OrganizerDashboard,
-    Appbar
+    Appbar,
+    Home
   },
 
   data: () => ({

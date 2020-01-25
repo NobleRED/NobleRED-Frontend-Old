@@ -9,6 +9,9 @@ import "./registerServiceWorker";
 import vuetify from "./plugins/vuetify";
 import Qrcode from "vue-qrcode";
 
+import VueParticles from 'vue-particles';
+Vue.use(VueParticles)
+
 Vue.config.productionTip = false;
 export const bus = new Vue();
 
