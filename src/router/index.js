@@ -7,6 +7,7 @@ import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue"
 import AdminDonors from "../views/admin/AdminDonors.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminMap from "../components/Map-admin.vue";
+import AdminOrganizer from "../components/NewOrganizerForm.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
@@ -51,6 +52,11 @@ const routes = [
     path: "/admin/BloodDonationPosts",
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
+  },
+  {
+    path: "/admin/neworganizer",
+    name: "newOrganizerForm",
+    component: AdminOrganizer
   },
   {
     path: "/about",
