@@ -29,7 +29,7 @@
 
     <!-- Content of the pages -->
     <v-content>
-      <v-container class="fill-height" fluid>
+      <v-container fluid>
         <v-row align="center" justify="center">
           <router-view></router-view>
         </v-row>
@@ -59,7 +59,11 @@ export default {
         text: "Blood Donors",
         link: "/admin/donors"
       },
-      { icon: "mdi-human", text: "Campaign Organizers" },
+      {
+        icon: "mdi-human",
+        text: "Campaign Organizers",
+        link: "/admin/organizers"
+      },
       // {
       //   icon: "mdi-chevron-up",
       //   "icon-alt": "mdi-chevron-down",
@@ -84,6 +88,11 @@ export default {
         icon: "mdi-calendar-multiple-check",
         text: "Campaign Posts",
         link: "/admin/campaigns"
+      },
+      {
+        icon: "mdi-account-switch",
+        text: "Medical Teams",
+        link: "/admin/medicalteams"
       },
       { icon: "mdi-message-text", text: "Notifications" }
     ]
