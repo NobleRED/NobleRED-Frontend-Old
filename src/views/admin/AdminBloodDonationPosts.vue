@@ -48,6 +48,7 @@ export default {
     return {
       search: "",
       loading: true,
+      dialog: false,
       headers: [
         { text: "User ID", value: "userID" },
         { text: "User Name", value: "userName" },
