@@ -60,18 +60,18 @@ export default {
 
         // calling th API and get data
         axios
-          .get("http://localhost:4200/api/donors")
+          .get("http://localhost:4200/api/campaigns")
           .then(response => {
             // push data to the array
-            _this.donors = response.data;
+            _this.campaigns = response.data;
             // console.log(_this.donors);
             // response.data.forEach(element => {
             //   this.donors.push(element);
             // });
           
 
-            for (var i = 0; i < _this.donors.length; i++) {
-              console.log(_this.donors[i].bloodType);
+            for (var i = 0; i < _this.campaigns.length; i++) {
+              console.log(_this.campaigns.accepted_campaigns.province);
               if (_this.donors[i].bloodType == "A+") {
                 _this.countAPos = _this.countAPos + 1;
               } else if (_this.donors[i].bloodType == "A-") {
