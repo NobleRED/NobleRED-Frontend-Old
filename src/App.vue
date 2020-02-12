@@ -1,5 +1,6 @@
 <template>
   <v-app class="textStyle">
+    <Appbar></Appbar>
     <div v-if="loggedIn">
       <div v-if="userType === 'admin'">
         <Appbar></Appbar>
@@ -15,10 +16,7 @@
       </div>
     </div>
     <div v-if="!loggedIn">
-      <Appbar></Appbar>
-      <v-container>
-        <Home></Home>
-      </v-container>
+      <Home></Home>
     </div>
   </v-app>
 </template>
@@ -43,7 +41,7 @@ export default {
 
   data: () => ({
     userType: "admin",
-    loggedIn: true
+    loggedIn: false
   }),
   created() {
     // this.userType = this.$store.getters.session.role;

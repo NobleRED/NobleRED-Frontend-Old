@@ -2,10 +2,10 @@
   <v-app-bar
     :clipped-left="$vuetify.breakpoint.mdAndUp"
     app
-    color="grey darken-3"
-    dark
-    :fixed="true"
+    color="white"
     mobile-break-point
+    flat
+    fixed
   >
     <!-- <v-app-bar-nav-icon @click="drawer = !drawer" /> -->
     <v-toolbar-title class="ml-0 pr-4 pl-4">
@@ -13,7 +13,11 @@
         <v-img src="../assets/noblered logo 30x100.png" alt="Vuetify" />
       </span>
     </v-toolbar-title>
-    <v-btn small color="success" class="ml-3" to="/bloodNeedPost">Blood Need Post</v-btn>
+    <v-btn text small color="#C62828">Campaigns Map</v-btn>
+    <v-btn text small color="#C62828">Blood Needed Posts</v-btn>
+    <v-btn text small color="#C62828">Campaign Posts</v-btn>
+    <v-btn text small color="#C62828">Contact Us</v-btn>
+    <!-- <v-btn small color="success" class="ml-3" to="/bloodNeedPost">Blood Need Post</v-btn> -->
     <!-- <v-text-field
         flat
         solo-inverted
@@ -23,9 +27,7 @@
         class="hidden-sm-and-down"
     />-->
     <v-spacer />
-    <v-btn icon>
-      <v-icon>mdi-apps</v-icon>
-    </v-btn>
+    <v-btn outlined small color="#C62828">Sign In</v-btn>
     <v-btn icon>
       <v-icon>mdi-bell</v-icon>
     </v-btn>
