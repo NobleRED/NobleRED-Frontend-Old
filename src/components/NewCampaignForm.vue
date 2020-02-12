@@ -299,7 +299,7 @@ export default {
           var lng = response.data.results[0].geometry.location.lng;
 
           axios
-            .post("http://localhost:4200/api/campaignreq", {
+            .post("http://localhost:4200/api/campaigns/new", {
               organizerID: _this.formData.organizerID,
               organizerName: _this.formData.organizerName,
               address: _this.formData.address,

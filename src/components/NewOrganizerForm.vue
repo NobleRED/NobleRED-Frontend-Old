@@ -184,7 +184,7 @@ export default {
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
           _this.value = docRef.id;
-          this.$router.push("/admin/map");
+          // this.$router.push("/admin/map");
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
