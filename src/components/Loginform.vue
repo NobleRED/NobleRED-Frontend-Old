@@ -1,79 +1,104 @@
 <template>
-  <v-container>
-    <v-card class="mx-auto" max-width="350" outlined>
-      <v-flex :class="`d-flex justify-center`">
-        <v-img
-          src="../assets/noblered logo 30x100.png"
-          max-width="100"
-          max-height="30"
-          class="mt-7 mb-3"
-        ></v-img>
-      </v-flex>
-      <v-flex :class="`d-flex justify-center`">
-        <p style="font-size:24px; color:#616161" class="font-weight-medium">Log In</p>
-      </v-flex>
-      <v-form ref="form1">
-        <v-card-text>
-          <v-row>
-            <v-col cols="12">
-              <v-text-field
-                name="username"
-                label=" Enter your email address"
-                id="username"
-                type="text"
-                v-model="username"
-                required
-                outlined
-                style="background-color: transparent;"
-                color="secondary"
-                class="pl-2 pr-2 mb-n5 mt-n5"
-              ></v-text-field>
-            </v-col>
-          </v-row>
+  <v-app>
+    <v-container bg fill-height grid-list-md text-xs-center>
+      <v-layout row wrap align-center>
+        <v-flex>
+          <v-card class="mx-auto" max-width="350" outlined>
+            <v-flex :class="`d-flex justify-center`">
+              <v-img
+                src="../assets/noblered logo 30x100.png"
+                max-width="100"
+                max-height="30"
+                class="mt-7 mb-3"
+              ></v-img>
+            </v-flex>
+            <v-flex :class="`d-flex justify-center`">
+              <p style="font-size:24px; color:#616161" class="font-weight-medium">Log In</p>
+            </v-flex>
+            <v-form ref="form1">
+              <v-card-text>
+                <v-row class="mb-n2">
+                  <v-col cols="12">
+                    <v-text-field
+                      name="username"
+                      label=" Enter your email address"
+                      id="username"
+                      type="text"
+                      v-model="username"
+                      required
+                      outlined
+                      style="background-color: transparent;"
+                      color="secondary"
+                      class="pl-2 pr-2 mb-n5 mt-n5"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
 
-          <v-row>
-            <v-col cols="12">
-              <v-text-field
-                name="password"
-                label=" Enter your password"
-                id="password"
-                type="password"
-                v-model="password"
-                required
-                outlined
-                style="background-color: transparent;"
-                color="secondary"
-                class="pl-2 pr-2 mb-n5 mt-n3"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-flex :class="`d-flex justify-center`">
-            <!-- <p style="font-size:12px; color:#616161" class="font-weight-medium"></p> -->
-            <v-btn
-              small
-              text
-              @click="goToRegistration"
-              color="error"
-              href="/donor/signup"
-            >Don't have an account?</v-btn>
-          </v-flex>
-          <v-row>
-            <v-col cols="12">
-              <v-flex :class="`d-flex justify-center`">
-                <v-btn small type="submit" @click="loginUser()" color="secondary">Login</v-btn>
-                <v-btn small @click="reset()" color="error" class="ml-2">Reset</v-btn>
-              </v-flex>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-form>
-    </v-card>
-  </v-container>
+                <v-row class="mb-n5">
+                  <v-col cols="12">
+                    <v-text-field
+                      name="password"
+                      label=" Enter your password"
+                      id="password"
+                      type="password"
+                      v-model="password"
+                      required
+                      outlined
+                      style="background-color: transparent;"
+                      color="secondary"
+                      class="pl-2 pr-2 mb-n5 mt-n3"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+
+                <v-row class="pl-2 pr-2">
+                  <v-col cols="12">
+                    <v-btn block type="submit" @click="loginUser()" color="secondary">Login</v-btn>
+                  </v-col>
+                </v-row>
+
+                <v-flex :class="`d-flex justify-center`">
+                  <!-- <p style="font-size:12px; color:#616161" class="font-weight-medium"></p> -->
+                  OR
+                </v-flex>
+
+                <v-row class="pl-2 pr-2">
+                  <v-col cols="12">
+                    <v-btn block outlined light color="secondary">
+                      <!-- <span class="mdi mdi-google">&nbsp; &nbsp; Sign In With Google</span> -->
+                      <!-- <v-img src="../assets/google logo.png" aspect-ratio="1"></!-->
+
+                      <v-avatar size="16px" item>
+                        <v-img src="../assets/google logo.png" />
+                      </v-avatar>
+                      <pre class="tab"> Sign In With Google</pre>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+
+                <v-flex :class="`d-flex justify-center`">
+                  <!-- <p style="font-size:12px; color:#616161" class="font-weight-medium"></p> -->
+                  <v-btn
+                    small
+                    text
+                    @click="goToRegistration"
+                    color="error"
+                    href="/donor/signup"
+                  >Don't have an account?</v-btn>
+                </v-flex>
+              </v-card-text>
+            </v-form>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
 import firebase from "../plugins/firebaseConfig";
 import axios from "axios";
+import { bus } from "../main";
 
 export default {
   name: "Loginform",
@@ -84,13 +109,6 @@ export default {
       uid: "",
       user: ""
     };
-  },
-  created() {
-    this.$session.set("view", "login");
-    this.$session.set("showLoginForm", true);
-  },
-  beforeDestroy() {
-    this.$session.set("view", "user");
   },
   methods: {
     loginUser() {
@@ -115,19 +133,27 @@ export default {
             .get("http://localhost:4200/api/donors/" + uid)
             .then(response => {
               // push data to the array
-              console.log(response.data);
-              console.log();
+              console.log(response.data.fname);
+              localStorage.userdata = JSON.stringify(response.data);
+              localStorage.role = response.data.role;
               this.$store.commit("updateRole", response.data.role);
+              bus.$emit("changeLoginStatus", true);
+              bus.$emit("sendUserRole", response.data.role);
+              bus.$emit("sendUserData", response.data);
+              // console.log("Role : ", this.$store.getters.role);
             })
             .catch(e => {
               console.log("Error: " + e);
             });
 
-          this.$store.commit("addSession", user);
-          this.$store.commit("updateLoggedIn", true);
+          // localStorage.user = user;
+          localStorage.loginstatus = true;
+          // this.$store.commit("addSession", user);
+          // this.$store.commit("updateLoggedIn", true);
 
-          // console.log(this.$store.getters.loggedIn);
-          // console.log(this.$store.getters.session.role);
+          this.$router.push("/");
+
+          // console.log("Login status: ", this.$store.getters.loggedIn);
 
           // start the session
           // this.$session.start();
