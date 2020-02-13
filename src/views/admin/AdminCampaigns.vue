@@ -28,6 +28,7 @@
         </v-btn>
       </v-toolbar>
 
+<<<<<<< HEAD
       <v-data-table :headers="headers1" :items="campaigns" :search="search1" :loading="loading">
         <template v-slot:item="row">
           <tr @click="showAlert(row.item)">
@@ -50,12 +51,22 @@
           </tr>
         </template>
       </v-data-table>
+=======
+      <v-data-table :headers="headers1" :items="campaigns" :search="search1" :loading="loading"></v-data-table>
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
     </v-card>
 
     <v-card width="100%" height="100%" class="mt-5">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Donation Campaigns Requests</v-toolbar-title>
         <v-text-field v-model="search2" label="Search" single-line hide-details class="ml-5"></v-text-field>
+<<<<<<< HEAD
+=======
+        <v-spacer></v-spacer>
+        <v-btn small color="success" class="ml-3" to="/newcampaign">
+          <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
+        </v-btn>
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       </v-toolbar>
 
       <v-data-table
@@ -63,6 +74,7 @@
         :items="campaignRequests"
         :search="search2"
         :loading="loading"
+<<<<<<< HEAD
       >
         <template v-slot:item="row">
           <tr @click="openDialog(row.item)">
@@ -118,6 +130,9 @@
           </tr>
         </template>
       </v-data-table>
+=======
+      ></v-data-table>
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
     </v-card>
   </v-container>
 </template>
@@ -136,8 +151,11 @@ export default {
       search1: "",
       search2: "",
       loading: true,
+<<<<<<< HEAD
       dialog: false,
       selectedRequest: [],
+=======
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       headers1: [
         { text: "Organizer ID", value: "organizerID" },
         { text: "Organizer Name", value: "organizerName" },
@@ -146,8 +164,12 @@ export default {
         { text: "Province", value: "province" },
         { text: "Date", value: "date" },
         { text: "Time", value: "time" },
+<<<<<<< HEAD
         { text: "Ago", value: "publishedDateTimeAgo" },
         { text: "Change/Delete", value: "" }
+=======
+        { text: "Ago", value: "publishedDateTimeAgo" }
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       ],
       headers2: [
         { text: "Organizer ID", value: "organizerID" },
