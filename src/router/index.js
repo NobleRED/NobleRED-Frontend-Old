@@ -5,10 +5,10 @@ import Home from "../views/Home.vue";
 import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
-import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
-import AdminMap from "../components/Map-admin.vue";
-import AdminOrganizer from "../components/NewOrganizerForm.vue";
+import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
+import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
+import AdminMap from "../components/Map.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
@@ -40,15 +40,41 @@ const routes = [
     component: AdminDonors
   },
   {
-    path: "/admin/organizers",
-    name: "adminOrganizers",
-    component: AdminOrganizers
+    path:"/admin/charts",
+    name: "adminCharts",
+    components: {
+      default: AdminCharts ,
+      donor: AdminChartsDonor
+    }
   },
   {
     path: "/admin/charts",
     name: "adminCharts",
-    component: AdminCharts
-  },
+    component: AdminCharts,
+    children: [
+      {
+        path:"donor",
+        component:AdminChartsDonor
+<<<<<<< HEAD
+      },
+=======
+      }
+    ]
+  }
+  ,
+  {
+    path: "/admin/charts",
+    name: "adminCharts",
+    component: AdminCharts,
+    children: [
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
+      {
+        path:"campaign",
+        component:AdminChartsCampaign
+      }
+    ]
+  }
+  ,
   {
     path: "/admin/map",
     name: "adminMap",
@@ -58,11 +84,6 @@ const routes = [
     path: "/admin/BloodDonationPosts",
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
-  },
-  {
-    path: "/admin/neworganizer",
-    name: "newOrganizerForm",
-    component: AdminOrganizer
   },
   {
     path: "/about",
@@ -79,9 +100,10 @@ const routes = [
     component: DonorSignupForm
   },
   {
-    path: "/donor/newcampaign",
+    path: "/newcampaign",
     name: "newCampaign",
     component: NewCampaignForm
+
   },
 
   {
@@ -94,6 +116,11 @@ const routes = [
     name: "bloodNeedPost",
     component: BloodNeedPosts
   }
+  // {
+  //   path: "/admin/charts/donor", //newly added component for show blood need post to every one
+  //   name: "adminDonorCharts",
+  //   component: akila
+  // }
 ];
 
 const router = new VueRouter({
