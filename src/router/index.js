@@ -40,9 +40,12 @@ const routes = [
     component: AdminDonors
   },
   {
-    path: "/admin/charts",
+    path:"/admin/charts",
     name: "adminCharts",
-    component: AdminCharts
+    components: {
+      default: AdminCharts ,
+      donor: AdminChartsDonor
+    }
   },
   {
     path: "/admin/charts",
@@ -52,15 +55,7 @@ const routes = [
       {
         path:"donor",
         component:AdminChartsDonor
-      }
-    ]
-  }
-  ,
-  {
-    path: "/admin/charts",
-    name: "adminCharts",
-    component: AdminCharts,
-    children: [
+      },
       {
         path:"campaign",
         component:AdminChartsCampaign

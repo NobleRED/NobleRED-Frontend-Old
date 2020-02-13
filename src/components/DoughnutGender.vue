@@ -24,7 +24,7 @@ export default {
           {
             backgroundColor: [
               "blue",
-              "#d45087"
+              "crimson"
             ],
             data: [
               this.countMale,

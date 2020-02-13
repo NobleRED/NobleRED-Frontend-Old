@@ -32,6 +32,7 @@
       <v-container fluid>
         <v-row align="center" justify="center">
           <router-view></router-view>
+          <router-view name="donor"></router-view> <!-- Default chart view -->
         </v-row>
       </v-container>
     </v-content>

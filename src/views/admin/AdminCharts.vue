@@ -21,6 +21,8 @@
   <v-container>
     <v-row>
       <router-view></router-view>
+      
+      
       <!-- <router-view></router-view>
       
       <v-col cols="12" sm="6">
