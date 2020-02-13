@@ -296,6 +296,45 @@
           </div>
         </v-layout>
       </section>
+
+      <section>
+        <v-layout column align-center>
+          <div class="mt-7 text-xs-center pt-3">
+            <h2 class="headline" style="color:#B71C1C;">Want to become an organizer?</h2>
+          </div>
+          <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
+            <span class="subheading">This is the procedure to become an organizer</span>
+          </div>
+        </v-layout>
+        <v-container>
+          <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
+            <v-timeline-item
+              v-for="(item, i) in items"
+              :key="i"
+              :color="item.color"
+              :icon="item.icon"
+              fill-dot
+            >
+              <v-card :color="item.color" dark>
+                <v-card-title class="title">{{item.topic}}</v-card-title>
+                <v-card-text class="white text--primary">
+                  <p>{{item.details}}</p>
+                  <v-btn :color="item.color" class="mx-0" outlined>Button</v-btn>
+                </v-card-text>
+              </v-card>
+            </v-timeline-item>
+          </v-timeline>
+        </v-container>
+      </section>
+
+      <section class="mt-7">
+        <v-footer dark>
+          <v-col class="text-center" cols="12">
+            {{ new Date().getFullYear() }} ©
+            <strong>NobleRED</strong>
+          </v-col>
+        </v-footer>
+      </section>
     </v-content>
   </v-app>
 </template>
@@ -313,7 +352,37 @@ export default {
   },
   data() {
     return {
-      blood_need_posts: []
+      blood_need_posts: [],
+      items: [
+        {
+          color: "red darken-4",
+          icon: "mdi-pencil-box-outline",
+          topic: "Go to the NBTS",
+          details:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae."
+        },
+        {
+          color: "red darken-4",
+          icon: " mdi-timer-sand",
+          topic: "Wait for the confirmation",
+          details:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae."
+        },
+        {
+          color: "red darken-4",
+          icon: "mdi-trophy-variant",
+          topic: "Now you are an organizer",
+          details:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae."
+        },
+        {
+          color: "red darken-4",
+          icon: " mdi-map-marker-radius",
+          topic: "Let's organize a campaign",
+          details:
+            "Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae."
+        }
+      ]
     };
   },
   methods: {
