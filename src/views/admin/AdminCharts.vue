@@ -21,8 +21,11 @@
   <v-container>
     <v-row>
       <router-view></router-view>
+<<<<<<< HEAD
       
       
+=======
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       <!-- <router-view></router-view>
       
       <v-col cols="12" sm="6">

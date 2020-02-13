@@ -9,7 +9,11 @@
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
+<<<<<<< HEAD
             <CpieChartProvince></CpieChartProvince>
+=======
+            <CpieChart></CpieChart>
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
             <v-btn x-large color="success" dark>Get PDF Copy</v-btn>
           </v-card-text>
         </v-card>
@@ -35,11 +39,19 @@
 
 <script>
 
+<<<<<<< HEAD
 import CpieChartProvince from "../../components/CpieChartProvince.vue"
 import DoughnutGender from "../../components/DoughnutGender.vue"
 export default {
     components:{
         CpieChartProvince,
+=======
+import CpieChart from "../../components/CpieChart.vue"
+import DoughnutGender from "../../components/DoughnutGender.vue"
+export default {
+    components:{
+        CpieChart,
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
         DoughnutGender
     }
   
