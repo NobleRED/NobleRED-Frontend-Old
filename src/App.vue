@@ -1,25 +1,21 @@
 <template>
   <v-app class="textStyle">
-    <div v-if="loggedIn">
-      <div v-if="userType === 'admin'">
-        <Appbar></Appbar>
+    <Appbar></Appbar>
+    <router-view v-if="!dashBoard"></router-view>
+
+    <div v-if="loggedIn && dashBoard">
+      <div v-if="userRole === 'admin'">
+        <!-- <Appbar></Appbar> -->
         <AdminDashboard></AdminDashboard>
       </div>
-      <div v-else-if="userType === 'donor'">
-        <Appbar></Appbar>
+      <div v-else-if="userRole === 'donor'">
         <DonorDashboard></DonorDashboard>
       </div>
-      <div v-else-if="userType === 'organizer'">
-        <Appbar></Appbar>
+      <div v-else-if="userRole === 'organizer'">
         <OrganizerDashboard></OrganizerDashboard>
       </div>
     </div>
-    <div v-if="!loggedIn">
-      <Appbar></Appbar>
-      <v-container>
-        <Home></Home>
-      </v-container>
-    </div>
+    <div v-if="!loggedIn"></div>
   </v-app>
 </template>
 
@@ -28,25 +24,37 @@ import AdminDashboard from "./views/admin/AdminDashboard";
 import DonorDashboard from "./views/donor/DonorDashboard";
 import OrganizerDashboard from "./views/organizer/OrganizerDashboard";
 import Appbar from "./components/Appbar";
-import Home from "./views/Home";
+import { bus } from "./main";
+// import Home from "./views/Home";
 
 export default {
   name: "App",
-
   components: {
     AdminDashboard,
     DonorDashboard,
     OrganizerDashboard,
-    Appbar,
-    Home
+    Appbar
+    // Home
   },
 
   data: () => ({
-    userType: "admin",
-    loggedIn: true
+    userRole: "admin",
+    loggedIn: true,
+    dashBoard: false
   }),
   created() {
-    // this.userType = this.$store.getters.session.role;
+    this.dashBoard = false;
+  },
+  mounted() {
+    bus.$on("changeDashboardStatus", () => {
+      this.dashBoard = !this.dashBoard;
+    });
+    bus.$on("sendUserRole", data => {
+      this.userRole = data;
+    });
+    bus.$on("changeLoginStatus", data => {
+      this.loggedIn = data;
+    });
   }
 };
 </script>

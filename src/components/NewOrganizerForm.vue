@@ -103,9 +103,7 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/campaigns" tag="v-btn">
-                <v-btn type="submit" @click="onSubmit" color="primary"
-                  >Submit</v-btn
-                >
+                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
@@ -129,6 +127,7 @@ export default {
     return {
       value: "",
       show: true,
+      nextOrganizerID: "",
       nameRules: [
         v => !!v || "Name is required",
         v => v.length <= 50 || "Name must be less than 50 characters"
@@ -168,19 +167,35 @@ export default {
       console.log("time :" + now);
 
       axios
-        .post("http://localhost:4200/api/campaignreq", {
-          organizerName: _this.formData.organizerName,
-          contactPerson: _this.formData.contactPerson,
-          contactPersonNIC: _this.formData.contactPersonNIC,
-          contactNo: _this.formData.contactNo,
-          address: _this.formData.address,
-          email: _this.formData.email,
-          createdAt: now
-          // role:
-          // status:
-          //   date: _this.formData.date,
-          //   time: _this.formData.time,
+        .get("http://localhost:4200/api/organizers/nextid")
+        .then(response => {
+          // push data to the array
+          _this.nextOrganizerID = response.data;
+          axios
+            .post("http://localhost:4200/api/organizer", {
+              organizerID: _this.nextOrganizerID,
+              organizerName: _this.formData.organizerName,
+              contactPerson: _this.formData.contactPerson,
+              contactPersonNIC: _this.formData.contactPersonNIC,
+              contactNo: _this.formData.contactNo,
+              address: _this.formData.address,
+              email: _this.formData.email,
+              createdAt: now,
+              role: "admin",
+              status: 1
+            })
+            .then(function(docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              _this.value = docRef.id;
+              _this.$router.push({
+                name: "adminOrganizers"
+              });
+            })
+            .catch(function(error) {
+              console.error("Error adding document: ", error);
+            });
         })
+<<<<<<< HEAD
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
           _this.value = docRef.id;
@@ -188,6 +203,10 @@ export default {
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
+=======
+        .catch(e => {
+          console.log("Error: " + e);
+>>>>>>> a48051d15d23b0bf46b49bee505079cd25d843c3
         });
     },
     reset() {

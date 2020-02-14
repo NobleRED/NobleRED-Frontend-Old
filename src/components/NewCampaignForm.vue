@@ -157,9 +157,7 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/campaigns" tag="v-btn">
-                <v-btn type="submit" @click="onSubmit" color="primary"
-                  >Submit</v-btn
-                >
+                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
@@ -194,10 +192,15 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 //import firebase from "../plugins/firebaseConfig";
 import axios from "axios";
 import Qrcode from "vue-qrcode";
 
+=======
+// import firebase from "../plugins/firebaseConfig";
+import axios from "axios";
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
 var moment = require("moment");
 moment().format();
 
@@ -284,6 +287,7 @@ export default {
       console.log("time :" + now);
       // this.getCoords();
 
+<<<<<<< HEAD
       axios
         .get("https://maps.googleapis.com/maps/api/geocode/json", {
           params: {
@@ -299,7 +303,11 @@ export default {
           var lng = response.data.results[0].geometry.location.lng;
 
           axios
+<<<<<<< HEAD
             .post("http://localhost:4200/api/campaigns/new", {
+=======
+            .post("http://localhost:4200/api/campaigns", {
+>>>>>>> a48051d15d23b0bf46b49bee505079cd25d843c3
               organizerID: _this.formData.organizerID,
               organizerName: _this.formData.organizerName,
               address: _this.formData.address,
@@ -316,7 +324,9 @@ export default {
             .then(function(docRef) {
               console.log("Document written with ID: ", docRef.id);
               _this.value = docRef.id;
-              this.$router.push("/admin/map");
+              this.$router.push({
+                name: "adminMap"
+              });
             })
             .catch(function(error) {
               console.error("Error adding document: ", error);
@@ -378,6 +388,48 @@ export default {
             });
 
             */
+=======
+      // firebase function call to add data to the database
+      // firebase.db
+      //   .collection("posts")
+      //   .doc("campaign_posts")
+      //   .collection("campaign_posts")
+      //   .add({
+      //     organizerID: this.formData.organizerID,
+      //     organizerName: this.formData.organizerName,
+      //     address: this.formData.address,
+      //     province: this.formData.province,
+      //     district: this.formData.district,
+      //     date: this.formData.date,
+      //     time: this.formData.time,
+      //     publishedDateTime: now,
+      //     imgSrc:
+      //       "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
+      //   })
+      //   .then(function(docRef) {
+      //     console.log("Document written with ID: ", docRef.id);
+      //   })
+      //   .catch(function(error) {
+      //     console.error("Error adding document: ", error);
+      //   });
+
+      axios
+        .post("http://localhost:4200/api/campaignreq", {
+          organizerID: this.formData.organizerID,
+          organizerName: this.formData.organizerName,
+          address: this.formData.address,
+          province: this.formData.province,
+          district: this.formData.district,
+          date: this.formData.date,
+          time: this.formData.time,
+          publishedDateTime: now
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+>>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
         });
     },
     reset() {
