@@ -1,32 +1,22 @@
 <template>
-<v-container>
   <v-container>
+    <v-container>
       <v-row justify="center">
         <v-col cols="12">
           <v-tabs fixed-tabs background-color="light-black" dark>
-            <v-tab to="/admin/charts/donor">
-              Donors
-            </v-tab>
-            <v-tab to="/admin/charts/campaign">
-              Campaigns
-            </v-tab>
-            <v-tab to="/admin/charts/organizers">
-              Campaign Organizers
-            </v-tab>
+            <v-tab to="/admin/charts/donor">Donors</v-tab>
+            <v-tab to="/admin/charts/campaign">Campaigns</v-tab>
+            <v-tab to="/admin/charts/organizers">Campaign Organizers</v-tab>
           </v-tabs>
         </v-col>
       </v-row>
-  </v-container>
+    </v-container>
 
-  <v-container>
-    <v-row>
-      <router-view></router-view>
-<<<<<<< HEAD
-      
-      
-=======
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
-      <!-- <router-view></router-view>
+    <v-container>
+      <v-row>
+        <router-view></router-view>
+
+        <!-- <router-view></router-view>
       
       <v-col cols="12" sm="6">
         <v-card class="mx-auto">
@@ -53,10 +43,10 @@
               <v-btn x-large color="success" dark>Get PDF Copy</v-btn>
             </v-card-text>
           </v-card>
-      </v-col> -->
-    </v-row>
-  </v-container>
-<!-- <v-container>
+        </v-col>-->
+      </v-row>
+    </v-container>
+    <!-- <v-container>
     <v-row>
       <v-col cols="12" sm="6">
         <v-card class="mx-auto" max-width="400">
@@ -103,25 +93,20 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container> -->
-</v-container>
+    </v-container>-->
+  </v-container>
 </template>
 
 <script>
-
-
 // import AdminChartsDonor from "../admin/AdminChartsDonor";
 // import Piechart from "../../components/Piechart";
 // import Doughnutchart from "../../components/Doughnutchart";
 
 export default {
   components: {
-    
     // Piechart,
-  //  Doughnutchart
-    // AdminChartsDonor 
-    
-
+    //  Doughnutchart
+    // AdminChartsDonor
   },
   data() {
     return {
