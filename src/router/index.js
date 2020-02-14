@@ -40,10 +40,10 @@ const routes = [
     component: AdminDonors
   },
   {
-    path:"/admin/charts",
+    path: "/admin/charts",
     name: "adminCharts",
     components: {
-      default: AdminCharts ,
+      default: AdminCharts,
       donor: AdminChartsDonor
     }
   },
@@ -53,12 +53,10 @@ const routes = [
     component: AdminCharts,
     children: [
       {
-        path:"donor",
-        component:AdminChartsDonor
-<<<<<<< HEAD
+        path: "donor",
+        component: AdminChartsDonor
       },
-=======
-      }
+
     ]
   }
   ,
@@ -67,10 +65,9 @@ const routes = [
     name: "adminCharts",
     component: AdminCharts,
     children: [
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       {
-        path:"campaign",
-        component:AdminChartsCampaign
+        path: "campaign",
+        component: AdminChartsCampaign
       }
     ]
   }

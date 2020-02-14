@@ -68,10 +68,6 @@ export default {
             // response.data.forEach(element => {
             //   this.donors.push(element);
             // });
-<<<<<<< HEAD
-=======
-          
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
 
             for (var i = 0; i < _this.donors.length; i++) {
               console.log(_this.donors[i].bloodType);

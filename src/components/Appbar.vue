@@ -13,11 +13,11 @@
         <v-img src="../assets/noblered logo 30x100.png" alt="Vuetify" @click="redirect" />
       </span>
     </v-toolbar-title>
-
+    <!-- 
     <v-btn text small color="#C62828">Campaigns Map</v-btn>
     <v-btn text small color="#C62828">Blood Needed Posts</v-btn>
     <v-btn text small color="#C62828">Campaign Posts</v-btn>
-    <v-btn text small color="#C62828">Contact Us</v-btn>
+    <v-btn text small color="#C62828">Contact Us</v-btn>-->
 
     <!-- <v-btn small color="success" class="ml-3" to="/bloodNeedPost">Blood Need Post</v-btn> -->
     <!-- <v-text-field
@@ -71,10 +71,10 @@ export default {
       this.$router.push("/"); // if ur using router
     },
     signOut() {
-      // localStorage.clear();
-      localStorage.removeItem("userdata");
-      localStorage.setItem("role", "visitor");
-      localStorage.setItem("loginstatus", false);
+      localStorage.clear();
+      // localStorage.removeItem("userdata");
+      // localStorage.setItem("role", "visitor");
+      // localStorage.setItem("loginstatus", false);
       bus.$emit("changeDashboardStatus", true);
       this.$store.commit("updateLoggedIn", false);
       this.$store.commit("role", "visitor");
@@ -96,7 +96,9 @@ export default {
   created() {
     bus.$on("changeLoginStatus", () => {
       // this.loggedIn = data;
-      this.loggedIn = localStorage.loginstatus;
+      this.loggedIn = localStorage.loginstatus
+        ? localStorage.loginstatus
+        : false;
     });
     bus.$on("sendUserRole", () => {
       // this.userRole = data;

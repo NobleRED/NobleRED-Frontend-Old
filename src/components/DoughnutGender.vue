@@ -1,5 +1,5 @@
 <script>
-import {  Doughnut } from "vue-chartjs";
+import { Doughnut } from "vue-chartjs";
 import axios from "axios";
 
 export default {
@@ -8,7 +8,7 @@ export default {
     return {
       donors: [],
       countMale: 0,
-      countFemale: 0,
+      countFemale: 0
     };
   },
   beforeMount() {},
@@ -19,21 +19,11 @@ export default {
       console.log(x);
 
       this.renderChart({
-        labels: ["Male","Female"],
+        labels: ["Male", "Female"],
         datasets: [
           {
-            backgroundColor: [
-              "blue",
-<<<<<<< HEAD
-              "crimson"
-=======
-              "#d45087"
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
-            ],
-            data: [
-              this.countMale,
-              this.countFemale
-            ]
+            backgroundColor: ["blue", "#d45087"],
+            data: [this.countMale, this.countFemale]
           }
         ]
       });
@@ -54,7 +44,6 @@ export default {
             // response.data.forEach(element => {
             //   this.donors.push(element);
             // });
-          
 
             for (var i = 0; i < _this.donors.length; i++) {
               console.log(_this.donors[i].bloodType);
@@ -62,7 +51,7 @@ export default {
                 _this.countMale = _this.countMale + 1;
               } else if (_this.donors[i].gender == "female") {
                 _this.countFemale = _this.countFemale + 1;
-              } 
+              }
             }
             // _this.loading = false;
             resolve(true);
