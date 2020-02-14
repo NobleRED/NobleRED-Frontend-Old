@@ -53,28 +53,22 @@ const routes = [
     component: AdminCharts,
     children: [
       {
-        path:"donor",
-        component:AdminChartsDonor
-<<<<<<< HEAD
-      },
-=======
+        path: "donor",
+        component: AdminChartsDonor
       }
     ]
-  }
-  ,
+  },
   {
     path: "/admin/charts",
     name: "adminCharts",
     component: AdminCharts,
     children: [
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       {
-        path:"campaign",
-        component:AdminChartsCampaign
+        path: "campaign",
+        component: AdminChartsCampaign
       }
     ]
-  }
-  ,
+  },
   {
     path: "/admin/map",
     name: "adminMap",
