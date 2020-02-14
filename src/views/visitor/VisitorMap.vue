@@ -36,7 +36,7 @@ export default {
   mounted: function() {
     // calling the api and getting the markers
     axios
-      .get("http://localhost:4200/api/campaigns")
+      .get("http://localhost:4200/api/campaigns/accepted")
       .then(response => {
         // push data to campaigns array
         this.campaigns = response.data;
@@ -60,9 +60,10 @@ export default {
       });
 
     map = new google.maps.Map(document.getElementById("campaignMap"), {
-      zoom: 8,
+      zoom: 6,
       // center: adrs.center,
-      scrollwheel: true,
+      // scrollwheel: false,
+      gesturehandling: "cooperative",
       //map doesn't go away from sri lanka
       restriction: {
         latLngBounds: srilankan_bounds,

@@ -8,7 +8,13 @@
       </section>
 
       <section class="ma-5">
-        <v-card class="mx-auto pa-3" light max-width="600" outlined color="transparent">
+        <v-card
+          class="mx-auto pa-3"
+          light
+          max-width="600"
+          outlined
+          color="transparent"
+        >
           <v-flex :class="`d-flex justify-center`">
             <v-img
               src="../assets/noblered logo 30x100.png"
@@ -17,16 +23,20 @@
               class="mt-3 mb-0"
             ></v-img>
           </v-flex>
-          <v-card-text
-            class="headline"
-          >" NobleRED is a platform for the noble sri lankans, who are willing to donate blood or willing to sacrifice their time and money to organize blood donation campaigns. "</v-card-text>
+          <v-card-text class="headline"
+            >" NobleRED is a platform for the noble sri lankans, who are willing
+            to donate blood or willing to sacrifice their time and money to
+            organize blood donation campaigns. "</v-card-text
+          >
         </v-card>
       </section>
 
       <section>
         <v-layout column align-center>
           <div class="mt-3 text-xs-center pt-3">
-            <h2 class="headline" style="color:#B71C1C;">See where you can donate blood</h2>
+            <h2 class="headline" style="color:#B71C1C;">
+              See where you can donate blood
+            </h2>
           </div>
           <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
             <span class="subheading">Registered blood donation campaigns</span>
@@ -57,18 +67,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[0].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[0].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[0].userName }}</b> via
                       <b>{{ blood_need_posts[0].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[0].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[0].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -84,18 +92,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[1].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[1].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[1].userName }}</b> via
                       <b>{{ blood_need_posts[1].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[1].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[1].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -111,18 +117,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[2].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[2].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[2].userName }}</b> via
                       <b>{{ blood_need_posts[2].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[2].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[2].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -138,18 +142,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[3].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[3].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[3].userName }}</b> via
                       <b>{{ blood_need_posts[3].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[3].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[3].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -169,10 +171,14 @@
       <section>
         <v-layout column align-center>
           <div class="mt-7 text-xs-center pt-3">
-            <h2 class="headline" style="color:#B71C1C;">More about campaigns</h2>
+            <h2 class="headline" style="color:#B71C1C;">
+              More about campaigns
+            </h2>
           </div>
           <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
-            <span class="subheading">Recently added blood donation campaigns</span>
+            <span class="subheading"
+              >Recently added blood donation campaigns</span
+            >
           </div>
         </v-layout>
         <v-layout column wrap class="mt-1 my-5" align-center>
@@ -188,18 +194,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[0].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[0].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[0].userName }}</b> via
                       <b>{{ blood_need_posts[0].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[0].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[0].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -215,18 +219,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[1].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[1].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[1].userName }}</b> via
                       <b>{{ blood_need_posts[1].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[1].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[1].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -242,18 +244,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[2].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[2].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[2].userName }}</b> via
                       <b>{{ blood_need_posts[2].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[2].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[2].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -269,18 +269,16 @@
                     ></v-img>
                     <v-card-text>
                       Urgently required
-                      <b>{{ blood_need_posts[3].bloodType }}</b> type of blood for patient.
-                      Volunteers please come forward and help us. If you are willing to
-                      donate blood please contact
+                      <b>{{ blood_need_posts[3].bloodType }}</b> type of blood
+                      for patient. Volunteers please come forward and help us.
+                      If you are willing to donate blood please contact
                       <b>{{ blood_need_posts[3].userName }}</b> via
                       <b>{{ blood_need_posts[3].phoneNumber }}</b>
                       <b>. DONATE BLOOD AND SAVE LIFE</b>
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          blood_need_posts[3].publishedDateTimeAgo
-                          }}
+                          {{ blood_need_posts[3].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -300,10 +298,14 @@
       <section>
         <v-layout column align-center>
           <div class="mt-7 text-xs-center pt-3">
-            <h2 class="headline" style="color:#B71C1C;">Want to become an organizer?</h2>
+            <h2 class="headline" style="color:#B71C1C;">
+              Want to become an organizer?
+            </h2>
           </div>
           <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
-            <span class="subheading">This is the procedure to become an organizer</span>
+            <span class="subheading"
+              >This is the procedure to become an organizer</span
+            >
           </div>
         </v-layout>
         <v-container>
@@ -316,10 +318,12 @@
               fill-dot
             >
               <v-card :color="item.color" dark>
-                <v-card-title class="title">{{item.topic}}</v-card-title>
+                <v-card-title class="title">{{ item.topic }}</v-card-title>
                 <v-card-text class="white text--primary">
-                  <p>{{item.details}}</p>
-                  <v-btn :color="item.color" class="mx-0" outlined>Button</v-btn>
+                  <p>{{ item.details }}</p>
+                  <v-btn :color="item.color" class="mx-0" outlined
+                    >Button</v-btn
+                  >
                 </v-card-text>
               </v-card>
             </v-timeline-item>
@@ -410,5 +414,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
