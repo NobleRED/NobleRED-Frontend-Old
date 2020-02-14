@@ -13,7 +13,9 @@
         :class="`d-flex justify-center pt-5 `"
         style="background-color:#424242"
       >
-        <p style="font-size:24px; color:white" class="font-weight-medium">Admin</p>
+        <p style="font-size:24px; color:white" class="font-weight-medium">
+          Admin
+        </p>
       </v-flex>
 
       <v-list dense>
@@ -31,10 +33,9 @@
     </v-navigation-drawer>
 
     <!-- Content of the pages -->
-<<<<<<< HEAD
 
     <v-content>
-      <v-container class="" fluid> 
+      <v-container class="" fluid>
         <v-row align="center" justify="center">
           <router-view></router-view>
           <!-- <v-tooltip right>
@@ -106,17 +107,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>-->
-=======
-    <v-content>
-      <v-container fluid>
-        <v-row align="center" justify="center">
-          <router-view></router-view>
-          <router-view name="donor"></router-view>
-          <!-- Default chart view -->
-        </v-row>
-      </v-container>
-    </v-content>
->>>>>>> 29dcb6e081b358689885a6d14c186fd474db0e43
   </v-app>
 </template>
 
@@ -141,15 +131,7 @@ export default {
         text: "Blood Donors",
         link: "/admin/donors"
       },
-<<<<<<< HEAD
       { icon: "mdi-human", text: "Campaign Organizers" },
-=======
-      {
-        icon: "mdi-human",
-        text: "Campaign Organizers",
-        link: "/admin/organizers"
-      },
->>>>>>> 29dcb6e081b358689885a6d14c186fd474db0e43
       // {
       //   icon: "mdi-chevron-up",
       //   "icon-alt": "mdi-chevron-down",
@@ -175,14 +157,6 @@ export default {
         text: "Campaign Posts",
         link: "/admin/campaigns"
       },
-<<<<<<< HEAD
-=======
-      {
-        icon: "mdi-account-switch",
-        text: "Medical Teams",
-        link: "/admin/medicalteams"
-      },
->>>>>>> 29dcb6e081b358689885a6d14c186fd474db0e43
       { icon: "mdi-message-text", text: "Notifications" }
     ]
   })
