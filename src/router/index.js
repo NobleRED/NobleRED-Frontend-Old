@@ -55,12 +55,7 @@ const routes = [
       {
         path: "donor",
         component: AdminChartsDonor
-<<<<<<< HEAD
       }
-=======
-      },
-
->>>>>>> 29dcb6e081b358689885a6d14c186fd474db0e43
     ]
   },
   {
@@ -102,7 +97,6 @@ const routes = [
     path: "/newcampaign",
     name: "newCampaign",
     component: NewCampaignForm
-
   },
 
   {
