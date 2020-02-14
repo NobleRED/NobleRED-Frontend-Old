@@ -9,7 +9,10 @@
       :mini-variant="$vuetify.breakpoint.smAndDown"
       app
     >
-      <v-flex :class="`d-flex justify-center pt-5 `" style="background-color:#424242">
+      <v-flex
+        :class="`d-flex justify-center pt-5 `"
+        style="background-color:#424242"
+      >
         <p style="font-size:24px; color:white" class="font-weight-medium">Admin</p>
       </v-flex>
 
@@ -28,21 +31,10 @@
     </v-navigation-drawer>
 
     <!-- Content of the pages -->
-<<<<<<< HEAD
-    <v-content>
-      <v-container fluid>
-        <v-row align="center" justify="center">
-          <router-view></router-view>
-          <router-view name="donor"></router-view> <!-- Default chart view -->
-        </v-row>
-      </v-container>
-    </v-content>
-=======
 
     <v-content>
       <v-container class="" fluid> 
         <v-row align="center" justify="center">
-        
           <router-view></router-view>
           <!-- <v-tooltip right>
             <template v-slot:activator="{ on }">
@@ -113,7 +105,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>-->
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
   </v-app>
 </template>
 
@@ -138,15 +129,7 @@ export default {
         text: "Blood Donors",
         link: "/admin/donors"
       },
-<<<<<<< HEAD
-      {
-        icon: "mdi-human",
-        text: "Campaign Organizers",
-        link: "/admin/organizers"
-      },
-=======
       { icon: "mdi-human", text: "Campaign Organizers" },
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       // {
       //   icon: "mdi-chevron-up",
       //   "icon-alt": "mdi-chevron-down",
@@ -172,14 +155,6 @@ export default {
         text: "Campaign Posts",
         link: "/admin/campaigns"
       },
-<<<<<<< HEAD
-      {
-        icon: "mdi-account-switch",
-        text: "Medical Teams",
-        link: "/admin/medicalteams"
-      },
-=======
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
       { icon: "mdi-message-text", text: "Notifications" }
     ]
   })
