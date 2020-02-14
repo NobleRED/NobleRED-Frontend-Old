@@ -93,13 +93,7 @@
 
           <v-row>
             <v-col cols="12" sm="6">
-<<<<<<< HEAD
-              <v-btn type="submit" @click="onSubmit" color="primary"
-                >Submit</v-btn
-              >
-=======
               <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
           </v-row>
@@ -108,7 +102,6 @@
     </v-card>
 
     <!-- <v-card
-<<<<<<< HEAD
       v-if="formData.bloodType == 'A+'"
       width="50%"
       height="100%"
@@ -126,27 +119,7 @@
         <b>{{ formData.phoneNumber }}</b>
         <b>. DONATE BLOOD AND SAVE LIFE</b>
       </v-card-text>
-    </v-card> -->
-=======
-        width="50%"
-        height="100%"
-        :title="formData.district + districtKeyword"
-        :sub-title="formData.province + provinceKeyword"
-        img-src="https://i.ibb.co/4fmcVct/blood-donation-campaign.jpg"
-        img-alt="Image"
-        img-top
-        border-variant="secondary"
-      >
-        <v-card-text>
-          A Blood Donation Campaign organized by
-          <b>{{formData.organizerName}}</b>
-          will be held on
-          <b>{{formData.date}}</b> at
-          <b>{{formData.address}}</b> from
-          <b>{{formData.time}}</b> onwards.
-        </v-card-text>
     </v-card>-->
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
   </v-container>
 </template>
 
@@ -201,17 +174,9 @@ export default {
           userName: this.formData.userName,
           address: this.formData.address,
           bloodType: this.formData.bloodType,
-<<<<<<< HEAD
           contact: this.formData.PhoneNumber,
           publishedDateTime: now,
           imgSrc: this.select_image(this.formData.bloodType)
-
-=======
-          contact: this.formData.contact,
-          publishedDateTime: now
-          // imgSrc:
-          //   "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
@@ -223,7 +188,6 @@ export default {
     reset() {
       // reset function to clear text fields of the form
       this.$refs.form1.reset();
-<<<<<<< HEAD
     },
     //function to get relevent blood type image to the request form
     select_image(blood_type) {
@@ -259,9 +223,3 @@ export default {
   }
 };
 </script>
-=======
-    }
-  }
-};
-</script>
->>>>>>> 40dddcb2da474375b82f046724d842328a58fa39
