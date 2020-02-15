@@ -317,7 +317,7 @@ export default {
             .then(function(docRef) {
               console.log("Document written with ID: ", docRef.id);
               _this.value = docRef.id;
-              this.$router.push({
+              _this.$router.push({
                 name: "adminMap"
               });
             })
