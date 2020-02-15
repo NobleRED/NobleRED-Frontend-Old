@@ -29,7 +29,7 @@
           class="ml-5"
         ></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/donor/newcampaign">
+        <v-btn small color="success" class="ml-3" to="/admin/newcampaign">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
@@ -210,7 +210,7 @@ export default {
 
       // calling th API and get data
       axios
-        .get("http://localhost:4200/api/campaignreq")
+        .get("http://localhost:4200/api/campaigns/requests")
         .then(response => {
           // push data to the array
           _this.campaignRequests = response.data;
@@ -226,7 +226,7 @@ export default {
 
       // calling th API and get data
       axios
-        .get("http://localhost:4200/api/campaigns")
+        .get("http://localhost:4200/api/campaigns/accepted")
         .then(response => {
           // push data to the array
           _this.campaigns = response.data;
@@ -244,7 +244,7 @@ export default {
       this.selectedRequest = item;
       axios
         .post(
-          "http://localhost:4200/api/campaignreq/" +
+          "http://localhost:4200/api/campaigns/accept/" +
             this.selectedRequest.campaignID,
           {}
         )

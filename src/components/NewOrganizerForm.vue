@@ -103,7 +103,9 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/campaigns" tag="v-btn">
-                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+                <v-btn type="submit" @click="onSubmit" color="primary"
+                  >Submit</v-btn
+                >
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
@@ -195,7 +197,6 @@ export default {
               console.error("Error adding document: ", error);
             });
         })
-<<<<<<< HEAD
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
           _this.value = docRef.id;
@@ -203,10 +204,6 @@ export default {
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
-=======
-        .catch(e => {
-          console.log("Error: " + e);
->>>>>>> a48051d15d23b0bf46b49bee505079cd25d843c3
         });
     },
     reset() {

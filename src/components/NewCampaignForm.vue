@@ -303,6 +303,7 @@ export default {
               organizerID: _this.formData.organizerID,
               organizerName: _this.formData.organizerName,
               address: _this.formData.address,
+              contactNo: _this.formData.contactNo,
               province: _this.formData.province,
               district: _this.formData.district,
               date: _this.formData.date,

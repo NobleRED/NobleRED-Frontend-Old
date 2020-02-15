@@ -16,7 +16,7 @@
           small
           color="success"
           class="ml-3"
-          to="/donor/newcampaign"
+          to="/admin/newcampaign"
         >
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
