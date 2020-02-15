@@ -13,7 +13,12 @@
               ></v-img>
             </v-flex>
             <v-flex :class="`d-flex justify-center`">
-              <p style="font-size:24px; color:#616161" class="font-weight-medium">Log In</p>
+              <p
+                style="font-size:24px; color:#616161"
+                class="font-weight-medium"
+              >
+                Log In
+              </p>
             </v-flex>
             <v-form ref="form1">
               <v-card-text>
@@ -25,6 +30,7 @@
                       id="username"
                       type="text"
                       v-model="username"
+                      :rules="inputRulesUser"
                       required
                       outlined
                       style="background-color: transparent;"
@@ -42,6 +48,7 @@
                       id="password"
                       type="password"
                       v-model="password"
+                      :rules="inputRulespass"
                       required
                       outlined
                       style="background-color: transparent;"
@@ -53,7 +60,13 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn block type="submit" @click="loginUser()" color="secondary">Login</v-btn>
+                    <v-btn
+                      block
+                      type="submit"
+                      @click="loginUser()"
+                      color="secondary"
+                      >Login</v-btn
+                    >
                   </v-col>
                 </v-row>
 
@@ -84,7 +97,8 @@
                     @click="goToRegistration"
                     color="error"
                     href="/donor/signup"
-                  >Don't have an account?</v-btn>
+                    >Don't have an account?</v-btn
+                  >
                 </v-flex>
               </v-card-text>
             </v-form>
@@ -107,7 +121,9 @@ export default {
       username: "",
       password: "",
       uid: "",
-      user: ""
+      user: "",
+      inputRulesUser: [v => v.length > 0 || ""],
+      inputRulespass: [v => v.length >= 8 || ""]
     };
   },
   methods: {
