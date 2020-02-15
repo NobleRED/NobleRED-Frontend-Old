@@ -46,9 +46,6 @@
             <td>{{ row.item.userName }}</td>
             <td>{{ row.item.phoneNumber }}</td>
             <td>{{ row.item.bloodType }}</td>
-            <td>{{ row.item.province }}</td>
-            <td>{{ row.item.date }}</td>
-            <td>{{ row.item.time }}</td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
               <v-btn class="ma-1" text icon small color="primary">
