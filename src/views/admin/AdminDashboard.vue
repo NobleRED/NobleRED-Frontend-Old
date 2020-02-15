@@ -9,8 +9,13 @@
       :mini-variant="$vuetify.breakpoint.smAndDown"
       app
     >
-      <v-flex :class="`d-flex justify-center pt-5 `" style="background-color:#424242">
-        <p style="font-size:24px; color:white" class="font-weight-medium">Admin</p>
+      <v-flex
+        :class="`d-flex justify-center pt-5 `"
+        style="background-color:#424242"
+      >
+        <p style="font-size:24px; color:white" class="font-weight-medium">
+          Admin
+        </p>
       </v-flex>
 
       <v-list dense>
@@ -30,7 +35,7 @@
     <!-- Content of the pages -->
 
     <v-content>
-      <v-container class="fill-height" fluid>
+      <v-container class="" fluid>
         <v-row align="center" justify="center">
           <router-view></router-view>
           <!-- <v-tooltip right>
@@ -54,7 +59,7 @@
               </v-btn>
             </template>
             <span>Codepen</span>
-          </v-tooltip>-->
+          </v-tooltip> -->
         </v-row>
       </v-container>
     </v-content>
