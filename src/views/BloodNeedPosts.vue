@@ -1,10 +1,22 @@
 /* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */g
 <template>
   <v-container fluid>
-    <v-btn small color="success" class="ml-6" to="/bloodDonation" rounded right="true">
+    <v-btn
+      small
+      color="success"
+      class="ml-6"
+      to="/bloodDonation"
+      rounded
+      right="true"
+    >
       <v-icon class="pr-1">mdi-plus</v-icon>Add New Blood Need Post
     </v-btn>
-    <v-row dense align-content-sm="12" align-content-md="6" align-content-lg="4">
+    <v-row
+      dense
+      align-content-sm="12"
+      align-content-md="6"
+      align-content-lg="4"
+    >
       <v-row dense>
         <v-col
           v-for="blood_need_post in blood_need_posts"
@@ -12,7 +24,12 @@
           :cols="blood_need_post.flex"
           class="d-flex"
         >
-          <v-card class="d-flex flex-column" dark="true" height="500px" width="300px">
+          <v-card
+            class="d-flex flex-column"
+            dark="true"
+            height="500px"
+            width="300px"
+          >
             <v-img
               :src="blood_need_post.imgSrc"
               class="white--text align-end"
@@ -31,9 +48,7 @@
               <v-spacer></v-spacer>
               <v-slot:footer>
                 <small class="text-muted">
-                  {{
-                  blood_need_post.publishedDateTimeAgo
-                  }}
+                  {{ blood_need_post.publishedDateTimeAgo }}
                 </small>
               </v-slot:footer>
             </v-card-text>
