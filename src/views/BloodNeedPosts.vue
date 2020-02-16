@@ -35,7 +35,7 @@
                     patient. Volunteers please come forward and help us. If you
                     are willing to donate blood please contact
                     <b>{{ blood_need_post.userName }}</b> via
-                    <b>{{ blood_need_post.phoneNumber }}</b>
+                    <b>{{ blood_need_post.contact }}</b>
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>

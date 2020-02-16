@@ -49,7 +49,7 @@
                     label="Contact No"
                     placeholder="Contact No"
                     v-model="formData.contact"
-                    type="text"
+                    type="tel"
                     :rules="phnRules"
                     required
                     outlined
@@ -287,7 +287,6 @@ export default {
       formData: {
         userID: "",
         userName: "",
-        address: "",
         bloodType: "",
         contact: "",
         time: ""

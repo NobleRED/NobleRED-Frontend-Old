@@ -44,7 +44,7 @@
           <tr @click="showAlert(row.item)">
             <td>{{ row.item.userID }}</td>
             <td>{{ row.item.userName }}</td>
-            <td>{{ row.item.phoneNumber }}</td>
+            <td>{{ row.item.contact }}</td>
             <td>{{ row.item.bloodType }}</td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
@@ -77,7 +77,7 @@ export default {
       headers: [
         { text: "User ID", value: "userID" },
         { text: "User Name", value: "userName" },
-        { text: "Contact Number", value: "phoneNumber" },
+        { text: "Contact Number", value: "contact" },
         { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" },
         { text: "Change/Delete", value: "" }
