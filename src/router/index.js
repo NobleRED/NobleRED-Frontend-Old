@@ -14,7 +14,9 @@ import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
+import CampaignPosts from '../views/CampaignPosts.vue';
 import Loginform from "../components/Loginform.vue";
+import UserProfile from '../components/UserProfile.vue'
 
 Vue.use(VueRouter);
 
@@ -97,14 +99,14 @@ const routes = [
     component: DonorSignupForm
   },
   {
-    path: "/newcampaign",
+    path: "/newCampaignForm",
     name: "newCampaign",
     component: NewCampaignForm
 
   },
 
   {
-    path: "/bloodDonation", //newly added component,router path settings pending
+    path: "/newBloodDonationForm", //newly added component,router path settings pending
     Name: "bloodDonation",
     component: NewBloodDonationForm
   },
@@ -112,6 +114,17 @@ const routes = [
     path: "/bloodNeedPost", //newly added component for show blood need post to every one
     name: "bloodNeedPost",
     component: BloodNeedPosts
+  },
+  {
+    path: "/campaignPosts", //newly added component for show blood need post to every one
+    name: "campaignPosts",
+    component: CampaignPosts
+  },
+
+  {
+    path: "/userProfile", //newly added component for show blood need post to every one
+    name: "userProfile",
+    component: UserProfile
   }
   // {
   //   path: "/admin/charts/donor", //newly added component for show blood need post to every one

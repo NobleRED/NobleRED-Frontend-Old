@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */g
 <template>
-  <v-container class="mt-10 mb-10">
+  <v-container class="mt-10">
     <section>
-      <v-btn small color="success" class="mt-10" to="/newBloodDonationForm" align-center>
-        <v-icon class="pr-1">mdi-plus</v-icon>Add New Blood Need Post
+      <v-btn small color="success" class="mt-10" to="/newCampaignForm" align-center>
+        <v-icon class="pr-1">mdi-plus</v-icon>Create new blood donation campaign
       </v-btn>
 
       <v-layout column wrap class="mt-1 my-5" align-center>
@@ -13,29 +13,33 @@
               <v-flex
                 col12
                 md3
-                v-for="blood_need_post in blood_need_posts"
-                :key="blood_need_post.publishedDateTime"
-                :cols="blood_need_post.flex"
+                v-for="campaign_post in campaign_posts"
+                :key="campaign_post.publishedDateTime"
+                :cols="campaign_post.flex"
               >
                 <v-card class="elevation-0" outlined>
                   <v-img
-                    :src="blood_need_post.imgSrc"
+                    src="../assets/blood donation campaign.jpg"
                     class="white--text align-end"
                     position="center center"
                   ></v-img>
                   <v-card-text>
-                    Urgently required
-                    <b>{{ blood_need_post.bloodType }}</b> type of blood for patient.
-                    Volunteers please come forward and help us. If you are willing to
-                    donate blood please contact
-                    <b>{{ blood_need_post.userName }}</b> via
-                    <b>{{ blood_need_post.phoneNumber }}</b>
-                    <b>. DONATE BLOOD AND SAVE LIFE</b>
+                    <b>Organizer :</b>
+                    {{campaign_post.organizerName}}
+                    <br />
+                    <b>Date :</b>
+                    {{campaign_post.date}}
+                    <br />
+                    <b>Time :</b>
+                    {{campaign_post.time}}
+                    <br />
+                    <b>Address :</b>
+                    {{campaign_post.address}}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
                       <small class="text-muted">
                         {{
-                        blood_need_post.publishedDateTimeAgo
+                        campaign_post.publishedDateTimeAgo
                         }}
                       </small>
                     </v-slot:footer>
@@ -53,24 +57,24 @@
 <script>
 import axios from "axios";
 export default {
-  name: "BloodNeedPosts",
+  name: "CampaignPosts",
 
   data() {
     return {
-      blood_need_posts: []
+      campaign_posts: []
     };
   },
   methods: {
-    loadPosts: function() {
+    loadCampaignPosts: function() {
       // to access "this" variable in the file
       var _this = this;
 
       // calling th API and get data
       axios
-        .get("http://localhost:4200/api/blood_needed_posts")
+        .get("http://localhost:4200/api/campaigns/accepted")
         .then(response => {
           // push data to the array
-          _this.blood_need_posts = response.data;
+          _this.campaign_posts = response.data;
           _this.loading = false;
         })
         .catch(e => {
@@ -80,7 +84,7 @@ export default {
   },
   beforeMount() {
     // to call the function on load of the page
-    this.loadPosts();
+    this.loadCampaignPosts();
   }
 };
 </script>

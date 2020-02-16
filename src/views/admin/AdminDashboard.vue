@@ -9,8 +9,13 @@
       :mini-variant="$vuetify.breakpoint.smAndDown"
       app
     >
-      <v-flex :class="`d-flex justify-center pt-5 `" style="background-color:#424242">
-        <p style="font-size:24px; color:white" class="font-weight-medium">Admin</p>
+      <v-flex
+        :class="`d-flex justify-center pt-5 `"
+        style="background-color:#424242"
+      >
+        <p style="font-size:24px; color:white" class="font-weight-medium">
+          Admin
+        </p>
       </v-flex>
 
       <v-list dense>
@@ -42,7 +47,8 @@
 
 <script>
 // import Appbar from "./Appbar";
-// import { bus } from "../main";
+import { bus } from "../../main";
+
 export default {
   components: {
     // Appbar
@@ -97,7 +103,12 @@ export default {
         link: "/admin/medicalteams"
       },
       { icon: "mdi-message-text", text: "Notifications" }
-    ]
+    ],
+    mounted() {
+      bus.$on("changeDashboardStatus", state => {
+        this.drawer = state;
+      });
+    }
   })
   // methods: {
   //   sendToPage(item) {}
