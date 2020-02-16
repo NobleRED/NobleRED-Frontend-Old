@@ -63,7 +63,7 @@ export default {
 
         // calling th API and get data
         axios
-          .get("http://localhost:4200/api/campaigns")
+          .get("http://localhost:4200/api/campaigns/accepted")
           .then(response => {
             // push data to the array
             _this.campaigns = response.data;
@@ -71,14 +71,13 @@ export default {
             // response.data.forEach(element => {
             //   this.donors.push(element);
             // });
-            var date=new Date();
-            console.log(date);
+            
           
 
             for (var i = 0; i < _this.campaigns.length; i++) {
               console.log(_this.campaigns.province);
-              if (_this.campaigns[i].date == date) {
-                _this.countWestern = _this.countWestern + 2;
+              if (_this.campaigns[i].province == "Western") {
+                _this.countWestern = _this.countWestern + 1;
               } else if (_this.campaigns[i].province == "Central") {
                 _this.countCentral = _this.countCentral + 1;
               } else if (_this.campaigns[i].province == "Southern") {

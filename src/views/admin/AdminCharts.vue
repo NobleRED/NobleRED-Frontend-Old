@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-container>
+    <v-container class="mt-10">
       <v-row justify="center">
         <v-col cols="12">
           <v-tabs fixed-tabs background-color="light-black" dark>

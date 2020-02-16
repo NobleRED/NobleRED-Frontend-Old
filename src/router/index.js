@@ -6,6 +6,7 @@ import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map.vue";
@@ -73,9 +74,26 @@ const routes = [
   }
   ,
   {
+    path: "/admin/charts",
+    name: "adminCharts",
+    component: AdminCharts,
+    children: [
+      {
+        path: "organizers",
+        component: AdminOrganizers
+      }
+    ]
+  }
+  ,
+  {
     path: "/admin/map",
     name: "adminMap",
     component: AdminMap
+  },
+  {
+    path: "/admin/organizers",
+    name: "adminorganizers",
+    component: AdminOrganizers
   },
   {
     path: "/admin/BloodDonationPosts",

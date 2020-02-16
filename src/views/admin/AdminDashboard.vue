@@ -30,7 +30,7 @@
     <!-- Content of the pages -->
     <v-content>
       <v-container fluid>
-        <v-row align="center" justify="center">
+        <v-row align="center">
           <router-view></router-view>
           <router-view name="donor"></router-view>
           <!-- Default chart view -->
