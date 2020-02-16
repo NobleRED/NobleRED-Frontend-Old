@@ -29,7 +29,7 @@
           class="ml-5"
         ></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/bloodDonation">
+        <v-btn small color="success" class="ml-3" to="/newBloodDonationForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
         </v-btn>
       </v-toolbar>
