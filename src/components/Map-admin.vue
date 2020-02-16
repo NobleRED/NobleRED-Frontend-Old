@@ -51,7 +51,13 @@ export default {
       campaigns: [],
       userType: "admin",
       pos: [],
-      image: "blue.png"
+      image: "blue.png",
+      colors: [
+        "1Gray.png?alt=media&token=d395b5c4-160a-443e-bee3-3833ee3bd235",
+        "2Red.png?alt=media&token=0d30ef6d-91bc-4bc2-a0f2-71419f46d633",
+        "3Orange.png?alt=media&token=6071cb4b-5ab2-473d-8ad1-72158f789b27",
+        "4Yellow.png?alt=media&token=20c6df3f-9327-48f5-8789-8793f61e197e"
+      ]
       // loading: true //organizer
     };
   },
@@ -64,70 +70,32 @@ export default {
         // push data to campaigns array
         this.campaigns = response.data;
         this.campaigns.forEach(campaign => {
-          if (campaign.dateDeff <= 4 && campaign.dateDeff > 0) {
-            new google.maps.Marker({
-              position: { lat: campaign.lat, lng: campaign.lng },
-              map: map,
-              animation: google.maps.Animation.DROP,
-              title:
-                "Address: " +
-                campaign.address +
-                "\nDate: " +
-                campaign.date +
-                "\nTime: " +
-                campaign.time,
-              icon:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F1Gray.png?alt=media&token=d395b5c4-160a-443e-bee3-3833ee3bd235"
-            });
+          var Deff = campaign.dateDeff;
+          var i;
+          if (Deff <= 4 && Deff > 0) {
+            i = 0;
+          } else if (Deff <= 0 && Deff > -4) {
+            i = 1;
+          } else if (parseInt(Deff) <= -4 && parseInt(Deff) > -8) {
+            i = 2;
+          } else if (Deff <= -8) {
+            i = 3;
           }
-          if (campaign.dateDeff <= 0 && campaign.dateDeff > -4) {
-            new google.maps.Marker({
-              position: { lat: campaign.lat, lng: campaign.lng },
-              map: map,
-              animation: google.maps.Animation.DROP,
-              title:
-                "Address: " +
-                campaign.address +
-                "\nDate: " +
-                campaign.date +
-                "\nTime: " +
-                campaign.time,
-              icon:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F2Red.png?alt=media&token=0d30ef6d-91bc-4bc2-a0f2-71419f46d633"
-            });
-          }
-          if (campaign.dateDeff <= -4 && campaign.dateDeff > -8) {
-            new google.maps.Marker({
-              position: { lat: campaign.lat, lng: campaign.lng },
-              map: map,
-              animation: google.maps.Animation.DROP,
-              title:
-                "Address: " +
-                campaign.address +
-                "\nDate: " +
-                campaign.date +
-                "\nTime: " +
-                campaign.time,
-              icon:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F3Orange.png?alt=media&token=6071cb4b-5ab2-473d-8ad1-72158f789b27"
-            });
-          }
-          if (campaign.dateDeff <= -8) {
-            new google.maps.Marker({
-              position: { lat: campaign.lat, lng: campaign.lng },
-              map: map,
-              animation: google.maps.Animation.DROP,
-              title:
-                "Address: " +
-                campaign.address +
-                "\nDate: " +
-                campaign.date +
-                "\nTime: " +
-                campaign.time,
-              icon:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F4Yellow.png?alt=media&token=20c6df3f-9327-48f5-8789-8793f61e197e"
-            });
-          }
+          new google.maps.Marker({
+            position: { lat: campaign.lat, lng: campaign.lng },
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title:
+              "Address: " +
+              campaign.address +
+              "\nDate: " +
+              campaign.date +
+              "\nTime: " +
+              campaign.time,
+            icon:
+              "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F" +
+              this.$data.colors[i]
+          });
         });
       })
       .catch(e => {
@@ -178,7 +146,7 @@ export default {
             position: { lat: _this.pos.lat, lng: _this.pos.lng },
             map: map,
             animation: google.maps.Animation.DROP,
-            title: "Campaign Marker",
+            title: "Your Location",
             icon:
               "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2Fperson1.png?alt=media&token=064f0817-3fcc-4b9d-9416-e06cd9c0c2b5",
             size: new google.maps.Size(20, 32)
