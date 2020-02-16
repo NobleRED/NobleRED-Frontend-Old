@@ -9,10 +9,12 @@ import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
+import NewOrganizerForm from "../components/NewOrganizerForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
@@ -77,6 +79,11 @@ const routes = [
     component: AdminMap
   },
   {
+    path: "/admin/organizers",
+    name: "adminOrganizers",
+    component: AdminOrganizers
+  },
+  {
     path: "/admin/BloodDonationPosts",
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
@@ -100,7 +107,11 @@ const routes = [
     name: "newCampaign",
     component: NewCampaignForm
   },
-
+  {
+    path: "/newOrganizerForm",
+    name: "newOrganizer",
+    component: NewOrganizerForm
+  },
   {
     path: "/newBloodDonationForm", //newly added component,router path settings pending
     Name: "bloodDonation",

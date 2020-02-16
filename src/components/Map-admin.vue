@@ -16,7 +16,7 @@
           small
           color="success"
           class="ml-3"
-          to="/admin/newcampaign"
+          to="/newCampaignForm"
         >
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
@@ -58,26 +58,76 @@ export default {
   mounted: function() {
     // calling the api and getting the markers
     axios
-      // .get("http://localhost:4200/api/maps/greymarkers")
-      .get("http://localhost:4200/api/campaigns/accepted")
+      .get("http://localhost:4200/api/maps/greymarkers")
+      // .get("http://localhost:4200/api/campaigns/accepted")
       .then(response => {
         // push data to campaigns array
         this.campaigns = response.data;
         this.campaigns.forEach(campaign => {
-          new google.maps.Marker({
-            position: { lat: campaign.lat, lng: campaign.lng },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            title:
-              "Address: " +
-              campaign.address +
-              "\nDate: " +
-              campaign.date +
-              "\nTime: " +
-              campaign.time,
-            icon:
-              "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F1Gray.png?alt=media&token=d395b5c4-160a-443e-bee3-3833ee3bd235"
-          });
+          if (campaign.dateDeff <= 4 && campaign.dateDeff > 0) {
+            new google.maps.Marker({
+              position: { lat: campaign.lat, lng: campaign.lng },
+              map: map,
+              animation: google.maps.Animation.DROP,
+              title:
+                "Address: " +
+                campaign.address +
+                "\nDate: " +
+                campaign.date +
+                "\nTime: " +
+                campaign.time,
+              icon:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F1Gray.png?alt=media&token=d395b5c4-160a-443e-bee3-3833ee3bd235"
+            });
+          }
+          if (campaign.dateDeff <= 0 && campaign.dateDeff > -4) {
+            new google.maps.Marker({
+              position: { lat: campaign.lat, lng: campaign.lng },
+              map: map,
+              animation: google.maps.Animation.DROP,
+              title:
+                "Address: " +
+                campaign.address +
+                "\nDate: " +
+                campaign.date +
+                "\nTime: " +
+                campaign.time,
+              icon:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F2Red.png?alt=media&token=0d30ef6d-91bc-4bc2-a0f2-71419f46d633"
+            });
+          }
+          if (campaign.dateDeff <= -4 && campaign.dateDeff > -8) {
+            new google.maps.Marker({
+              position: { lat: campaign.lat, lng: campaign.lng },
+              map: map,
+              animation: google.maps.Animation.DROP,
+              title:
+                "Address: " +
+                campaign.address +
+                "\nDate: " +
+                campaign.date +
+                "\nTime: " +
+                campaign.time,
+              icon:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F3Orange.png?alt=media&token=6071cb4b-5ab2-473d-8ad1-72158f789b27"
+            });
+          }
+          if (campaign.dateDeff <= -8) {
+            new google.maps.Marker({
+              position: { lat: campaign.lat, lng: campaign.lng },
+              map: map,
+              animation: google.maps.Animation.DROP,
+              title:
+                "Address: " +
+                campaign.address +
+                "\nDate: " +
+                campaign.date +
+                "\nTime: " +
+                campaign.time,
+              icon:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F4Yellow.png?alt=media&token=20c6df3f-9327-48f5-8789-8793f61e197e"
+            });
+          }
         });
       })
       .catch(e => {

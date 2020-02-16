@@ -31,20 +31,6 @@
         </v-card>
       </section>
 
-      <section>
-        <v-layout column align-center>
-          <div class="mt-3 text-xs-center pt-3">
-            <h2 class="headline" style="color:#B71C1C;">
-              See where you can donate blood
-            </h2>
-          </div>
-          <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
-            <span class="subheading">Registered blood donation campaigns</span>
-          </div>
-        </v-layout>
-        <Map></Map>
-      </section>
-      =======
       <a id="campaignsMap">
         <section>
           <v-layout column align-center>
@@ -62,7 +48,6 @@
           <Map></Map>
         </section>
       </a>
-      >>>>>>> 4879e810dc7d654a06e7e4f1db20cbf5072bc100
 
       <section>
         <v-layout column align-center>

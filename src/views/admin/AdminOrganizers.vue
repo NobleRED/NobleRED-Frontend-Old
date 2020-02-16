@@ -21,24 +21,35 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Organizers</v-toolbar-title>
-        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
-        <!-- <v-btn small color="success" class="ml-3" to="/donor/signup">
+        <v-btn small color="success" class="ml-3" to="/newOrganizerForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Organizer
-        </v-btn>-->
+        </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="organizers" :search="search" :loading="loading">
+      <v-data-table
+        :headers="headers"
+        :items="organizers"
+        :search="search"
+        :loading="loading"
+      >
         <template v-slot:item="row">
           <tr @click="showAlert(row.item)">
-            <td>{{row.item.organizerName}}</td>
-            <td>{{row.item.contactPerson}}</td>
-            <td>{{row.item.contactPersonNIC}}</td>
-            <td>{{row.item.address}}</td>
-            <td>{{row.item.contactNo}}</td>
-            <td>{{row.item.email}}</td>
-            <td>{{row.item.registeredDateTimeAgo}}</td>
-            <td>{{row.item.status}}</td>
+            <td>{{ row.item.organizerName }}</td>
+            <td>{{ row.item.contactPerson }}</td>
+            <td>{{ row.item.contactPersonNIC }}</td>
+            <td>{{ row.item.address }}</td>
+            <td>{{ row.item.contactNo }}</td>
+            <td>{{ row.item.email }}</td>
+            <td>{{ row.item.registeredDateTimeAgo }}</td>
+            <td>{{ row.item.status }}</td>
             <td>
               <v-btn class="mx-2" fab dark x-small color="primary">
                 <v-icon dark>mdi-account-box</v-icon>

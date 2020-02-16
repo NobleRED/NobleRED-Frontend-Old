@@ -132,7 +132,11 @@ export default {
         text: "Blood Donors",
         link: "/admin/donors"
       },
-      { icon: "mdi-human", text: "Campaign Organizers" },
+      {
+        icon: "mdi-human",
+        text: "Campaign Organizers",
+        link: "/admin/organizers"
+      },
       // {
       //   icon: "mdi-chevron-up",
       //   "icon-alt": "mdi-chevron-down",
