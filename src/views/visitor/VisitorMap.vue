@@ -62,8 +62,8 @@ export default {
     map = new google.maps.Map(document.getElementById("campaignMap"), {
       zoom: 6,
       // center: adrs.center,
-      // scrollwheel: false,
-      gesturehandling: "cooperative",
+      // scrollwheel: true,
+      gestureHandling: "cooperative",
       //map doesn't go away from sri lanka
       restriction: {
         latLngBounds: srilankan_bounds,

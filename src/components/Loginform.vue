@@ -77,7 +77,13 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn block outlined light color="secondary">
+                    <v-btn
+                      block
+                      outlined
+                      light
+                      color="secondary"
+                      @click="signInWithGoogle()"
+                    >
                       <!-- <span class="mdi mdi-google">&nbsp; &nbsp; Sign In With Google</span> -->
                       <!-- <v-img src="../assets/google logo.png" aspect-ratio="1"></!-->
 
@@ -111,6 +117,7 @@
 
 <script>
 import firebase from "../plugins/firebaseConfig";
+import emailjs from "emailjs-com";
 import axios from "axios";
 import { bus } from "../main";
 
@@ -149,9 +156,12 @@ export default {
             .get("http://localhost:4200/api/donors/" + uid)
             .then(response => {
               // push data to the array
-              console.log(response.data.fname);
+              this.$session.start();
+              this.$session.set("jwt", response.data);
+              // console.log(response.data.fname);
               localStorage.userdata = JSON.stringify(response.data);
               localStorage.role = response.data.role;
+
               this.$store.commit("updateRole", response.data.role);
               bus.$emit("changeLoginStatus", true);
               bus.$emit("sendUserRole", response.data.role);
@@ -200,6 +210,56 @@ export default {
 
       // console.log(this.$session.getAll());
       // console.log(this.$session.get("user").email);
+    },
+    signInWithGoogle() {
+      var provider = firebase.provider;
+      // provider.addScope("profile");
+      // provider.addScope("email");
+
+      firebase.auth
+        .signInWithPopup(provider)
+        .then(function(result) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          // var token = result.credential.accessToken;
+          // The signed-in user info.
+          // var user = result.user;
+          // this.$session.start();
+          // localStorage.userdata = JSON.stringify(result.user);
+          // this.$session.set("jwt", result.data);
+          // bus.$emit("changeLoginStatus", true);
+          // bus.$emit("sendUserData", user);
+          // localStorage.loginstatus = true;
+          // console.log(user);
+          console.log(result);
+          this.$router.push("/");
+          // ...
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          // eslint-disable-next-line no-unused-vars
+          var errorCode = error.code;
+          // eslint-disable-next-line no-unused-vars
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          // eslint-disable-next-line no-unused-vars
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          // eslint-disable-next-line no-unused-vars
+          var credential = error.credential;
+          // ...
+        });
+    },
+    sendEmail: parameters => {
+      emailjs
+        .sendForm("gmail", "template_4Iavwfir", parameters, "YOUR_USER_ID")
+        .then(
+          result => {
+            console.log("SUCCESS!", result.status, result.text);
+          },
+          error => {
+            console.log("FAILED...", error);
+          }
+        );
     },
     goToRegistration() {},
     reset() {
