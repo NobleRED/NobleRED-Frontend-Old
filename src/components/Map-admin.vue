@@ -3,13 +3,6 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn
           v-if="userType === 'admin' || userType === 'organizer'"
@@ -22,6 +15,20 @@
         </v-btn>
       </v-toolbar>
       <v-container id="campaignMap"></v-container>
+    </v-card>
+    <v-card>
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F1Gray.png?alt=media&token=d395b5c4-160a-443e-bee3-3833ee3bd235"
+      />Last four months
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F2Red.png?alt=media&token=0d30ef6d-91bc-4bc2-a0f2-71419f46d633"
+      />today to four months
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F3Orange.png?alt=media&token=6071cb4b-5ab2-473d-8ad1-72158f789b27"
+      />after four months upto eight months
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F4Yellow.png?alt=media&token=20c6df3f-9327-48f5-8789-8793f61e197e"
+      />after eight months
     </v-card>
   </v-container>
 </template>
