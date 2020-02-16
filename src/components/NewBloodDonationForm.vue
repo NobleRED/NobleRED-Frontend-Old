@@ -303,9 +303,7 @@ export default {
 
       // firebase function call to add data to the database
       firebase.db
-        .collection("posts")
-        .doc("blood_needed_posts")
-        .collection("blood_needed_posts")
+        .collection("posts-blood_needed")
         .add({
           userID: this.formData.userID,
           userName: this.formData.userName,
