@@ -3,13 +3,7 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
         <v-btn
           v-if="userType === 'admin' || userType === 'organizer'"
@@ -58,7 +52,8 @@ export default {
   mounted: function() {
     // calling the api and getting the markers
     axios
-      .get("http://localhost:4200/api/maps/greymarkers")
+      // .get("http://localhost:4200/api/maps/greymarkers")
+      .get("http://localhost:4200/api/campaigns/accepted")
       .then(response => {
         // push data to campaigns array
         this.campaigns = response.data;

@@ -31,6 +31,7 @@
         </v-card>
       </section>
 
+      <<<<<<< HEAD
       <section>
         <v-layout column align-center>
           <div class="mt-3 text-xs-center pt-3">
@@ -44,6 +45,25 @@
         </v-layout>
         <Map></Map>
       </section>
+      =======
+      <a id="campaignsMap">
+        <section>
+          <v-layout column align-center>
+            <div class="mt-3 text-xs-center pt-3">
+              <h2 class="headline" style="color:#B71C1C;">
+                See where you can donate blood
+              </h2>
+            </div>
+            <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
+              <span class="subheading"
+                >Registered blood donation campaigns</span
+              >
+            </div>
+          </v-layout>
+          <Map></Map>
+        </section>
+      </a>
+      >>>>>>> 4879e810dc7d654a06e7e4f1db20cbf5072bc100
 
       <section>
         <v-layout column align-center>
@@ -163,7 +183,9 @@
         </v-layout>
         <v-layout column align-center>
           <div class="mt-0 mb-3 text-xs-center" style="color:#616161;">
-            <v-btn dark small color="#B71C1C">View More</v-btn>
+            <v-btn dark small color="#B71C1C" to="/bloodNeedPost"
+              >View More</v-btn
+            >
           </div>
         </v-layout>
       </section>
@@ -188,22 +210,26 @@
                 <v-flex col12 md3>
                   <v-card class="elevation-0" outlined>
                     <v-img
-                      :src="blood_need_posts[0].imgSrc"
+                      src="../assets/blood donation campaign.jpg"
                       class="white--text align-end"
                       position="center center"
                     ></v-img>
                     <v-card-text>
-                      Urgently required
-                      <b>{{ blood_need_posts[0].bloodType }}</b> type of blood
-                      for patient. Volunteers please come forward and help us.
-                      If you are willing to donate blood please contact
-                      <b>{{ blood_need_posts[0].userName }}</b> via
-                      <b>{{ blood_need_posts[0].phoneNumber }}</b>
-                      <b>. DONATE BLOOD AND SAVE LIFE</b>
+                      <b>Organizer :</b>
+                      {{ campaign_posts[0].organizerName }}
+                      <br />
+                      <b>Date :</b>
+                      {{ campaign_posts[0].date }}
+                      <br />
+                      <b>Address :</b>
+                      {{ campaign_posts[0].address }}
+                      <br />
+                      <b>Time :</b>
+                      {{ campaign_posts[0].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{ blood_need_posts[0].publishedDateTimeAgo }}
+                          {{ campaign_posts[0].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -213,22 +239,26 @@
                 <v-flex col12 md3>
                   <v-card class="elevation-0" outlined>
                     <v-img
-                      :src="blood_need_posts[1].imgSrc"
+                      src="../assets/blood donation campaign.jpg"
                       class="white--text align-end"
                       position="center center"
                     ></v-img>
                     <v-card-text>
-                      Urgently required
-                      <b>{{ blood_need_posts[1].bloodType }}</b> type of blood
-                      for patient. Volunteers please come forward and help us.
-                      If you are willing to donate blood please contact
-                      <b>{{ blood_need_posts[1].userName }}</b> via
-                      <b>{{ blood_need_posts[1].phoneNumber }}</b>
-                      <b>. DONATE BLOOD AND SAVE LIFE</b>
+                      <b>Organizer :</b>
+                      {{ campaign_posts[1].organizerName }}
+                      <br />
+                      <b>Date :</b>
+                      {{ campaign_posts[1].date }}
+                      <br />
+                      <b>Address :</b>
+                      {{ campaign_posts[1].address }}
+                      <br />
+                      <b>Time :</b>
+                      {{ campaign_posts[1].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{ blood_need_posts[1].publishedDateTimeAgo }}
+                          {{ campaign_posts[1].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -238,22 +268,26 @@
                 <v-flex col12 md3>
                   <v-card class="elevation-0" outlined>
                     <v-img
-                      :src="blood_need_posts[2].imgSrc"
+                      src="../assets/blood donation campaign.jpg"
                       class="white--text align-end"
                       position="center center"
                     ></v-img>
                     <v-card-text>
-                      Urgently required
-                      <b>{{ blood_need_posts[2].bloodType }}</b> type of blood
-                      for patient. Volunteers please come forward and help us.
-                      If you are willing to donate blood please contact
-                      <b>{{ blood_need_posts[2].userName }}</b> via
-                      <b>{{ blood_need_posts[2].phoneNumber }}</b>
-                      <b>. DONATE BLOOD AND SAVE LIFE</b>
+                      <b>Organizer :</b>
+                      {{ campaign_posts[2].organizerName }}
+                      <br />
+                      <b>Date :</b>
+                      {{ campaign_posts[2].date }}
+                      <br />
+                      <b>Address :</b>
+                      {{ campaign_posts[2].address }}
+                      <br />
+                      <b>Time :</b>
+                      {{ campaign_posts[2].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{ blood_need_posts[2].publishedDateTimeAgo }}
+                          {{ campaign_posts[2].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -263,22 +297,26 @@
                 <v-flex col12 md3>
                   <v-card class="elevation-0" outlined>
                     <v-img
-                      :src="blood_need_posts[3].imgSrc"
+                      src="../assets/blood donation campaign.jpg"
                       class="white--text align-end"
                       position="center center"
                     ></v-img>
                     <v-card-text>
-                      Urgently required
-                      <b>{{ blood_need_posts[3].bloodType }}</b> type of blood
-                      for patient. Volunteers please come forward and help us.
-                      If you are willing to donate blood please contact
-                      <b>{{ blood_need_posts[3].userName }}</b> via
-                      <b>{{ blood_need_posts[3].phoneNumber }}</b>
-                      <b>. DONATE BLOOD AND SAVE LIFE</b>
+                      <b>Organizer :</b>
+                      {{ campaign_posts[3].organizerName }}
+                      <br />
+                      <b>Date :</b>
+                      {{ campaign_posts[3].date }}
+                      <br />
+                      <b>Address :</b>
+                      {{ campaign_posts[3].address }}
+                      <br />
+                      <b>Time :</b>
+                      {{ campaign_posts[3].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{ blood_need_posts[3].publishedDateTimeAgo }}
+                          {{ campaign_posts[3].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -290,7 +328,9 @@
         </v-layout>
         <v-layout column align-center>
           <div class="mt-0 mb-3 text-xs-center" style="color:#616161;">
-            <v-btn dark small color="#B71C1C">View More</v-btn>
+            <v-btn dark small color="#B71C1C" to="/campaignPosts"
+              >View More</v-btn
+            >
           </div>
         </v-layout>
       </section>
@@ -330,15 +370,6 @@
           </v-timeline>
         </v-container>
       </section>
-
-      <section class="mt-7">
-        <v-footer dark>
-          <v-col class="text-center" cols="12">
-            {{ new Date().getFullYear() }} ©
-            <strong>NobleRED</strong>
-          </v-col>
-        </v-footer>
-      </section>
     </v-content>
   </v-app>
 </template>
@@ -346,17 +377,20 @@
 <script>
 import Particles from "../components/Particles";
 import Map from "../views/visitor/VisitorMap";
+
 import axios from "axios";
 
 export default {
   name: "home",
   components: {
     Particles,
+
     Map
   },
   data() {
     return {
       blood_need_posts: [],
+      campaign_posts: [],
       items: [
         {
           color: "red darken-4",
@@ -390,7 +424,7 @@ export default {
     };
   },
   methods: {
-    loadPosts: function() {
+    loadBloodNeededPosts: function() {
       // to access "this" variable in the file
       var _this = this;
 
@@ -405,11 +439,28 @@ export default {
         .catch(e => {
           console.log("Error: " + e);
         });
+    },
+    loadCampaignPosts: function() {
+      // to access "this" variable in the file
+      var _this = this;
+
+      // calling th API and get data
+      axios
+        .get("http://localhost:4200/api/campaignposts/lastfour")
+        .then(response => {
+          // push data to the array
+          _this.campaign_posts = response.data;
+          _this.loading = false;
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
     }
   },
   beforeMount() {
     // to call the function on load of the page
-    this.loadPosts();
+    this.loadBloodNeededPosts();
+    this.loadCampaignPosts();
   }
 };
 </script>

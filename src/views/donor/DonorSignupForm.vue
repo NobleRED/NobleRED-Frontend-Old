@@ -191,6 +191,7 @@
 
 <script>
 import firebase from "../../plugins/firebaseConfig";
+import emailjs from "emailjs-com";
 
 var moment = require("moment");
 moment().format();
@@ -248,6 +249,18 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
+    sendEmail: parameters => {
+      emailjs
+        .sendForm("gmail", "template_4Iavwfir", parameters, "YOUR_USER_ID")
+        .then(
+          result => {
+            console.log("SUCCESS!", result.status, result.text);
+          },
+          error => {
+            console.log("FAILED...", error);
+          }
+        );
+    },
     addDonor() {
       var that = this;
       event.preventDefault();
@@ -281,6 +294,18 @@ export default {
           this.formData.password
         )
         .then(function(data) {
+          data.user
+            .updateProfile({
+              displayName: that.formData.fname + " " + that.formData.lname
+            })
+            .then(() => {});
+
+          data.user
+            .updateProfile({
+              photoURL:
+                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/user_pro_pic%2Favatar_clipart.png?alt=media&token=e4bb25ca-b8a0-43c4-ac73-f261e5e41576"
+            })
+            .then(() => {});
           console.log("uid", data.user.uid);
           uidTemp = data.user.uid;
           sendToLogin = true;
@@ -314,6 +339,15 @@ export default {
               })
               .then(function(docRef) {
                 console.log("Document written with ID: ", docRef.id);
+                var template_params = {
+                  reply_to: "nobleredlk@gmail.com",
+                  from_name: "NobleRED",
+                  to_name: that.formData.email,
+                  message_html:
+                    "You have successfully registered with the NobleRED! Thank you for being 'Noble'"
+                };
+
+                this.sendEmail(template_params);
                 this.$router.push("/login");
               })
               .catch(function(error) {

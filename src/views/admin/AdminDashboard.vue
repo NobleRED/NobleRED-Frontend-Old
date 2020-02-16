@@ -112,7 +112,8 @@
 
 <script>
 // import Appbar from "./Appbar";
-// import { bus } from "../main";
+import { bus } from "../../main";
+
 export default {
   components: {
     // Appbar
@@ -158,7 +159,12 @@ export default {
         link: "/admin/campaigns"
       },
       { icon: "mdi-message-text", text: "Notifications" }
-    ]
+    ],
+    mounted() {
+      bus.$on("changeDashboardStatus", state => {
+        this.drawer = state;
+      });
+    }
   })
   // methods: {
   //   sendToPage(item) {}

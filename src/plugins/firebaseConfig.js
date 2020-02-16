@@ -19,7 +19,7 @@ firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
 var auth = firebase.auth();
-var provider = firebase.auth.GoogleAuthProvider;
+var provider = new firebase.auth.GoogleAuthProvider();
 
 export default {
   db,
