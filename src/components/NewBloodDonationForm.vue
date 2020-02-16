@@ -91,6 +91,17 @@
 
         <v-col cols="12" sm="6">
           <v-card
+            v-if="formData.bloodType == ''"
+            width="90%"
+            height="90%"
+            :title="formData.bloodType"
+            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
+            img-alt="Image"
+            img-top
+            border-variant="secondary"
+          >
+          </v-card>
+          <v-card
             v-if="formData.bloodType == 'A+'"
             width="90%"
             height="90%"
@@ -299,7 +310,7 @@ export default {
           userName: this.formData.userName,
           address: this.formData.address,
           bloodType: this.formData.bloodType,
-          contact: this.formData.PhoneNumber,
+          contact: this.formData.contact,
           publishedDateTime: now,
           imgSrc: this.select_image(this.formData.bloodType)
         })
