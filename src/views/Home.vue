@@ -31,7 +31,6 @@
         </v-card>
       </section>
 
-      <<<<<<< HEAD
       <section>
         <v-layout column align-center>
           <div class="mt-3 text-xs-center pt-3">
