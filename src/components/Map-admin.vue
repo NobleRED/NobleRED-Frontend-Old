@@ -16,7 +16,10 @@
       </v-toolbar>
       <v-container id="campaignMap"></v-container>
     </v-card>
-    <v-card>
+    <v-card class="mt-10 mb-10">
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2Fperson1.png?alt=media&token=064f0817-3fcc-4b9d-9416-e06cd9c0c2b5"
+      />Your Location
       <img
         src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F1Gray.png?alt=media&token=d395b5c4-160a-443e-bee3-3833ee3bd235"
       />Last four months
