@@ -11,16 +11,22 @@ import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
 
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
+
+
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewAdminForm from '../views/admin/NewAdminForm.vue'
 import NewOrganizerForm from '../views/organizer/NewOrganizerForm.vue'
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
+import NewOrganizerForm from "../components/NewOrganizerForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
-import CampaignPosts from '../views/CampaignPosts.vue';
+import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
+
 import UserProfile from '../components/UserProfile.vue'
 import VisitorMap from '../views/visitor/VisitorMap.vue'
+
 
 Vue.use(VueRouter);
 
@@ -86,6 +92,11 @@ const routes = [
     component: AdminMap
   },
   {
+    path: "/admin/organizers",
+    name: "adminOrganizers",
+    component: AdminOrganizers
+  },
+  {
     path: "/admin/BloodDonationPosts",
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
@@ -108,6 +119,7 @@ const routes = [
     path: "/newCampaignForm",
     name: "newCampaign",
     component: NewCampaignForm
+
   },
   {
     path: "/newOrganizerForm",
@@ -119,6 +131,7 @@ const routes = [
     path: "/newAdminForm",
     name: "newAdminForm",
     component: NewAdminForm
+
 
   },
   {

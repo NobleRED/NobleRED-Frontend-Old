@@ -21,14 +21,25 @@
     <v-card width="100%" height="100%" class="mt-10">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Organizers</v-toolbar-title>
-        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newOrganizerForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Organizer
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="organizers" :search="search" :loading="loading">
+      <v-data-table
+        :headers="headers"
+        :items="organizers"
+        :search="search"
+        :loading="loading"
+      >
         <template v-slot:item="row">
           <tr @click="showAlert(row.item)">
             <td>{{ row.item.organizerName }}</td>

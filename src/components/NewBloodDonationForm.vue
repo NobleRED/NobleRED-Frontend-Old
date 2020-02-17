@@ -77,7 +77,9 @@
 
           <v-row>
             <v-col cols="12" sm="6">
-              <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+              <v-btn type="submit" @click="onSubmit" color="primary"
+                >Submit</v-btn
+              >
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
           </v-row>
@@ -143,16 +145,14 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-
+      var _this = this;
       // using moment to get current date and time
       var now = moment().format();
       console.log("time :" + now);
 
       // firebase function call to add data to the database
       firebase.db
-        .collection("posts")
-        .doc("blood_needed_posts")
-        .collection("blood_needed_posts")
+        .collection("posts-blood_needed")
         .add({
           userID: localStorage.userid,
           userName: this.formData.userName,
@@ -164,6 +164,9 @@ export default {
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
+          _this.$router.push({
+            name: "AdminBloodDonationPosts"
+          });
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);

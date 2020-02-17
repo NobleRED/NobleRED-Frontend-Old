@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-<template >
+<template>
   <v-app>
     <v-content>
       <section>
@@ -35,10 +35,14 @@
         <section>
           <v-layout column align-center>
             <div class="mt-3 text-xs-center pt-3">
-              <h2 class="headline" style="color:#B71C1C;">See where you can donate blood</h2>
+              <h2 class="headline" style="color:#B71C1C;">
+                See where you can donate blood
+              </h2>
             </div>
             <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
-              <span class="subheading">Registered blood donation campaigns</span>
+              <span class="subheading"
+                >Registered blood donation campaigns</span
+              >
             </div>
           </v-layout>
           <Map></Map>
@@ -163,7 +167,9 @@
         </v-layout>
         <v-layout column align-center>
           <div class="mt-0 mb-3 text-xs-center" style="color:#616161;">
-            <v-btn dark small color="#B71C1C" to="/bloodNeedPost">View More</v-btn>
+            <v-btn dark small color="#B71C1C" to="/bloodNeedPost"
+              >View More</v-btn
+            >
           </div>
         </v-layout>
       </section>
@@ -194,22 +200,20 @@
                     ></v-img>
                     <v-card-text>
                       <b>Organizer :</b>
-                      {{campaign_posts[0].organizerName}}
+                      {{ campaign_posts[0].organizerName }}
                       <br />
                       <b>Date :</b>
-                      {{campaign_posts[0].date}}
+                      {{ campaign_posts[0].date }}
                       <br />
                       <b>Address :</b>
-                      {{campaign_posts[0].address}}
+                      {{ campaign_posts[0].address }}
                       <br />
                       <b>Time :</b>
-                      {{campaign_posts[0].time}}
+                      {{ campaign_posts[0].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          campaign_posts[0].publishedDateTimeAgo
-                          }}
+                          {{ campaign_posts[0].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -225,22 +229,20 @@
                     ></v-img>
                     <v-card-text>
                       <b>Organizer :</b>
-                      {{campaign_posts[1].organizerName}}
+                      {{ campaign_posts[1].organizerName }}
                       <br />
                       <b>Date :</b>
-                      {{campaign_posts[1].date}}
+                      {{ campaign_posts[1].date }}
                       <br />
                       <b>Address :</b>
-                      {{campaign_posts[1].address}}
+                      {{ campaign_posts[1].address }}
                       <br />
                       <b>Time :</b>
-                      {{campaign_posts[1].time}}
+                      {{ campaign_posts[1].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          campaign_posts[1].publishedDateTimeAgo
-                          }}
+                          {{ campaign_posts[1].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -256,22 +258,20 @@
                     ></v-img>
                     <v-card-text>
                       <b>Organizer :</b>
-                      {{campaign_posts[2].organizerName}}
+                      {{ campaign_posts[2].organizerName }}
                       <br />
                       <b>Date :</b>
-                      {{campaign_posts[2].date}}
+                      {{ campaign_posts[2].date }}
                       <br />
                       <b>Address :</b>
-                      {{campaign_posts[2].address}}
+                      {{ campaign_posts[2].address }}
                       <br />
                       <b>Time :</b>
-                      {{campaign_posts[2].time}}
+                      {{ campaign_posts[2].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          campaign_posts[2].publishedDateTimeAgo
-                          }}
+                          {{ campaign_posts[2].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -287,22 +287,20 @@
                     ></v-img>
                     <v-card-text>
                       <b>Organizer :</b>
-                      {{campaign_posts[3].organizerName}}
+                      {{ campaign_posts[3].organizerName }}
                       <br />
                       <b>Date :</b>
-                      {{campaign_posts[3].date}}
+                      {{ campaign_posts[3].date }}
                       <br />
                       <b>Address :</b>
-                      {{campaign_posts[3].address}}
+                      {{ campaign_posts[3].address }}
                       <br />
                       <b>Time :</b>
-                      {{campaign_posts[3].time}}
+                      {{ campaign_posts[3].time }}
                       <v-spacer></v-spacer>
                       <v-slot:footer>
                         <small class="text-muted">
-                          {{
-                          campaign_posts[3].publishedDateTimeAgo
-                          }}
+                          {{ campaign_posts[3].publishedDateTimeAgo }}
                         </small>
                       </v-slot:footer>
                     </v-card-text>
@@ -314,7 +312,9 @@
         </v-layout>
         <v-layout column align-center>
           <div class="mt-0 mb-3 text-xs-center" style="color:#616161;">
-            <v-btn dark small color="#B71C1C" to="/campaignPosts">View More</v-btn>
+            <v-btn dark small color="#B71C1C" to="/campaignPosts"
+              >View More</v-btn
+            >
           </div>
         </v-layout>
       </section>
