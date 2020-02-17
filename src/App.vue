@@ -1,7 +1,10 @@
 <template>
   <v-app class="textStyle">
     <Appbar></Appbar>
-    <router-view v-if="!dashBoard"></router-view>
+    <v-content class="mb-10 pt-0">
+      <router-view v-if="!dashBoard"></router-view>
+    </v-content>
+    <Footer></Footer>
 
     <div v-if="loggedIn && dashBoard">
       <div v-if="userRole === 'admin'">
@@ -24,6 +27,7 @@ import AdminDashboard from "./views/admin/AdminDashboard";
 import DonorDashboard from "./views/donor/DonorDashboard";
 import OrganizerDashboard from "./views/organizer/OrganizerDashboard";
 import Appbar from "./components/Appbar";
+import Footer from "./components/Footer";
 import { bus } from "./main";
 // import Home from "./views/Home";
 
@@ -33,7 +37,8 @@ export default {
     AdminDashboard,
     DonorDashboard,
     OrganizerDashboard,
-    Appbar
+    Appbar,
+    Footer
     // Home
   },
 

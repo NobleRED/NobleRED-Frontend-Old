@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-card width="100%" height="100%" class>
+  <v-container class="mt-10">
+    <v-card width="100%" height="100%" class="mt-10">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Register New Campaign</v-toolbar-title>
       </v-toolbar>
@@ -317,70 +317,13 @@ export default {
             .then(function(docRef) {
               console.log("Document written with ID: ", docRef.id);
               _this.value = docRef.id;
-              this.$router.push({
+              _this.$router.push({
                 name: "adminMap"
               });
             })
             .catch(function(error) {
               console.error("Error adding document: ", error);
             });
-
-          /*
-
-          firebase.db
-            .collection("posts")
-            .doc("campaign_posts")
-            .collection("campaign_posts")
-            .add({
-              organizerID: _this.formData.organizerID,
-              organizerName: _this.formData.organizerName,
-              address: _this.formData.address,
-              province: _this.formData.province,
-              district: _this.formData.district,
-              date: _this.formData.date,
-              time: _this.formData.time,
-              publishedDateTime: now,
-              lat: lat,
-              lng: lng,
-              imgSrc:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
-            })
-            .then(function(docRef) {
-              console.log("Document written with ID: ", docRef.id);
-              _this.value = docRef.id;
-              this.$router.push("/admin/map");
-            })
-            .catch(function(error) {
-              console.error("Error adding document: ", error);
-            });
-
-
-
-      axios
-        .post("http://localhost:4200/api/campaignreq", {
-             organizerID: _this.formData.organizerID,
-              organizerName: _this.formData.organizerName,
-              address: _this.formData.address,
-              province: _this.formData.province,
-              district: _this.formData.district,
-              date: _this.formData.date,
-              time: _this.formData.time,
-              publishedDateTime: now,
-              lat: lat,
-              lng: lng,
-              imgSrc:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
-        })
-         .then(function(docRef) {
-              console.log("Document written with ID: ", docRef.id);
-              _this.value = docRef.id;
-              this.$router.push("/admin/map");
-            })
-            .catch(function(error) {
-              console.error("Error adding document: ", error);
-            });
-
-            */
         });
     },
     reset() {
