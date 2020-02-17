@@ -7,6 +7,7 @@ import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue"
 import AdminDonors from "../views/admin/AdminDonors.vue";
 import AdminOrganizers from '../views/admin/AdminOrganizers.vue'
 import AdminCharts from "../views/admin/AdminCharts.vue";
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
@@ -87,13 +88,27 @@ const routes = [
     ]
   },
   {
+    path: "/admin/charts",
+    name: "adminCharts",
+    component: AdminCharts,
+    children: [
+      {
+        path: "organizers",
+        component: AdminOrganizers
+      }
+    ]
+  }
+  ,
+  {
     path: "/admin/map",
     name: "adminMap",
     component: AdminMap
   },
   {
     path: "/admin/organizers",
+
     name: "adminOrganizers",
+t
     component: AdminOrganizers
   },
   {
@@ -101,6 +116,7 @@ const routes = [
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
   },
+
   {
     path: "/about",
     name: "about",
@@ -125,6 +141,7 @@ const routes = [
     path: "/newOrganizerForm",
     name: "newOrganizerForm",
     component: NewOrganizerForm
+
 
   },
   {
