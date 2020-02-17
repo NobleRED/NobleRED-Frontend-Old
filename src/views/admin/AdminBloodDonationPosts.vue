@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-10">
     <!-- <b-button variant="success" v-b-modal.newCampaignForm class="mb-5 mt-5">Add New Campaign</b-button>
     <div class="text-center">
       <b-spinner
@@ -18,7 +18,7 @@
     >
       <NewCampaignForm></NewCampaignForm>
     </b-modal>-->
-    <v-card width="100%" height="100%" class>
+    <v-card width="100%" height="100%" class="mt-10 mb-7">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
         <v-text-field
@@ -44,8 +44,10 @@
           <tr @click="showAlert(row.item)">
             <td>{{ row.item.userID }}</td>
             <td>{{ row.item.userName }}</td>
+
             <td>{{ row.item.contact }}</td>
             <td>{{ row.item.bloodType }}</td>
+
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
               <v-btn class="ma-1" text icon small color="primary">

@@ -13,12 +13,7 @@
               ></v-img>
             </v-flex>
             <v-flex :class="`d-flex justify-center`">
-              <p
-                style="font-size:24px; color:#616161"
-                class="font-weight-medium"
-              >
-                Log In
-              </p>
+              <p style="font-size:24px; color:#616161" class="font-weight-medium">Log In</p>
             </v-flex>
             <v-form ref="form1">
               <v-card-text>
@@ -60,13 +55,7 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn
-                      block
-                      type="submit"
-                      @click="loginUser()"
-                      color="secondary"
-                      >Login</v-btn
-                    >
+                    <v-btn block type="submit" @click="loginUser()" color="secondary">Login</v-btn>
                   </v-col>
                 </v-row>
 
@@ -77,13 +66,7 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn
-                      block
-                      outlined
-                      light
-                      color="secondary"
-                      @click="signInWithGoogle()"
-                    >
+                    <v-btn block outlined light color="secondary" @click="signInWithGoogle()">
                       <!-- <span class="mdi mdi-google">&nbsp; &nbsp; Sign In With Google</span> -->
                       <!-- <v-img src="../assets/google logo.png" aspect-ratio="1"></!-->
 
@@ -103,8 +86,7 @@
                     @click="goToRegistration"
                     color="error"
                     href="/donor/signup"
-                    >Don't have an account?</v-btn
-                  >
+                  >Don't have an account?</v-btn>
                 </v-flex>
               </v-card-text>
             </v-form>
@@ -117,7 +99,7 @@
 
 <script>
 import firebase from "../plugins/firebaseConfig";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import axios from "axios";
 import { bus } from "../main";
 
@@ -152,20 +134,96 @@ export default {
           // }
           var uid = user.uid;
           // console.log("uid:" + uid);
+
+          axios
+            .get("http://localhost:4200/api/admins/" + uid)
+            .then(response => {
+              if (response.status == 200) {
+                console.log(response);
+                if (response.data.role == "admin") {
+                  console.log("admin");
+                  this.$store.commit("updateRole", response.data.role);
+                  bus.$emit("sendUserRole", response.data.role);
+                  localStorage.role = response.data.role;
+                  localStorage.userid = response.data.adminID;
+                  console.log(response);
+                  // push data to the array
+                  this.$session.start();
+                  this.$session.set("jwt", response.data);
+                  // console.log(response.data.fname);
+                  localStorage.userdata = JSON.stringify(response.data);
+                  bus.$emit("changeLoginStatus", true);
+                  bus.$emit("sendUserData", response.data);
+                }
+              }
+
+              // console.log("Role : ", this.$store.getters.role);
+            })
+            .catch(e => {
+              console.log("Error: " + e);
+            });
+
           axios
             .get("http://localhost:4200/api/donors/" + uid)
             .then(response => {
-              // push data to the array
-              this.$session.start();
-              this.$session.set("jwt", response.data);
-              // console.log(response.data.fname);
-              localStorage.userdata = JSON.stringify(response.data);
-              localStorage.role = response.data.role;
+              if (response.status == 200) {
+                console.log(response);
+                if (response.data.role == "donor") {
+                  console.log("donor");
+                  this.$store.commit("updateRole", response.data.role);
+                  bus.$emit("sendUserRole", response.data.role);
+                  localStorage.role = response.data.role;
+                  localStorage.userid = response.data.donorID;
+                  console.log(response);
+                  // push data to the array
+                  this.$session.start();
+                  this.$session.set("jwt", response.data);
+                  // console.log(response.data.fname);
+                  localStorage.userdata = JSON.stringify(response.data);
+                  bus.$emit("changeLoginStatus", true);
+                  bus.$emit("sendUserData", response.data);
+                }
+              }
 
-              this.$store.commit("updateRole", response.data.role);
-              bus.$emit("changeLoginStatus", true);
-              bus.$emit("sendUserRole", response.data.role);
-              bus.$emit("sendUserData", response.data);
+              // console.log("Role : ", this.$store.getters.role);
+            })
+            .catch(e => {
+              console.log("Error: " + e);
+            });
+
+          axios
+            .get("http://localhost:4200/api/organizers/" + uid)
+            .then(response => {
+              if (response.status == 200) {
+                console.log(response);
+                if (response.data.role == "organizer") {
+                  console.log("organizer");
+                  this.$store.commit("updateRole", response.data.role);
+                  bus.$emit("sendUserRole", response.data.role);
+                  localStorage.role = response.data.role;
+                  localStorage.userid = response.data.organizerID;
+                  console.log(response);
+                  // push data to the array
+                  this.$session.start();
+                  this.$session.set("jwt", response.data);
+                  // console.log(response.data.fname);
+                  localStorage.userdata = JSON.stringify(response.data);
+                  bus.$emit("changeLoginStatus", true);
+                  bus.$emit("sendUserData", response.data);
+                }
+              }
+              // // push data to the array
+              // this.$session.start();
+              // this.$session.set("jwt", response.data);
+              // // console.log(response.data.fname);
+              // localStorage.userdata = JSON.stringify(response.data);
+              // localStorage.role = response.data.role;
+
+              // this.$store.commit("updateRole", response.data.role);
+              // bus.$emit("changeLoginStatus", true);
+              // bus.$emit("sendUserRole", response.data.role);
+              // bus.$emit("sendUserData", response.data);
+
               // console.log("Role : ", this.$store.getters.role);
             })
             .catch(e => {
@@ -231,7 +289,7 @@ export default {
           // localStorage.loginstatus = true;
           // console.log(user);
           console.log(result);
-          this.$router.push("/");
+          this.$router.replace("/");
           // ...
         })
         .catch(function(error) {
@@ -249,18 +307,7 @@ export default {
           // ...
         });
     },
-    sendEmail: parameters => {
-      emailjs
-        .sendForm("gmail", "template_4Iavwfir", parameters, "YOUR_USER_ID")
-        .then(
-          result => {
-            console.log("SUCCESS!", result.status, result.text);
-          },
-          error => {
-            console.log("FAILED...", error);
-          }
-        );
-    },
+
     goToRegistration() {},
     reset() {
       // reset function to clear text fields of the form

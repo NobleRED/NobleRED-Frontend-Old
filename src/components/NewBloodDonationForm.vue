@@ -42,6 +42,7 @@
                 </v-col>
               </v-row>
 
+
               <v-row>
                 <v-col cols="12" sm="12">
                   <v-text-field
@@ -88,6 +89,89 @@
             </v-card-text>
           </v-form>
         </v-col>
+
+/**
+      <v-form ref="form1">
+        <v-card-text>
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                name="userName"
+                label="User Name"
+                placeholder="John Doe"
+                id="userName"
+                v-model="formData.userName"
+                type="text"
+                :rules="nameRules"
+                required
+                outlined
+                style="background-color: transparent;"
+                small
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select
+                name="bloodType"
+                label="Blood Type"
+                placeholder="Blood Type"
+                id="bloodType"
+                v-model="formData.bloodType"
+                :items="bloodTypes"
+                :rules="requiredRule"
+                required
+                outlined
+                style="background-color: transparent;"
+                small
+              ></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                name="address"
+                label="Address"
+                placeholder="No. 5, Flower Road, Colombo"
+                id="address"
+                v-model="formData.address"
+                type="text"
+                :rules="adrsRules"
+                required
+                outlined
+                style="background-color: transparent;"
+                small
+              ></v-text-field>
+            </v-col>
+
+            <v-col cols="12" sm="6">
+              <v-text-field
+                name="contact"
+                label="Contact No"
+                placeholder="Contact No"
+                v-model="formData.phoneNumber"
+                type="text"
+                :rules="phnRules"
+                required
+                outlined
+                style="background-color: transparent;"
+                small
+              ></v-text-field>
+            </v-col>
+          </v-row>
+
+          <v-row></v-row>
+
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+              <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </v-form>
+    </v-card>
+    **/
+
 
         <v-col cols="12" sm="6">
           <v-card
@@ -305,7 +389,7 @@ export default {
       firebase.db
         .collection("posts-blood_needed")
         .add({
-          userID: this.formData.userID,
+          userID: localStorage.userid,
           userName: this.formData.userName,
           address: this.formData.address,
           bloodType: this.formData.bloodType,
