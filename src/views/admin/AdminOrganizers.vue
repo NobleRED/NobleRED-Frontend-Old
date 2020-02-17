@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-10">
     <!-- <b-button variant="success" v-b-modal.newCampaignForm class="mb-5 mt-5">Add New Campaign</b-button>
     <div class="text-center">
       <b-spinner
@@ -18,7 +18,7 @@
     >
       <NewCampaignForm></NewCampaignForm>
     </b-modal>-->
-    <v-card width="100%" height="100%" class>
+    <v-card width="100%" height="100%" class="mt-10">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Organizers</v-toolbar-title>
         <v-text-field

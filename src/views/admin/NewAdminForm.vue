@@ -1,8 +1,8 @@
 <template>
   <v-container class="mt-10">
-    <v-card width="100%" height="100%" class="mt-5 mb-3">
+    <v-card width="100%" height="100%" class="mt-10">
       <v-toolbar flat color="grey darken-3" dark>
-        <v-toolbar-title>Create A Donor Account</v-toolbar-title>
+        <v-toolbar-title>Admin Registration</v-toolbar-title>
       </v-toolbar>
 
       <v-form ref="form">
@@ -14,27 +14,13 @@
                 label="First Name"
                 placeholder="John"
                 id="fname"
-                v-model="formData.fname"
+                v-model="formData.fullname"
                 type="text"
                 :rules="nameRules"
                 required
                 outlined
                 style="background-color: transparent;"
                 small
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12" md="6">
-              <v-text-field
-                name="lastName"
-                label="Last Name"
-                placeholder="Doe"
-                id="lname"
-                v-model="formData.lname"
-                type="text"
-                :rules="nameRules"
-                required
-                outlined
               ></v-text-field>
             </v-col>
           </v-row>
@@ -53,67 +39,6 @@
                 outlined
               ></v-text-field>
             </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                name="dob"
-                label="Date of Birth"
-                id="dob"
-                v-model="formData.dob"
-                type="date"
-                required
-                outlined
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" md="6">
-              <v-text-field
-                name="address"
-                label="Address"
-                placeholder="Address"
-                id="address"
-                v-model="formData.inputAddress"
-                type="text"
-                :rules="adrsRules"
-                required
-                outlined
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-text-field
-                name="contactno"
-                label="Contact No"
-                placeholder="Contact No"
-                v-model="formData.contactNo"
-                type="text"
-                :rules="phnRules"
-                required
-                outlined
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" md="6">
-              <!-- <p>{{ radios || 'null' }}</p>	 -->
-              <v-radio-group label="Gender" v-model="formData.radios" :mandatory="true" row>
-                <v-radio label="Male" value="male"></v-radio>
-                <v-radio label="Female" value="female"></v-radio>
-              </v-radio-group>
-            </v-col>
-
-            <!-- <v-col cols="12" md="6">
-              <v-file-input
-                id="img"
-                placeholder="Add Image"
-                show-size="true"
-                chips="true"
-                prepend-icon="mdi-camera"
-                label="Profile Image"
-                outlined
-              ></v-file-input>
-            </v-col>-->
           </v-row>
 
           <v-row>
@@ -129,17 +54,6 @@
                 required
                 outlined
               ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-select
-                v-model="formData.bloodtype"
-                :items="bloodTypes"
-                :rules="bloodtypeRules"
-                label="Blood Type"
-                placeholder="Blood Type"
-                required
-                outlined
-              ></v-select>
             </v-col>
           </v-row>
 
@@ -173,7 +87,7 @@
           </v-row>
 
           <v-col cols="12" md="6">
-            <v-btn type="submit" @click="addDonor" color="primary">Sign up</v-btn>
+            <v-btn type="submit" @click="addAdmin" color="primary">Sign up</v-btn>
             <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
           </v-col>
         </v-card-text>
@@ -191,26 +105,18 @@ var moment = require("moment");
 moment().format();
 
 export default {
-  name: "DonorSignupForm",
+  name: "AdminRegistrationForm",
   data() {
     return {
       formData: {
         uidtemp: "",
-        fname: "",
-        lname: "",
+        fullname: "",
         nic: "",
-        dob: "",
-        inputAddress: "",
-        contactNo: "",
-        radios: "",
-        img: "",
         email: "",
         password: "",
-        password1: "",
-        bloodtype: ""
+        password1: ""
       },
 
-      bloodTypes: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
       nameRules: [
         v => !!v || "Name is required",
         v => v.length <= 20 || "Name must be less than 20 characters"
@@ -220,16 +126,12 @@ export default {
         v =>
           /^(\d).(\w(v?))/.test(v) || "NIC must include digits, may include v"
       ],
-      adrsRules: [v => !!v || "Address is required"],
-      phnRules: [
-        v => !!v || "Contact no is required",
-        v => /\d{10}/.test(v) || "Contact No must have 10 digits"
-      ],
+
       mailRules: [
         v => !!v || "Email is required",
         v => /.+@.+/.test(v) || "E-mail must be valid"
       ],
-      bloodtypeRules: [v => !!v || "Blood Type is required"],
+
       pswdRules: [v => !!v || "Password is required"]
     };
   },
@@ -256,13 +158,15 @@ export default {
           }
         );
     },
-    addDonor() {
+    addAdmin() {
       var that = this;
       event.preventDefault();
       var now = moment().format();
 
       var uidTemp = "";
       var sendToLogin = false;
+      var nextAdminID;
+
       firebase.auth
         .createUserWithEmailAndPassword(
           this.formData.email,
@@ -271,7 +175,7 @@ export default {
         .then(function(data) {
           data.user
             .updateProfile({
-              displayName: that.formData.fname + " " + that.formData.lname
+              displayName: that.formData.fullname + " " + that.formData.lname
             })
             .then(() => {});
 
@@ -284,56 +188,57 @@ export default {
           console.log("uid", data.user.uid);
           uidTemp = data.user.uid;
           sendToLogin = true;
-          var nextDonorID;
 
           axios
-            .get("http://localhost:4200/api/donors/nextid")
+            .get("http://localhost:4200/api/admins/nextid")
             .then(response => {
-              nextDonorID = response.data;
+              // push data to the array
+              nextAdminID = response.data;
               console.log("send to login", sendToLogin);
 
+              console.log("send to login", sendToLogin);
               if (sendToLogin == true) {
                 firebase.db
-                  .collection("users-donor")
+                  .collection("users-admin")
                   .add({
                     uid: uidTemp,
-                    fname: that.formData.fname,
-                    lname: that.formData.lname,
+                    fullname: that.formData.fullname,
                     email: that.formData.email,
                     nic: that.formData.nic,
-                    dob: that.formData.dob,
-                    address: that.formData.inputAddress,
-                    contactNo: that.formData.contactNo,
-                    gender: that.formData.radios,
-                    bloodType: that.formData.bloodtype,
-                    role: "donor",
-                    donorID: nextDonorID,
+                    role: "admin",
                     status: "1",
+                    adminID: nextAdminID,
                     createdAt: now
                   })
                   .then(function(docRef) {
                     console.log("Document written with ID: ", docRef.id);
-                    emailjs.send("gmail", "template_4Iavwfir", {
+                    var template_params = {
                       reply_to: "nobleredlk@gmail.com",
                       from_name: "NobleRED",
-                      to_name: that.formData.fname + " " + that.formData.lname,
+                      to_name: that.formData.email,
                       message_html:
-                        "HI, Thank you for registering with NobleRED",
-                      DonorEmail: that.formData.email
-                    });
-                    console.log(that.formData);
-                    this.$router.push("/");
+                        "You have successfully registered with the NobleRED! Thank you for being 'Noble'"
+                    };
+
+                    this.sendEmail(template_params);
+                    this.$router.push("/login");
                   })
                   .catch(function(error) {
                     console.error("Error adding document: ", error);
                   });
               } else {
-                this.$router.push("/signup/donor");
+                this.$router.push("");
               }
             })
             .catch(e => {
               console.log("Error: " + e);
             });
+          // var r = confirm("Error in sign up!");
+          // if (r == true) {
+          //   this.router.push("/login");
+          // } else {
+          //   this.router.push("/signup/donor");
+          // }
         })
         .catch(function(error) {
           // Handle Errors here.

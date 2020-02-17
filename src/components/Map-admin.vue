@@ -3,13 +3,16 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
+
         <v-spacer></v-spacer>
         <v-btn
           v-if="userType === 'admin' || userType === 'organizer'"
           small
           color="success"
           class="ml-3"
+
           to="/newCampaignForm"
+
         >
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
@@ -75,7 +78,9 @@ export default {
     // calling the api and getting the markers
     axios
       .get("http://localhost:4200/api/maps/greymarkers")
+
       // .get("http://localhost:4200/api/campaigns/accepted")
+
       .then(response => {
         // push data to campaigns array
         this.campaigns = response.data;
@@ -103,8 +108,10 @@ export default {
               "\nTime: " +
               campaign.time,
             icon:
+
               "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F" +
               this.$data.colors[i]
+
           });
         });
       })
@@ -156,7 +163,9 @@ export default {
             position: { lat: _this.pos.lat, lng: _this.pos.lng },
             map: map,
             animation: google.maps.Animation.DROP,
+
             title: "Your Location",
+
             icon:
               "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2Fperson1.png?alt=media&token=064f0817-3fcc-4b9d-9416-e06cd9c0c2b5",
             size: new google.maps.Size(20, 32)
