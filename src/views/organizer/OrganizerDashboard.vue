@@ -9,8 +9,13 @@
       :mini-variant="$vuetify.breakpoint.smAndDown"
       app
     >
-      <v-flex :class="`d-flex justify-center pt-5 `" style="background-color:#424242">
-        <p style="font-size:24px; color:white" class="font-weight-medium">Organizer</p>
+      <v-flex
+        :class="`d-flex justify-center pt-5 `"
+        style="background-color:#424242"
+      >
+        <p style="font-size:24px; color:white" class="font-weight-medium">
+          Organizer
+        </p>
       </v-flex>
 
       <v-list dense>

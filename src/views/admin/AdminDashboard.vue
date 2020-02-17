@@ -9,8 +9,13 @@
       :mini-variant="$vuetify.breakpoint.smAndDown"
       app
     >
-      <v-flex :class="`d-flex justify-center pt-5 `" style="background-color:#424242">
-        <p style="font-size:24px; color:white" class="font-weight-medium">Admin</p>
+      <v-flex
+        :class="`d-flex justify-center pt-5 `"
+        style="background-color:#424242"
+      >
+        <p style="font-size:24px; color:white" class="font-weight-medium">
+          Admin
+        </p>
       </v-flex>
 
       <v-list dense>
@@ -28,21 +33,89 @@
     </v-navigation-drawer>
 
     <!-- Content of the pages -->
+
     <v-content>
-      <v-container fluid>
-        <v-row align="center">
+
+      <v-container class="" fluid>
+        <v-row align="center" justify="center">
+
           <router-view></router-view>
-          <router-view name="donor"></router-view>
-          <!-- Default chart view -->
+          <!-- <v-tooltip right>
+            <template v-slot:activator="{ on }">
+              <v-btn :href="source" icon large target="_blank" v-on="on">
+                <v-icon large>mdi-code-tags</v-icon>
+              </v-btn>
+            </template>
+            <span>Source</span>
+          </v-tooltip>
+          <v-tooltip right>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                icon
+                large
+                href="https://codepen.io/johnjleider/pen/MNYLdL"
+                target="_blank"
+                v-on="on"
+              >
+                <v-icon large>mdi-codepen</v-icon>
+              </v-btn>
+            </template>
+            <span>Codepen</span>
+          </v-tooltip> -->
         </v-row>
       </v-container>
     </v-content>
+
+    <!-- Content of the pages -->
+
+    <!-- <v-btn bottom color="pink" dark fab fixed right @click="dialog = !dialog">
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+    <v-dialog v-model="dialog" width="800px">
+      <v-card>
+        <v-card-title class="grey darken-2">Create contact</v-card-title>
+        <v-container>
+          <v-row class="mx-2">
+            <v-col class="align-center justify-space-between" cols="12">
+              <v-row align="center" class="mr-0">
+                <v-avatar size="40px" class="mx-3">
+                  <img src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png" alt />
+                </v-avatar>
+                <v-text-field placeholder="Name" />
+              </v-row>
+            </v-col>
+            <v-col cols="6">
+              <v-text-field prepend-icon="business" placeholder="Company" />
+            </v-col>
+            <v-col cols="6">
+              <v-text-field placeholder="Job title" />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field prepend-icon="mail" placeholder="Email" />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field type="tel" prepend-icon="phone" placeholder="(000) 000 - 0000" />
+            </v-col>
+            <v-col cols="12">
+              <v-text-field prepend-icon="notes" placeholder="Notes" />
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-card-actions>
+          <v-btn text color="primary">More</v-btn>
+          <v-spacer />
+          <v-btn text color="primary" @click="dialog = false">Cancel</v-btn>
+          <v-btn text @click="dialog = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>-->
   </v-app>
 </template>
 
 <script>
 // import Appbar from "./Appbar";
-// import { bus } from "../main";
+import { bus } from "../../main";
+
 export default {
   components: {
     // Appbar
@@ -61,11 +134,7 @@ export default {
         text: "Blood Donors",
         link: "/admin/donors"
       },
-      {
-        icon: "mdi-human",
-        text: "Campaign Organizers",
-        link: "/admin/organizers"
-      },
+      { icon: "mdi-human", text: "Campaign Organizers" },
       // {
       //   icon: "mdi-chevron-up",
       //   "icon-alt": "mdi-chevron-down",
@@ -91,13 +160,13 @@ export default {
         text: "Campaign Posts",
         link: "/admin/campaigns"
       },
-      {
-        icon: "mdi-account-switch",
-        text: "Medical Teams",
-        link: "/admin/medicalteams"
-      },
       { icon: "mdi-message-text", text: "Notifications" }
-    ]
+    ],
+    mounted() {
+      bus.$on("changeDashboardStatus", state => {
+        this.drawer = state;
+      });
+    }
   })
   // methods: {
   //   sendToPage(item) {}

@@ -25,6 +25,7 @@
                       id="username"
                       type="text"
                       v-model="username"
+                      :rules="inputRulesUser"
                       required
                       outlined
                       style="background-color: transparent;"
@@ -42,6 +43,7 @@
                       id="password"
                       type="password"
                       v-model="password"
+                      :rules="inputRulespass"
                       required
                       outlined
                       style="background-color: transparent;"
@@ -64,7 +66,7 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn block outlined light color="secondary">
+                    <v-btn block outlined light color="secondary" @click="signInWithGoogle()">
                       <!-- <span class="mdi mdi-google">&nbsp; &nbsp; Sign In With Google</span> -->
                       <!-- <v-img src="../assets/google logo.png" aspect-ratio="1"></!-->
 
@@ -97,6 +99,7 @@
 
 <script>
 import firebase from "../plugins/firebaseConfig";
+// import emailjs from "emailjs-com";
 import axios from "axios";
 import { bus } from "../main";
 
@@ -107,7 +110,9 @@ export default {
       username: "",
       password: "",
       uid: "",
-      user: ""
+      user: "",
+      inputRulesUser: [v => v.length > 0 || ""],
+      inputRulespass: [v => v.length >= 8 || ""]
     };
   },
   methods: {
@@ -129,17 +134,96 @@ export default {
           // }
           var uid = user.uid;
           // console.log("uid:" + uid);
+
+          axios
+            .get("http://localhost:4200/api/admins/" + uid)
+            .then(response => {
+              if (response.status == 200) {
+                console.log(response);
+                if (response.data.role == "admin") {
+                  console.log("admin");
+                  this.$store.commit("updateRole", response.data.role);
+                  bus.$emit("sendUserRole", response.data.role);
+                  localStorage.role = response.data.role;
+                  localStorage.userid = response.data.adminID;
+                  console.log(response);
+                  // push data to the array
+                  this.$session.start();
+                  this.$session.set("jwt", response.data);
+                  // console.log(response.data.fname);
+                  localStorage.userdata = JSON.stringify(response.data);
+                  bus.$emit("changeLoginStatus", true);
+                  bus.$emit("sendUserData", response.data);
+                }
+              }
+
+              // console.log("Role : ", this.$store.getters.role);
+            })
+            .catch(e => {
+              console.log("Error: " + e);
+            });
+
           axios
             .get("http://localhost:4200/api/donors/" + uid)
             .then(response => {
-              // push data to the array
-              console.log(response.data.fname);
-              localStorage.userdata = JSON.stringify(response.data);
-              localStorage.role = response.data.role;
-              this.$store.commit("updateRole", response.data.role);
-              bus.$emit("changeLoginStatus", true);
-              bus.$emit("sendUserRole", response.data.role);
-              bus.$emit("sendUserData", response.data);
+              if (response.status == 200) {
+                console.log(response);
+                if (response.data.role == "donor") {
+                  console.log("donor");
+                  this.$store.commit("updateRole", response.data.role);
+                  bus.$emit("sendUserRole", response.data.role);
+                  localStorage.role = response.data.role;
+                  localStorage.userid = response.data.donorID;
+                  console.log(response);
+                  // push data to the array
+                  this.$session.start();
+                  this.$session.set("jwt", response.data);
+                  // console.log(response.data.fname);
+                  localStorage.userdata = JSON.stringify(response.data);
+                  bus.$emit("changeLoginStatus", true);
+                  bus.$emit("sendUserData", response.data);
+                }
+              }
+
+              // console.log("Role : ", this.$store.getters.role);
+            })
+            .catch(e => {
+              console.log("Error: " + e);
+            });
+
+          axios
+            .get("http://localhost:4200/api/organizers/" + uid)
+            .then(response => {
+              if (response.status == 200) {
+                console.log(response);
+                if (response.data.role == "organizer") {
+                  console.log("organizer");
+                  this.$store.commit("updateRole", response.data.role);
+                  bus.$emit("sendUserRole", response.data.role);
+                  localStorage.role = response.data.role;
+                  localStorage.userid = response.data.organizerID;
+                  console.log(response);
+                  // push data to the array
+                  this.$session.start();
+                  this.$session.set("jwt", response.data);
+                  // console.log(response.data.fname);
+                  localStorage.userdata = JSON.stringify(response.data);
+                  bus.$emit("changeLoginStatus", true);
+                  bus.$emit("sendUserData", response.data);
+                }
+              }
+              // // push data to the array
+              // this.$session.start();
+              // this.$session.set("jwt", response.data);
+              // // console.log(response.data.fname);
+              // localStorage.userdata = JSON.stringify(response.data);
+              // localStorage.role = response.data.role;
+
+              // this.$store.commit("updateRole", response.data.role);
+              // bus.$emit("changeLoginStatus", true);
+              // bus.$emit("sendUserRole", response.data.role);
+              // bus.$emit("sendUserData", response.data);
+
               // console.log("Role : ", this.$store.getters.role);
             })
             .catch(e => {
@@ -185,6 +269,45 @@ export default {
       // console.log(this.$session.getAll());
       // console.log(this.$session.get("user").email);
     },
+    signInWithGoogle() {
+      var provider = firebase.provider;
+      // provider.addScope("profile");
+      // provider.addScope("email");
+
+      firebase.auth
+        .signInWithPopup(provider)
+        .then(function(result) {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          // var token = result.credential.accessToken;
+          // The signed-in user info.
+          // var user = result.user;
+          // this.$session.start();
+          // localStorage.userdata = JSON.stringify(result.user);
+          // this.$session.set("jwt", result.data);
+          // bus.$emit("changeLoginStatus", true);
+          // bus.$emit("sendUserData", user);
+          // localStorage.loginstatus = true;
+          // console.log(user);
+          console.log(result);
+          this.$router.replace("/");
+          // ...
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          // eslint-disable-next-line no-unused-vars
+          var errorCode = error.code;
+          // eslint-disable-next-line no-unused-vars
+          var errorMessage = error.message;
+          // The email of the user's account used.
+          // eslint-disable-next-line no-unused-vars
+          var email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          // eslint-disable-next-line no-unused-vars
+          var credential = error.credential;
+          // ...
+        });
+    },
+
     goToRegistration() {},
     reset() {
       // reset function to clear text fields of the form

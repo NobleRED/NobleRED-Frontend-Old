@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-card width="100%" height="100%" class>
+  <v-container class="mt-10">
+    <v-card width="100%" height="100%" class="mt-10">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Register New Campaign</v-toolbar-title>
       </v-toolbar>
@@ -157,7 +157,9 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/campaigns" tag="v-btn">
-                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+                <v-btn type="submit" @click="onSubmit" color="primary"
+                  >Submit</v-btn
+                >
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
@@ -297,10 +299,11 @@ export default {
           var lng = response.data.results[0].geometry.location.lng;
 
           axios
-            .post("http://localhost:4200/api/campaigns", {
+            .post("http://localhost:4200/api/campaigns/new", {
               organizerID: _this.formData.organizerID,
               organizerName: _this.formData.organizerName,
               address: _this.formData.address,
+              contactNo: _this.formData.contactNo,
               province: _this.formData.province,
               district: _this.formData.district,
               date: _this.formData.date,
