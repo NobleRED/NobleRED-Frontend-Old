@@ -12,11 +12,15 @@ import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
 
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
+
+
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewAdminForm from '../views/admin/NewAdminForm.vue'
 import NewOrganizerForm from '../views/organizer/NewOrganizerForm.vue'
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
+import NewOrganizerForm from "../components/NewOrganizerForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
@@ -102,7 +106,9 @@ const routes = [
   },
   {
     path: "/admin/organizers",
-    name: "adminorganizers",
+
+    name: "adminOrganizers",
+t
     component: AdminOrganizers
   },
   {
@@ -142,6 +148,7 @@ const routes = [
     path: "/newAdminForm",
     name: "newAdminForm",
     component: NewAdminForm
+
 
   },
   {
