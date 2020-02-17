@@ -9,7 +9,7 @@ import AdminOrganizers from '../views/admin/AdminOrganizers.vue'
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
-import AdminMap from "../components/Map.vue";
+import AdminMap from "../components/Map-admin.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewAdminForm from '../views/admin/NewAdminForm.vue'
@@ -66,11 +66,9 @@ const routes = [
       {
         path: "donor",
         component: AdminChartsDonor
-      },
-
+      }
     ]
-  }
-  ,
+  },
   {
     path: "/admin/charts",
     name: "adminCharts",
@@ -81,8 +79,7 @@ const routes = [
         component: AdminChartsCampaign
       }
     ]
-  }
-  ,
+  },
   {
     path: "/admin/map",
     name: "adminMap",
@@ -111,7 +108,6 @@ const routes = [
     path: "/newCampaignForm",
     name: "newCampaign",
     component: NewCampaignForm
-
   },
   {
     path: "/newOrganizerForm",

@@ -2,7 +2,13 @@
 <template>
   <v-container class="mt-10 mb-10">
     <section>
-      <v-btn small color="success" class="mt-10" to="/newBloodDonationForm" align-center>
+      <v-btn
+        small
+        color="success"
+        class="mt-10"
+        to="/newBloodDonationForm"
+        align-center
+      >
         <v-icon class="pr-1">mdi-plus</v-icon>Add New Blood Need Post
       </v-btn>
 
@@ -25,18 +31,16 @@
                   ></v-img>
                   <v-card-text>
                     Urgently required
-                    <b>{{ blood_need_post.bloodType }}</b> type of blood for patient.
-                    Volunteers please come forward and help us. If you are willing to
-                    donate blood please contact
+                    <b>{{ blood_need_post.bloodType }}</b> type of blood for
+                    patient. Volunteers please come forward and help us. If you
+                    are willing to donate blood please contact
                     <b>{{ blood_need_post.userName }}</b> via
                     <b>{{ blood_need_post.phoneNumber }}</b>
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
                       <small class="text-muted">
-                        {{
-                        blood_need_post.publishedDateTimeAgo
-                        }}
+                        {{ blood_need_post.publishedDateTimeAgo }}
                       </small>
                     </v-slot:footer>
                   </v-card-text>
