@@ -50,7 +50,6 @@ export default {
         { text: "Address", value: "address" },
         { text: "Time", value: "time" }
       ],
-      campaigns: [],
       campaignsToday: []
       
     };
