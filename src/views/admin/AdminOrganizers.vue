@@ -47,12 +47,15 @@
           </tr>
         </template>
       </v-data-table>
+      <v-btn @click="allowDownload" x-medium color="success" dark>Get PDF Copy</v-btn>
     </v-card>
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import jspdf from 'jspdf'
+import 'jspdf-autotable'
 // import NewCampaignForm from "../NewCampaignForm";
 
 export default {
@@ -74,7 +77,8 @@ export default {
         { text: "Registered At", value: "registeredDateTimeAgo" },
         { text: "Status", value: "status" }
       ],
-      organizers: []
+      organizers: [],
+      txt:""
     };
   },
   methods: {
@@ -97,11 +101,54 @@ export default {
     showAlert(a) {
       if (event.target.classList.contains("btn__content")) return;
       alert("Alert! \n" + a.name);
+    },
+    getOrganizers(){
+        // console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/organizers")
+        .then(response => {
+          // push data to the array
+          this.organizers = response.data;
+        
+          console.log(this.organizers);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+    },
+    exportPdf_OrganizersList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Organizer Name",dataKey:"organizerName"},
+          {title:"Email",dataKey:"email"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"NIC",dataKey:"contactPersonNIC"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.organizers);
+        doc.save('Organizers.pdf');
+    },
+    allowDownload(){
+        var r = confirm("Allow Download PDF ?");
+        if (r == true) {
+          this.getOrganizers();
+          this.exportPdf_OrganizersList();
+        } else {
+          console.log("You pressed Cancel!");
+        }
     }
   },
   beforeMount() {
     // to call the function on load of the page
     this.loadOrganizers();
+    
   }
 };
 </script>

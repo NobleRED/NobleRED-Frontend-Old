@@ -33,7 +33,29 @@
         :items="blood_need_posts"
         :search="search"
         :loading="loading"
-      ></v-data-table>
+      >
+        <template v-slot:item="row">
+          <tr @click="showAlert(row.item)">
+            <td>{{ row.item.userID }}</td>
+            <td>{{ row.item.userName }}</td>
+            <td>{{ row.item.phoneNumber }}</td>
+            <td>{{ row.item.bloodType }}</td>
+            <td>{{ row.item.province }}</td>
+            <td>{{ row.item.date }}</td>
+            <td>{{ row.item.time }}</td>
+            <td>{{ row.item.publishedDateTimeAgo }}</td>
+            <td>
+              <v-btn class="ma-1" text icon small color="primary">
+                <v-icon dark>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn class="ma-1" text icon small color="error">
+                <v-icon dark>mdi-delete</v-icon>
+              </v-btn>
+            </td>
+          </tr>
+        </template>
+        ></v-data-table
+      >
     </v-card>
   </v-container>
 </template>
@@ -54,7 +76,8 @@ export default {
         { text: "User Name", value: "userName" },
         { text: "Contact Number", value: "phoneNumber" },
         { text: "Blood Type", value: "bloodType" },
-        { text: "Ago", value: "publishedDateTimeAgo" }
+        { text: "Ago", value: "publishedDateTimeAgo" },
+        { text: "Change/Delete", value: "" }
       ],
       blood_need_posts: []
     };

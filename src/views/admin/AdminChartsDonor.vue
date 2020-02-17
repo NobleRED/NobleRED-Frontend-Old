@@ -205,7 +205,199 @@ export default {
         });
         // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
 
-      }
+      },
+      exportPdf_BplusList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Name",dataKey:"fname"},
+          {title:"Blood Type",dataKey:"bloodType"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.donorsBplus);
+        doc.save('donorsB+.pdf');
+      },
+      getBplusdonor(){
+        console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/donorsBplus")
+        .then(response => {
+          // push data to the array
+          this.donorsBplus = response.data;
+        
+          console.log(this.donorsBplus);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+      },
+      exportPdf_BminList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Name",dataKey:"fname"},
+          {title:"Blood Type",dataKey:"bloodType"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.donorsBmin);
+        doc.save('donorsB-.pdf');
+      },
+      getBmindonor(){
+        console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/donorsBmin")
+        .then(response => {
+          // push data to the array
+          this.donorsBmin = response.data;
+        
+          console.log(this.donorsBmin);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+      },
+      exportPdf_ABplusList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Name",dataKey:"fname"},
+          {title:"Blood Type",dataKey:"bloodType"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.donorsABplus);
+        doc.save('donorsAB+.pdf');
+      },
+      getABplusdonor(){
+        console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/donorsABplus")
+        .then(response => {
+          // push data to the array
+          this.donorsABplus = response.data;
+        
+          console.log(this.donorsABplus);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+      },
+      exportPdf_ABminList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Name",dataKey:"fname"},
+          {title:"Blood Type",dataKey:"bloodType"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.donorsABmin);
+        doc.save('donorsAB-.pdf');
+      },
+      getABmindonor(){
+        console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/donorsABmin")
+        .then(response => {
+          // push data to the array
+          this.donorsABmin = response.data;
+        
+          console.log(this.donorsABmin);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+      },
+      exportPdf_OplusList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Name",dataKey:"fname"},
+          {title:"Blood Type",dataKey:"bloodType"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.donorsOplus);
+        doc.save('donorsO+.pdf');
+      },
+      getOplusdonor(){
+        console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/donorsOplus")
+        .then(response => {
+          // push data to the array
+          this.donorsOplus = response.data;
+        
+          console.log(this.donorsOplus);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+      },
+      exportPdf_OminList(){
+        // alert("akila");
+        
+        var coloumns=[
+          {title:"Name",dataKey:"fname"},
+          {title:"Blood Type",dataKey:"bloodType"},
+          {title:"Contact Number",dataKey:"contactNo"},
+          {title:"Address",dataKey:"address"}
+          
+        ];
+
+        var doc=new jspdf('p','pt');
+        doc.autoTable(coloumns,this.donorsOmin);
+        doc.save('donorsO-.pdf');
+      },
+      getOmindonor(){
+        console.log("Akila");
+        
+        axios
+        .get("http://localhost:4200/api/donorsOmin")
+        .then(response => {
+          // push data to the array
+          this.donorsOmin = response.data;
+        
+          console.log(this.donorsOmin);
+        })
+        .catch(e => {
+          console.log("Error: " + e);
+        });
+        // this.donors=[{name:"Akila",bloodType:"B+",cNumber:"077049",address:"256-A,Beliatta"}];
+
+      },
       
     },
     beforeMount(){
