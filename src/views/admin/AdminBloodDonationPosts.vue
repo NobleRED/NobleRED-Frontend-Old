@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-10">
     <!-- <b-button variant="success" v-b-modal.newCampaignForm class="mb-5 mt-5">Add New Campaign</b-button>
     <div class="text-center">
       <b-spinner
@@ -18,25 +18,19 @@
     >
       <NewCampaignForm></NewCampaignForm>
     </b-modal>-->
-    <v-card width="100%" height="100%" class>
+    <v-card width="100%" height="100%" class="mt-10 mb-7">
       <v-toolbar flat color="grey darken-3" dark>
-        <v-toolbar-title>Registered Blood Donors</v-toolbar-title>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
+        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/donor/signup">
-          <v-icon class="pr-1">mdi-plus</v-icon>Add New Donor
+        <v-btn small color="success" class="ml-3" to="/newBloodDonationForm">
+          <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
         </v-btn>
       </v-toolbar>
 
       <v-data-table
         :headers="headers"
-        :items="donors"
+        :items="blood_need_posts"
         :search="search"
         :loading="loading"
       ></v-data-table>
@@ -46,43 +40,36 @@
 
 <script>
 import axios from "axios";
-// import NewCampaignForm from "../NewCampaignForm";
 
 export default {
-  name: "DonorDetailsTable",
-  components: {
-    // NewCampaignForm
-  },
+  name: "NeededPostDetailsTable",
+
   data() {
     return {
       search: "",
       loading: true,
+      dialog: false,
       headers: [
-        { text: "First Name", value: "fname" },
-        { text: "Last Name", value: "lname" },
+        { text: "User ID", value: "userID" },
+        { text: "User Name", value: "userName" },
+        { text: "Contact Number", value: "contact" },
         { text: "Blood Type", value: "bloodType" },
-        { text: "Address", value: "address" },
-        { text: "Contact No", value: "contactNo" },
-        { text: "NIC", value: "nic" },
-        { text: "DOB", value: "dob" },
-        { text: "Email Address", value: "email" },
-        { text: "Ago", value: "registeredDateTimeAgo" },
-        { text: "Status", value: "status" }
+        { text: "Ago", value: "publishedDateTimeAgo" }
       ],
-      donors: []
+      blood_need_posts: []
     };
   },
   methods: {
-    loadDonors: function() {
+    loadPosts: function() {
       // to access "this" variable in the file
       var _this = this;
 
       // calling th API and get data
       axios
-        .get("http://localhost:4200/api/donors")
+        .get("http://localhost:4200/api/blood_needed_posts")
         .then(response => {
           // push data to the array
-          _this.donors = response.data;
+          _this.blood_need_posts = response.data;
           _this.loading = false;
         })
         .catch(e => {
@@ -92,7 +79,7 @@ export default {
   },
   beforeMount() {
     // to call the function on load of the page
-    this.loadDonors();
+    this.loadPosts();
   }
 };
 </script>
