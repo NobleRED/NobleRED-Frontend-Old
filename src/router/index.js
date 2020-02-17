@@ -5,18 +5,22 @@ import Home from "../views/Home.vue";
 import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
+import AdminOrganizers from '../views/admin/AdminOrganizers.vue'
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
+import NewAdminForm from '../views/admin/NewAdminForm.vue'
+import NewOrganizerForm from '../views/organizer/NewOrganizerForm.vue'
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from '../views/CampaignPosts.vue';
 import Loginform from "../components/Loginform.vue";
 import UserProfile from '../components/UserProfile.vue'
+import VisitorMap from '../views/visitor/VisitorMap.vue'
 
 Vue.use(VueRouter);
 
@@ -40,6 +44,11 @@ const routes = [
     path: "/admin/donors",
     name: "adminDonors",
     component: AdminDonors
+  },
+  {
+    path: "/admin/organizers",
+    name: "adminOrganizers",
+    component: AdminOrganizers
   },
   {
     path: "/admin/charts",
@@ -104,7 +113,18 @@ const routes = [
     component: NewCampaignForm
 
   },
+  {
+    path: "/newOrganizerForm",
+    name: "newOrganizerForm",
+    component: NewOrganizerForm
 
+  },
+  {
+    path: "/newAdminForm",
+    name: "newAdminForm",
+    component: NewAdminForm
+
+  },
   {
     path: "/newBloodDonationForm", //newly added component,router path settings pending
     Name: "bloodDonation",
@@ -120,11 +140,15 @@ const routes = [
     name: "campaignPosts",
     component: CampaignPosts
   },
-
   {
     path: "/userProfile", //newly added component for show blood need post to every one
     name: "userProfile",
     component: UserProfile
+  },
+  {
+    path: "/visitor/map", //show map to visitors
+    name: "visitorMap",
+    component: VisitorMap
   }
   // {
   //   path: "/admin/charts/donor", //newly added component for show blood need post to every one

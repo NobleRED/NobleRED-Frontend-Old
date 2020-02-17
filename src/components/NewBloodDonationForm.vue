@@ -10,21 +10,6 @@
           <v-row>
             <v-col cols="12" sm="6">
               <v-text-field
-                name="userID"
-                label="User ID"
-                placeholder="XXXX"
-                id="userID"
-                v-model="formData.userID"
-                type="text"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6">
-              <v-text-field
                 name="userName"
                 label="User Name"
                 placeholder="John Doe"
@@ -37,6 +22,21 @@
                 style="background-color: transparent;"
                 small
               ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-select
+                name="bloodType"
+                label="Blood Type"
+                placeholder="Blood Type"
+                id="bloodType"
+                v-model="formData.bloodType"
+                :items="bloodTypes"
+                :rules="requiredRule"
+                required
+                outlined
+                style="background-color: transparent;"
+                small
+              ></v-select>
             </v-col>
           </v-row>
 
@@ -73,23 +73,7 @@
             </v-col>
           </v-row>
 
-          <v-row>
-            <v-col cols="12" sm="6">
-              <v-select
-                name="bloodType"
-                label="Blood Type"
-                placeholder="Blood Type"
-                id="bloodType"
-                v-model="formData.bloodType"
-                :items="bloodTypes"
-                :rules="requiredRule"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-select>
-            </v-col>
-          </v-row>
+          <v-row></v-row>
 
           <v-row>
             <v-col cols="12" sm="6">
@@ -170,7 +154,7 @@ export default {
         .doc("blood_needed_posts")
         .collection("blood_needed_posts")
         .add({
-          userID: this.formData.userID,
+          userID: localStorage.userid,
           userName: this.formData.userName,
           address: this.formData.address,
           bloodType: this.formData.bloodType,

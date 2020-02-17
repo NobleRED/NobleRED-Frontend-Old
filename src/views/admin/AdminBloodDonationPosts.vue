@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-10">
     <!-- <b-button variant="success" v-b-modal.newCampaignForm class="mb-5 mt-5">Add New Campaign</b-button>
     <div class="text-center">
       <b-spinner
@@ -18,12 +18,12 @@
     >
       <NewCampaignForm></NewCampaignForm>
     </b-modal>-->
-    <v-card width="100%" height="100%" class>
+    <v-card width="100%" height="100%" class="mt-10 mb-7">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
         <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/bloodDonation">
+        <v-btn small color="success" class="ml-3" to="/newBloodDonationForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
         </v-btn>
       </v-toolbar>
@@ -52,7 +52,7 @@ export default {
       headers: [
         { text: "User ID", value: "userID" },
         { text: "User Name", value: "userName" },
-        { text: "Contact Number", value: "phoneNumber" },
+        { text: "Contact Number", value: "contact" },
         { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" }
       ],
