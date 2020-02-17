@@ -17,10 +17,12 @@ import NewOrganizerForm from '../views/organizer/NewOrganizerForm.vue'
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
-import CampaignPosts from '../views/CampaignPosts.vue';
+import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
+
 import UserProfile from '../components/UserProfile.vue'
 import VisitorMap from '../views/visitor/VisitorMap.vue'
+
 
 Vue.use(VueRouter);
 
@@ -90,6 +92,7 @@ const routes = [
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
   },
+
   {
     path: "/about",
     name: "about",
@@ -108,11 +111,13 @@ const routes = [
     path: "/newCampaignForm",
     name: "newCampaign",
     component: NewCampaignForm
+
   },
   {
     path: "/newOrganizerForm",
     name: "newOrganizerForm",
     component: NewOrganizerForm
+
 
   },
   {

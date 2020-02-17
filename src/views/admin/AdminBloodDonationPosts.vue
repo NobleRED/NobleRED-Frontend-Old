@@ -21,7 +21,13 @@
     <v-card width="100%" height="100%" class="mt-10 mb-7">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
-        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newBloodDonationForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
@@ -38,11 +44,10 @@
           <tr @click="showAlert(row.item)">
             <td>{{ row.item.userID }}</td>
             <td>{{ row.item.userName }}</td>
-            <td>{{ row.item.phoneNumber }}</td>
+
+            <td>{{ row.item.contact }}</td>
             <td>{{ row.item.bloodType }}</td>
-            <td>{{ row.item.province }}</td>
-            <td>{{ row.item.date }}</td>
-            <td>{{ row.item.time }}</td>
+
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
               <v-btn class="ma-1" text icon small color="primary">

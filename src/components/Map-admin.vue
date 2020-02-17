@@ -59,6 +59,7 @@ export default {
     // calling the api and getting the markers
     axios
       .get("http://localhost:4200/api/maps/greymarkers")
+
       .then(response => {
         // push data to campaigns array
         this.campaigns = response.data;
