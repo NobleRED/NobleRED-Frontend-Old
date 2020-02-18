@@ -1,6 +1,6 @@
 <template>
-  <v-container class="mt-10">
-    <v-card width="100%" height="100%" class="mt-10">
+  <v-container>
+    <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Register New Campaign</v-toolbar-title>
       </v-toolbar>
@@ -8,21 +8,6 @@
       <v-form ref="form1">
         <v-card-text>
           <v-row>
-            <v-col cols="12" sm="6">
-              <v-text-field
-                name="organizerID"
-                label="Organizer ID"
-                placeholder="XXXX"
-                id="organizerID"
-                v-model="formData.organizerID"
-                type="text"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>
-            </v-col>
-
             <v-col cols="12" sm="6">
               <v-text-field
                 name="organizerName"
@@ -157,9 +142,7 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/campaigns" tag="v-btn">
-                <v-btn type="submit" @click="onSubmit" color="primary"
-                  >Submit</v-btn
-                >
+                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
@@ -170,26 +153,6 @@
         </v-card-text>
       </v-form>
     </v-card>
-
-    <!-- <v-card
-        width="50%"
-        height="100%"
-        :title="formData.district + districtKeyword"
-        :sub-title="formData.province + provinceKeyword"
-        img-src="https://i.ibb.co/4fmcVct/blood-donation-campaign.jpg"
-        img-alt="Image"
-        img-top
-        border-variant="secondary"
-      >
-        <v-card-text>
-          A Blood Donation Campaign organized by
-          <b>{{formData.organizerName}}</b>
-          will be held on
-          <b>{{formData.date}}</b> at
-          <b>{{formData.address}}</b> from
-          <b>{{formData.time}}</b> onwards.
-        </v-card-text>
-    </v-card>-->
   </v-container>
 </template>
 
@@ -281,6 +244,7 @@ export default {
       var _this = this;
       // using moment to get current date and time
       var now = moment().format();
+      var requestID = this.getRandomRequestNo();
       console.log("time :" + now);
       // this.getCoords();
 
@@ -300,7 +264,8 @@ export default {
 
           axios
             .post("http://localhost:4200/api/campaigns/new", {
-              organizerID: _this.formData.organizerID,
+              requestID: requestID,
+              organizerID: localStorage.userid,
               organizerName: _this.formData.organizerName,
               address: _this.formData.address,
               contactNo: _this.formData.contactNo,
@@ -310,16 +275,12 @@ export default {
               time: _this.formData.time,
               publishedDateTime: now,
               lat: lat,
-              lng: lng,
-              imgSrc:
-                "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fcampaign_posts%2Fblood%20donation%20campaign.jpg?alt=media&token=35210ae9-78da-466b-aed2-866891e068e3"
+              lng: lng
             })
             .then(function(docRef) {
               console.log("Document written with ID: ", docRef.id);
               _this.value = docRef.id;
-              _this.$router.push({
-                name: "adminMap"
-              });
+              _this.$router.push("/");
             })
             .catch(function(error) {
               console.error("Error adding document: ", error);
@@ -331,7 +292,13 @@ export default {
       this.$refs.form1.reset();
       this.formData.date = new Date().toISOString().substr(0, 10);
       this.formData.time = "";
+    },
+    getRandomRequestNo() {
+      return Math.random() * (10000 - 1) + 1;
     }
+  },
+  mounted() {
+    console.log(localStorage.userid);
   }
 };
 </script>

@@ -1,33 +1,9 @@
 <template>
-  <v-container class="mt-10">
-    <!-- <b-button variant="success" v-b-modal.newCampaignForm class="mb-5 mt-5">Add New Campaign</b-button>
-    <div class="text-center">
-      <b-spinner
-        variant="secondary"
-        style="width: 3rem; height: 3rem;"
-        label="loadSpinner"
-        v-show="spinner"
-      ></b-spinner>
-    </div>
-    <b-modal
-      id="newCampaignForm"
-      size="xl"
-      title="New Blood Donation Campaign"
-      class="modalTitle"
-      centered
-    >
-      <NewCampaignForm></NewCampaignForm>
-    </b-modal>-->
-    <v-card width="100%" height="100%" class="mt-10 mb-7">
+  <v-container>
+    <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newBloodDonationForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
@@ -41,13 +17,11 @@
         :loading="loading"
       >
         <template v-slot:item="row">
-          <tr @click="showAlert(row.item)">
+          <tr>
             <td>{{ row.item.userID }}</td>
             <td>{{ row.item.userName }}</td>
-
             <td>{{ row.item.contact }}</td>
             <td>{{ row.item.bloodType }}</td>
-
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
               <v-btn class="ma-1" text icon small color="primary">
@@ -59,8 +33,8 @@
             </td>
           </tr>
         </template>
-        ></v-data-table
-      >
+        >
+      </v-data-table>
     </v-card>
   </v-container>
 </template>
