@@ -12,7 +12,7 @@
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
-            <CpieChart></CpieChart>
+            <CpieChartProvince></CpieChartProvince>
             <v-btn x-large color="success" dark>Get PDF Copy</v-btn>
           </v-card-text>
         </v-card>
@@ -21,13 +21,19 @@
         <v-card class="mx-auto">
           <v-toolbar flat color="grey darken-3" dark>
             <v-spacer></v-spacer>
+
+            <v-toolbar-title>Today Campaigns</v-toolbar-title>
+
+/**
             <v-toolbar-title
               >Registerd Blood Donors By Gender Wise</v-toolbar-title
             >
+            **/
+
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
-            <DoughnutGender></DoughnutGender>
+            <cpieChartToday></cpieChartToday>
             <v-btn x-large color="success" dark>Get PDF Copy</v-btn>
           </v-card-text>
         </v-card>
@@ -37,12 +43,12 @@
 </template>
 
 <script>
-import CpieChart from "../../components/CpieChart.vue";
-import DoughnutGender from "../../components/DoughnutGender.vue";
+import CpieChartProvince from "../../components/CpieChartProvince.vue";
+import CpieChartToday from "../../components/CpieChartToday.vue";
 export default {
   components: {
-    CpieChart,
-    DoughnutGender
+    CpieChartProvince,
+    CpieChartToday
   }
 };
 </script>

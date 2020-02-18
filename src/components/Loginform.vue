@@ -25,6 +25,7 @@
                       id="username"
                       type="text"
                       v-model="username"
+                      :rules="inputRulesUser"
                       required
                       outlined
                       style="background-color: transparent;"
@@ -42,6 +43,7 @@
                       id="password"
                       type="password"
                       v-model="password"
+                      :rules="inputRulespass"
                       required
                       outlined
                       style="background-color: transparent;"
@@ -108,7 +110,9 @@ export default {
       username: "",
       password: "",
       uid: "",
-      user: ""
+      user: "",
+      inputRulesUser: [v => v.length > 0 || ""],
+      inputRulespass: [v => v.length >= 8 || ""]
     };
   },
   methods: {

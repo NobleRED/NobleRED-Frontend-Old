@@ -79,7 +79,7 @@ export default {
     axios
       .get("http://localhost:4200/api/maps/greymarkers")
 
-      // .get("http://localhost:4200/api/campaigns/accepted")
+
 
       .then(response => {
         // push data to campaigns array

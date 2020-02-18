@@ -5,28 +5,23 @@ import Home from "../views/Home.vue";
 import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
-import AdminOrganizers from '../views/admin/AdminOrganizers.vue'
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
 
-import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
-
-
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
-import NewAdminForm from '../views/admin/NewAdminForm.vue'
-import NewOrganizerForm from '../views/organizer/NewOrganizerForm.vue'
+import NewAdminForm from "../views/admin/NewAdminForm.vue";
+import NewOrganizerForm from "../views/organizer/NewOrganizerForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
-import NewOrganizerForm from "../components/NewOrganizerForm.vue";
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
 
-import UserProfile from '../components/UserProfile.vue'
-import VisitorMap from '../views/visitor/VisitorMap.vue'
-
+import UserProfile from "../components/UserProfile.vue";
+import VisitorMap from "../views/visitor/VisitorMap.vue";
 
 Vue.use(VueRouter);
 
@@ -87,12 +82,24 @@ const routes = [
     ]
   },
   {
+    path: "/admin/charts",
+    name: "adminCharts",
+    component: AdminCharts,
+    children: [
+      {
+        path: "organizers",
+        component: AdminOrganizers
+      }
+    ]
+  },
+  {
     path: "/admin/map",
     name: "adminMap",
     component: AdminMap
   },
   {
     path: "/admin/organizers",
+
     name: "adminOrganizers",
     component: AdminOrganizers
   },
@@ -101,6 +108,7 @@ const routes = [
     name: "adminBloodDonationPost",
     component: AdminBloodDonationPosts
   },
+
   {
     path: "/about",
     name: "about",
@@ -119,20 +127,16 @@ const routes = [
     path: "/newCampaignForm",
     name: "newCampaign",
     component: NewCampaignForm
-
   },
   {
     path: "/newOrganizerForm",
     name: "newOrganizerForm",
     component: NewOrganizerForm
-
   },
   {
     path: "/newAdminForm",
     name: "newAdminForm",
     component: NewAdminForm
-
-
   },
   {
     path: "/newBloodDonationForm", //newly added component,router path settings pending

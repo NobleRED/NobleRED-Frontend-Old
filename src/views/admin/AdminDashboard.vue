@@ -35,8 +35,10 @@
     <!-- Content of the pages -->
 
     <v-content>
+
       <v-container class="" fluid>
         <v-row align="center" justify="center">
+
           <router-view></router-view>
           <!-- <v-tooltip right>
             <template v-slot:activator="{ on }">
