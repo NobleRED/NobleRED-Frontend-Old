@@ -1,8 +1,6 @@
-
 <template>
   <v-container class="mt-10 mb-10">
     <v-card width="100%" height="100%" class="mt-10 mb-10">
-
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>New Blood Need Post Form</v-toolbar-title>
       </v-toolbar>
@@ -44,7 +42,6 @@
                 </v-col>
               </v-row>
 
-
               <v-row>
                 <v-col cols="12" sm="12">
                   <v-text-field
@@ -82,100 +79,13 @@
 
               <v-row>
                 <v-col cols="12" sm="12">
-                  <v-btn type="submit" @click="onSubmit" color="primary"
-                    >Submit</v-btn
-                  >
+                  <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
                   <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
                 </v-col>
               </v-row>
             </v-card-text>
           </v-form>
         </v-col>
-
-/**
-      <v-form ref="form1">
-        <v-card-text>
-          <v-row>
-            <v-col cols="12" sm="6">
-              <v-text-field
-                name="userName"
-                label="User Name"
-                placeholder="John Doe"
-                id="userName"
-                v-model="formData.userName"
-                type="text"
-                :rules="nameRules"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-select
-                name="bloodType"
-                label="Blood Type"
-                placeholder="Blood Type"
-                id="bloodType"
-                v-model="formData.bloodType"
-                :items="bloodTypes"
-                :rules="requiredRule"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-select>
-            </v-col>
-          </v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6">
-              <v-text-field
-                name="address"
-                label="Address"
-                placeholder="No. 5, Flower Road, Colombo"
-                id="address"
-                v-model="formData.address"
-                type="text"
-                :rules="adrsRules"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12" sm="6">
-              <v-text-field
-                name="contact"
-                label="Contact No"
-                placeholder="Contact No"
-                v-model="formData.phoneNumber"
-                type="text"
-                :rules="phnRules"
-                required
-                outlined
-                style="background-color: transparent;"
-                small
-              ></v-text-field>
-            </v-col>
-          </v-row>
-
-          <v-row></v-row>
-
-          <v-row>
-            <v-col cols="12" sm="6">
-              <v-btn type="submit" @click="onSubmit" color="primary"
-                >Submit</v-btn
-              >
-              <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
-            </v-col>
-          </v-row>
-        </v-card-text>
-      </v-form>
-    </v-card>
-    **/
-
 
         <v-col cols="12" sm="6">
           <v-card
@@ -187,8 +97,7 @@
             img-alt="Image"
             img-top
             border-variant="secondary"
-          >
-          </v-card>
+          ></v-card>
           <v-card
             v-if="formData.bloodType == 'A+'"
             width="90%"
@@ -203,7 +112,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -222,7 +132,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -242,7 +153,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -262,7 +174,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -281,7 +194,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -300,7 +214,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -319,7 +234,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -338,7 +254,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -410,6 +327,8 @@ export default {
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
+
+      this.$router.push("/");
     },
     reset() {
       // reset function to clear text fields of the form

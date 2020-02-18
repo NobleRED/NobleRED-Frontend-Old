@@ -102,12 +102,8 @@
 
           <v-row>
             <v-col cols="12" sm="6">
-
               <router-link to="/admin/organizers" tag="v-btn">
-
-                <v-btn type="submit" @click="onSubmit" color="primary"
-                  >Submit</v-btn
-                >
+                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
@@ -202,11 +198,12 @@ export default {
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
           _this.value = docRef.id;
-          // this.$router.push("/admin/map");
+          this.$router.push("/");
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
+      this.$router.push("/");
     },
     reset() {
       // reset function to clear text fields of the form
