@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */g
 <template>
-  <v-container class="mt-10">
+  <v-container>
     <section>
       <v-btn
         small
         color="success"
-        class="mt-10"
         to="/newCampaignForm"
         align-center
+        v-if="role == 'Organizer' || role == 'Admin'"
       >
         <v-icon class="pr-1">mdi-plus</v-icon>Create new blood donation campaign
       </v-btn>
@@ -43,9 +43,7 @@
                     {{ campaign_post.address }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">
-                        {{ campaign_post.publishedDateTimeAgo }}
-                      </small>
+                      <small class="text-muted">{{ campaign_post.publishedDateTimeAgo }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -59,12 +57,14 @@
 </template>
 
 <script>
+// import { mapGetters } from "vuex";
 import axios from "axios";
 export default {
   name: "CampaignPosts",
 
   data() {
     return {
+      role: "",
       campaign_posts: []
     };
   },
@@ -85,6 +85,9 @@ export default {
           console.log("Error: " + e);
         });
     }
+  },
+  mounted() {
+    this.role = localStorage.role;
   },
   beforeMount() {
     // to call the function on load of the page

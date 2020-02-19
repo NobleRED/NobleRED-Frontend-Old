@@ -12,18 +12,108 @@
         style="background-color:#424242"
         v-if="loggedIn"
       >
-        <p style="font-size:24px; color:white" class="font-weight-medium">{{userRole}}</p>
+        <p
+          style="font-size:24px; color:white"
+          class="font-weight-medium"
+          v-if="dashboardRole == 'Admin' || userRole == 'Admin'"
+        >Admin</p>
+        <p
+          style="font-size:24px; color:white"
+          class="font-weight-medium"
+          v-if="dashboardRole == 'Organizer' || userRole == 'Organizer'"
+        >Organizer</p>
+        <p
+          style="font-size:24px; color:white"
+          class="font-weight-medium"
+          v-if="dashboardRole == 'Donor' || userRole == 'Donor'"
+        >Donor</p>
       </v-flex>
       <v-divider></v-divider>
+
       <v-list dense>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.link">
-          <v-list-item-icon>
-            <v-icon v-text="item.icon"></v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.text"></v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <div>
+          <v-list-item to="/bloodNeedPost">
+            <v-list-item-icon>
+              <v-icon>mdi-water</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Blood Needed Posts</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/campaignPosts">
+            <v-list-item-icon>
+              <v-icon>mdi-calendar-multiple-check</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Campaign Posts</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/visitor/map">
+            <v-list-item-icon>
+              <v-icon>mdi-map-marker-multiple</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Campaign Map</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider></v-divider>
+        </div>
+        <div v-if="dashboardRole == 'Admin' || userRole == 'Admin'">
+          <v-list-item v-for="(item, i) in items" :key="i" :to="item.link">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.text"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
+        <v-divider></v-divider>
+        <div v-if="dashboardRole == 'Organizer' || userRole == 'Organizer'">
+          <v-list-item to="/campaignPosts">
+            <v-list-item-icon>
+              <v-icon>mdi-calendar</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Campaign Posts</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/organizer/map">
+            <v-list-item-icon>
+              <v-icon>mdi-map-marker-circle</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Campaign Map</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/organizer/userProfile">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>User Profile</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
+
+        <div v-if="dashboardRole == 'Donor' || userRole == 'Donor'">
+          <v-list-item to="/visitor/map">
+            <v-list-item-icon>
+              <v-icon>mdi-map-marker-multiple</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Campaign Map</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item to="/userProfile">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>User Profile</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
       </v-list>
     </v-navigation-drawer>
 
@@ -63,8 +153,6 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-
-              <!-- <v-btn text @click="menu = false">Cancel</!-->
 
               <v-btn
                 small
@@ -109,6 +197,7 @@ export default {
   },
   data: () => ({
     userData: "",
+    dashboardRole: "",
     // userRole: "",
     drawer: null,
     menu: [
@@ -147,6 +236,11 @@ export default {
         icon: "mdi-water",
         text: "Donation Posts",
         link: "/admin/BloodDonationPosts"
+      },
+      {
+        icon: "mdi-account",
+        text: "User Profile",
+        link: "/admin/userProfile"
       }
 
       // { icon: "mdi-message-text", text: "Notifications" }
@@ -196,12 +290,10 @@ export default {
     });
   },
   beforeMount() {
-    // this.loggedIn = localStorage.loginstatus;
-    // this.userRole = this.$session("role");
     this.userData = localStorage.userdata;
   },
   mounted() {
-    // this.userRole = localStorage.role;
+    this.dashboardRole = localStorage.role;
   }
 };
 </script>
