@@ -5,13 +5,7 @@
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
 
         <v-spacer></v-spacer>
-        <v-btn
-          v-if="userType === 'admin' || userType === 'organizer'"
-          small
-          color="success"
-          class="ml-3"
-          to="/newCampaignForm"
-        >
+        <v-btn small color="success" class="ml-3" to="/newCampaignForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
@@ -41,13 +35,7 @@
 import axios from "axios";
 const google = window.google;
 var map;
-// var campaigns;
-// var geocoder;
 var infowindow;
-// var __this = this;
-// var userType;
-// var _this_;
-// var pos;
 var srilankan_bounds = {
   north: 10.02,
   south: 5.715,
@@ -69,7 +57,6 @@ export default {
         "3Orange.png?alt=media&token=6071cb4b-5ab2-473d-8ad1-72158f789b27",
         "4Yellow.png?alt=media&token=20c6df3f-9327-48f5-8789-8793f61e197e"
       ]
-      // loading: true //organizer
     };
   },
   mounted: function() {
@@ -115,7 +102,6 @@ export default {
 
     map = new google.maps.Map(document.getElementById("campaignMap"), {
       zoom: 12,
-      // center: adrs.center,
       scrollwheel: true,
       //map doesn't go away from sri lanka
       restriction: {
@@ -125,23 +111,17 @@ export default {
     });
     var _this = this;
     // var infowindow = new google.maps.InfoWindow();
-
-    // geocoder =
     new google.maps.Geocoder();
 
     // HTML5 GEOLOCATION
     if (navigator.geolocation) {
-      // infowindow = new google.maps.InfoWindow();
+      infowindow = new google.maps.InfoWindow();
       navigator.geolocation.getCurrentPosition(
         function(position) {
           _this.pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
-          // _this_ = this;
-          // __this.infoWindow.setPosition(pos);
-          // __this.infoWindow.setContent("Your Location");
-          // __this.infoWindow.open(map);
           map.setCenter(_this.pos);
           new google.maps.Circle({
             strokeColor: "#FF0000",
@@ -167,15 +147,13 @@ export default {
           console.log("HEReeeeeeeE", _this.pos);
         },
         function() {
-          // handleLocationError(true, infowindow, map.getCenter());
+          this.handleLocationError(true, infowindow, map.getCenter());
         }
       );
     } else {
       // if browser doesn't support Geolocation
       this.handleLocationError(false, infowindow, map.getCenter());
     }
-
-    // if (userType === "organizer" || userType === "donor") {
   },
   methods: {
     loadMarkers: function() {
@@ -207,7 +185,7 @@ export default {
   beforeMount() {
     //calling the function when the page loads
     this.loadMarkers();
-    // this.handleLocationError();
+    this.handleLocationError();
   }
 };
 </script>
