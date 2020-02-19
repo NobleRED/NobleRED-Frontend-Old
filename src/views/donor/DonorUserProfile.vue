@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 <template>
   <v-container bg fill-height grid-list-md text-xs-center class="mt-2">
     <v-layout row wrap align-center>
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import firebase from "../../plugins/firebaseConfig";
 import { mapGetters } from "vuex";
 export default {
   name: "UserProfile",
