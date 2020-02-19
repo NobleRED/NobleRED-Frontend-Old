@@ -77,7 +77,18 @@ export default {
           } else if (Deff <= -8) {
             i = 3;
           }
-          new google.maps.Marker({
+          var infowindow = new google.maps.InfoWindow({
+            content:
+              "<h3>Address: </h3>" +
+              campaign.address +
+              "\n<h3>Date: </h3>" +
+              campaign.date +
+              "\n<h3>Time: </h3>" +
+              campaign.time +
+              "\n<h3>Organized by: </h3>" +
+              campaign.organizerName
+          });
+          var marker = new google.maps.Marker({
             position: { lat: campaign.lat, lng: campaign.lng },
             map: map,
             animation: google.maps.Animation.DROP,
@@ -92,6 +103,9 @@ export default {
               "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F" +
               this.$data.colors[i]
           });
+          marker.addListener("click", function() {
+            infowindow.open(map, marker);
+          });
         });
       })
       .catch(e => {
@@ -99,7 +113,7 @@ export default {
       });
 
     map = new google.maps.Map(document.getElementById("campaignMap"), {
-      zoom: 12,
+      zoom: 6,
       scrollwheel: true,
       //map doesn't go away from sri lanka
       restriction: {
@@ -108,12 +122,10 @@ export default {
       }
     });
     var _this = this;
-    // var infowindow = new google.maps.InfoWindow();
     new google.maps.Geocoder();
 
     // HTML5 GEOLOCATION
     if (navigator.geolocation) {
-      // infowindow = new google.maps.InfoWindow();
       navigator.geolocation.getCurrentPosition(
         function(position) {
           _this.pos = {
@@ -183,7 +195,7 @@ export default {
   beforeMount() {
     //calling the function when the page loads
     this.loadMarkers();
-    // this.handleLocationError();
+    this.handleLocationError();
   }
 };
 </script>
