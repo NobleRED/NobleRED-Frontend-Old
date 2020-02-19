@@ -227,7 +227,14 @@ const routes = [
   {
     path: "/newDonorForm",
     name: "donorSignup",
-    component: DonorSignupForm
+    component: DonorSignupForm,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/newCampaignForm",
