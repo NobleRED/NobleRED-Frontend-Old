@@ -1,6 +1,6 @@
 <template>
-  <v-container class="mt-10 mb-10">
-    <v-card width="100%" height="100%" class="mt-10 mb-10">
+  <v-container>
+    <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>New Blood Need Post Form</v-toolbar-title>
       </v-toolbar>
@@ -79,9 +79,7 @@
 
               <v-row>
                 <v-col cols="12" sm="12">
-                  <v-btn type="submit" @click="onSubmit" color="primary"
-                    >Submit</v-btn
-                  >
+                  <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
                   <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
                 </v-col>
               </v-row>
@@ -93,9 +91,9 @@
           <v-card
             v-if="formData.bloodType == ''"
             width="90%"
-            height="90%"
+            height="80%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -105,7 +103,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A%2B.jpg?alt=media&token=efe377c0-fa5c-4047-a130-3d601384a336"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A%2B.jpg?alt=media&token=efe377c0-fa5c-4047-a130-3d601384a336"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -114,7 +112,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -124,7 +123,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A-.jpg?alt=media&token=a1ba920d-0522-4e66-877a-68d8bbd0e8ae"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A-.jpg?alt=media&token=a1ba920d-0522-4e66-877a-68d8bbd0e8ae"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -133,7 +132,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -144,7 +144,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B%2B.jpg?alt=media&token=c13b9eba-b47a-4cc6-b0fb-0e1077b735b8"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B%2B.jpg?alt=media&token=c13b9eba-b47a-4cc6-b0fb-0e1077b735b8"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -153,7 +153,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -164,7 +165,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B-.jpg?alt=media&token=56349c4c-9879-4f35-be71-a4384860d538"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B-.jpg?alt=media&token=56349c4c-9879-4f35-be71-a4384860d538"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -173,7 +174,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -183,7 +185,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB-.jpg?alt=media&token=db39abab-301d-48f1-86a9-290c92f717c2"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB-.jpg?alt=media&token=db39abab-301d-48f1-86a9-290c92f717c2"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -192,7 +194,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -202,7 +205,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB%2B.jpg?alt=media&token=b4e06190-69b2-4492-89b3-38a5fb3e080c"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB%2B.jpg?alt=media&token=b4e06190-69b2-4492-89b3-38a5fb3e080c"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -211,7 +214,8 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
+              donate blood please contact
+              <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -221,39 +225,30 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O%2B.jpg?alt=media&token=5bbd7bf4-bd54-435c-ae12-9ad94d0066e6"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O%2B.jpg?alt=media&token=5bbd7bf4-bd54-435c-ae12-9ad94d0066e6"
             img-alt="Image"
             img-top
             border-variant="secondary"
-          >
-            <v-card-text>
-              Urgently required
-              <b>{{ formData.bloodType }}</b> type of blood for patient.
-              Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
-              <b>{{ formData.contact }}</b>
-              <b>. DONATE BLOOD AND SAVE LIFE</b>
-            </v-card-text>
-          </v-card>
+          ></v-card>
           <v-card
             v-if="formData.bloodType == 'O-'"
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O-.jpg?alt=media&token=e8ca3834-f6ea-4cca-89f4-e60a1788e47a"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O-.jpg?alt=media&token=e8ca3834-f6ea-4cca-89f4-e60a1788e47a"
             img-alt="Image"
             img-top
             border-variant="secondary"
-          >
-            <v-card-text>
-              Urgently required
-              <b>{{ formData.bloodType }}</b> type of blood for patient.
-              Volunteers please come forward and help us. If you are willing to
-              donate blood please contact <b>{{ formData.userName }}</b> via
-              <b>{{ formData.contact }}</b>
-              <b>. DONATE BLOOD AND SAVE LIFE</b>
-            </v-card-text>
-          </v-card>
+          ></v-card>
+          <v-card-text>
+            Urgently required
+            <b>{{ formData.bloodType }}</b> type of blood for patient.
+            Volunteers please come forward and help us. If you are willing to
+            donate blood please contact
+            <b>{{ formData.userName }}</b> via
+            <b>{{ formData.contact }}</b>
+            <b>. DONATE BLOOD AND SAVE LIFE</b>
+          </v-card-text>
         </v-col>
       </v-row>
     </v-card>
@@ -321,15 +316,13 @@ export default {
           .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
             this.$router.push({
-              name: "AdminBloodDonationPosts"
+              name: "/admin/BloodDonationPosts"
             });
           })
           .catch(function(error) {
             console.error("Error adding document: ", error);
           });
       });
-
-      //firebase function call to add data to the database
 
       this.$router.push("/");
     },

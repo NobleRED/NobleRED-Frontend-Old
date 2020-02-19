@@ -4,13 +4,7 @@
     <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Needed Posts</v-toolbar-title>
-        <v-text-field
-          v-model="search"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newBloodDonationForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add Blood Need Post
@@ -42,8 +36,7 @@
                     label="Edit"
                     single-line
                     counter
-                  >
-                  </v-text-field>
+                  ></v-text-field>
                 </template>
               </v-edit-dialog>
             </td>
@@ -63,8 +56,7 @@
                     label="Edit"
                     single-line
                     counter
-                  >
-                  </v-text-field>
+                  ></v-text-field>
                 </template>
               </v-edit-dialog>
             </td>
@@ -76,7 +68,8 @@
                 @cancel="cancel"
                 @open="open"
                 @close="close"
-                >{{ row.item.bloodType }}
+              >
+                {{ row.item.bloodType }}
                 <template v-slot:input>
                   <v-text-field
                     v-model="row.item.bloodType"
@@ -84,21 +77,13 @@
                     label="Edit"
                     single-line
                     counter
-                  >
-                  </v-text-field>
+                  ></v-text-field>
                 </template>
               </v-edit-dialog>
             </td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
-              <v-btn
-                class="ma-1"
-                text
-                icon
-                small
-                color="error"
-                @click="ondelete(row.item.postID)"
-              >
+              <v-btn class="ma-1" text icon small color="error" @click="ondelete(row.item.postID)">
                 <v-icon dark>mdi-delete</v-icon>
               </v-btn>
             </td>
@@ -161,7 +146,6 @@ export default {
       this.snackText = "Dialog opened";
     },
     save(id) {
-      alert(id);
       firebase.db
         .collection("posts-blood_needed")
         .doc(id)
