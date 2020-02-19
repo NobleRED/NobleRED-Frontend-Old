@@ -223,7 +223,8 @@ export default {
               if (sendToLogin == true) {
                 firebase.db
                   .collection("users-organizer")
-                  .add({
+                  .doc(nextOrganizerID)
+                  .set({
                     uid: uidTemp,
                     organizerID: nextOrganizerID,
                     organizerName: that.formData.organizerName,

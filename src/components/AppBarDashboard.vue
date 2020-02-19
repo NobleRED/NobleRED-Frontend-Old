@@ -196,9 +196,12 @@ export default {
     });
   },
   beforeMount() {
-    this.loggedIn = localStorage.loginstatus;
-    this.userRole = localStorage.role;
+    // this.loggedIn = localStorage.loginstatus;
+    // this.userRole = this.$session("role");
     this.userData = localStorage.userdata;
+  },
+  mounted() {
+    // this.userRole = localStorage.role;
   }
 };
 </script>
