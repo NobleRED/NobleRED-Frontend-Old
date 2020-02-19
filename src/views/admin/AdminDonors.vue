@@ -31,6 +31,7 @@ export default {
       search: "",
       loading: true,
       headers: [
+        { text: "Donor ID", value: "donorID" },
         { text: "First Name", value: "fname" },
         { text: "Last Name", value: "lname" },
         { text: "Blood Type", value: "bloodType" },

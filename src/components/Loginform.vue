@@ -14,12 +14,7 @@
               ></v-img>
             </v-flex>
             <v-flex :class="`d-flex justify-center`">
-              <p
-                style="font-size:24px; color:#616161"
-                class="font-weight-medium"
-              >
-                Log In
-              </p>
+              <p style="font-size:24px; color:#616161" class="font-weight-medium">Log In</p>
             </v-flex>
             <v-form ref="form1">
               <v-card-text>
@@ -61,40 +56,25 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn
-                      block
-                      type="submit"
-                      @click="loginUser()"
-                      color="secondary"
-                      >Login</v-btn
-                    >
+                    <v-btn block type="submit" @click="loginUser()" color="secondary">Login</v-btn>
                   </v-col>
                 </v-row>
 
-                <v-flex :class="`d-flex justify-center`">
-                  <!-- <p style="font-size:12px; color:#616161" class="font-weight-medium"></p> -->
-                  OR
-                </v-flex>
+                <!-- <v-flex :class="`d-flex justify-center`">OR</v-flex> -->
 
-                <v-row class="pl-2 pr-2">
+                <!-- <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn
-                      block
-                      outlined
-                      light
-                      color="secondary"
-                      @click="signInWithGoogle()"
-                    >
-                      <!-- <span class="mdi mdi-google">&nbsp; &nbsp; Sign In With Google</span> -->
-                      <!-- <v-img src="../assets/google logo.png" aspect-ratio="1"></!-->
+                    <v-btn block outlined light color="secondary" @click="signInWithGoogle()">
+                <span class="mdi mdi-google">&nbsp; &nbsp; Sign In With Google</span>-->
+                <!-- <v-img src="../assets/google logo.png" aspect-ratio="1"></!-->
 
-                      <v-avatar size="16px" item>
+                <!-- <v-avatar size="16px" item>
                         <v-img src="../assets/google logo.png" />
                       </v-avatar>
                       <pre class="tab"> Sign In With Google</pre>
                     </v-btn>
                   </v-col>
-                </v-row>
+                </v-row>-->
 
                 <v-flex :class="`d-flex justify-center`">
                   <!-- <p style="font-size:12px; color:#616161" class="font-weight-medium"></p> -->
@@ -103,9 +83,8 @@
                     text
                     @click="goToRegistration"
                     color="error"
-                    href="/donor/signup"
-                    >Don't have an account?</v-btn
-                  >
+                    href="/newDonorForm"
+                  >Don't have an account?</v-btn>
                 </v-flex>
               </v-card-text>
             </v-form>

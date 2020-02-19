@@ -16,6 +16,7 @@ import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
 import OrgMap from "../components/Map-org.vue";
 import DonorMap from "../components/Map-donor.vue";
+import AdminProfile from '../views/admin/AdminUserProfile.vue'
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
 import NewAdminForm from "../views/admin/NewAdminForm.vue";
@@ -27,6 +28,7 @@ import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
 
 import UserProfile from "../views/donor/DonorUserProfile.vue";
+import OrganizerUserProfile from '../views/organizer/OrganizerUserProfile.vue'
 import VisitorMap from "../views/visitor/VisitorMap.vue";
 
 Vue.use(VueRouter);
@@ -66,7 +68,7 @@ const routes = [
     name: "adminAdministrators",
     component: AdminAdmins,
     beforeEnter: (to, from, next) => {
-      if (localStorage.getItem("role") == "Organizer") {
+      if (!localStorage.loginstatus) {
         next("/");
       } else {
         next();
@@ -179,6 +181,18 @@ const routes = [
     }
   },
   {
+    path: "/admin/userProfile",
+    name: "adminProfile",
+    component: AdminProfile,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
+  },
+  {
     path: "/admin/organizers",
     name: "adminOrganizers",
     component: AdminOrganizers,
@@ -224,7 +238,14 @@ const routes = [
   {
     path: "/newDonorForm",
     name: "donorSignup",
-    component: DonorSignupForm
+    component: DonorSignupForm,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/newCampaignForm",
@@ -288,6 +309,18 @@ const routes = [
     path: "/userProfile", //newly added component for show blood need post to every one
     name: "userProfile",
     component: UserProfile,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: "/organizer/userProfile",
+    name: "organizerProfile",
+    component: OrganizerUserProfile,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
         next("/");

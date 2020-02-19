@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container>
     <div id="campaignMap" class="campaignMap"></div>
-  </div>
+  </v-container>
 </template>
 
 <script>
