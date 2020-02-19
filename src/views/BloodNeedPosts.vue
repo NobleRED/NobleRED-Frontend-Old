@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */g
 <template>
-  <v-container class="mt-10 mb-10">
+  <v-container>
     <section>
       <v-btn
         small
         color="success"
-        class="mt-10"
         to="/newBloodDonationForm"
         align-center
+        v-if="role == 'Donor' || role == 'Organizer' || role == 'Admin'"
       >
         <v-icon class="pr-1">mdi-plus</v-icon>Add New Blood Need Post
       </v-btn>
@@ -39,9 +39,7 @@
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">
-                        {{ blood_need_post.publishedDateTimeAgo }}
-                      </small>
+                      <small class="text-muted">{{ blood_need_post.publishedDateTimeAgo }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -61,6 +59,7 @@ export default {
 
   data() {
     return {
+      role: "",
       blood_need_posts: []
     };
   },
@@ -81,6 +80,9 @@ export default {
           console.log("Error: " + e);
         });
     }
+  },
+  mounted() {
+    this.role = localStorage.role;
   },
   beforeMount() {
     // to call the function on load of the page

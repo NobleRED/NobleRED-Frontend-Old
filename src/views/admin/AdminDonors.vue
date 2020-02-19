@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable prettier/prettier */
 <template>
   <v-container>
     <v-card width="100%" height="100%" class>
@@ -29,6 +31,7 @@ export default {
       search: "",
       loading: true,
       headers: [
+        { text: "Donor ID", value: "donorID" },
         { text: "First Name", value: "fname" },
         { text: "Last Name", value: "lname" },
         { text: "Blood Type", value: "bloodType" },

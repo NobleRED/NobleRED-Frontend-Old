@@ -24,11 +24,11 @@
 
             <v-toolbar-title>Today Campaigns</v-toolbar-title>
 
-/**
+            <!-- /**
             <v-toolbar-title
               >Registerd Blood Donors By Gender Wise</v-toolbar-title
             >
-            **/
+            **/ -->
 
             <v-spacer></v-spacer>
           </v-toolbar>

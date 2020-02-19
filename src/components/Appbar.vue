@@ -10,12 +10,18 @@
     <!-- <v-app-bar-nav-icon @click="drawer = !drawer" /> -->
     <v-toolbar-title class="ml-0 pr-4 pl-4">
       <span>
-        <v-img src="../assets/noblered logo 30x100.png" alt="Vuetify" @click="redirect" />
+        <v-img
+          src="../assets/noblered logo 30x100.png"
+          alt="Vuetify"
+          @click="redirect"
+        />
       </span>
     </v-toolbar-title>
 
     <v-btn text small color="#C62828" to="/visitor/map">Campaigns Map</v-btn>
-    <v-btn text small color="#C62828" to="/bloodNeedPost">Blood Needed Posts</v-btn>
+    <v-btn text small color="#C62828" to="/bloodNeedPost"
+      >Blood Needed Posts</v-btn
+    >
     <v-btn text small color="#C62828" to="/campaignPosts">Campaign Posts</v-btn>
     <v-btn text small color="#C62828">Contact Us</v-btn>
 
@@ -23,10 +29,23 @@
     <v-btn icon v-show="loggedIn" @click="showDashBoard">
       <v-icon>mdi-view-dashboard</v-icon>
     </v-btn>
-    <v-btn outlined small color="secondary" to="/login" v-show="!loggedIn" class="mr-1">Sign In</v-btn>
+    <v-btn
+      outlined
+      small
+      color="secondary"
+      to="/login"
+      v-show="!loggedIn"
+      class="mr-1"
+      >Sign In</v-btn
+    >
 
     <div class="text-center" v-if="loggedIn">
-      <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
+      <v-menu
+        v-model="menu"
+        :close-on-content-click="false"
+        :nudge-width="200"
+        offset-x
+      >
         <template v-slot:activator="{ on }">
           <v-btn icon large v-show="loggedIn" v-on="on">
             <v-avatar size="32px" item>
@@ -60,7 +79,8 @@
               to="/userProfile"
               v-show="loggedIn"
               class="mb-1"
-            >View Profile</v-btn>
+              >View Profile</v-btn
+            >
 
             <v-btn
               small
@@ -69,7 +89,8 @@
               @click="signOut"
               v-show="loggedIn"
               class="mb-1"
-            >Sign Out</v-btn>
+              >Sign Out</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-menu>
@@ -113,7 +134,7 @@ export default {
         this.userRole = "visitor";
         this.loggedIn = false;
         this.drawer = false;
-        this.$router.go('/')
+        this.$router.go("/");
       });
 
       // localStorage.removeItem("userdata");

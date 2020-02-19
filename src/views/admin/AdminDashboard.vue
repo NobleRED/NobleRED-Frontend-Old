@@ -137,7 +137,6 @@ export default {
         text: "Campaign Organizers",
         link: "/admin/organizers"
       },
-
       {
         icon: "mdi-map-marker-multiple",
         text: "Blood Donation Campaigns",
