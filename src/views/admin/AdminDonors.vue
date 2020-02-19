@@ -5,7 +5,7 @@
         <v-toolbar-title>Registered Blood Donors</v-toolbar-title>
         <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/donor/signup">
+        <v-btn small color="success" class="ml-3" to="/newDonorForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Donor
         </v-btn>
       </v-toolbar>
