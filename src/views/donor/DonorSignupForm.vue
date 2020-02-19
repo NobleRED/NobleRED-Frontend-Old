@@ -98,12 +98,7 @@
           <v-row>
             <v-col cols="12" md="6">
               <!-- <p>{{ radios || 'null' }}</p>	 -->
-              <v-radio-group
-                label="Gender"
-                v-model="formData.radios"
-                :mandatory="true"
-                row
-              >
+              <v-radio-group label="Gender" v-model="formData.radios" :mandatory="true" row>
                 <v-radio label="Male" value="male"></v-radio>
                 <v-radio label="Female" value="female"></v-radio>
               </v-radio-group>
@@ -167,9 +162,7 @@
           </v-row>
 
           <v-col cols="12" md="6">
-            <v-btn type="submit" @click="addDonor" color="primary"
-              >Sign up</v-btn
-            >
+            <v-btn type="submit" @click="addDonor" color="primary">Sign up</v-btn>
             <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
           </v-col>
         </v-card-text>
@@ -240,18 +233,6 @@ export default {
     reset() {
       this.$refs.form.reset();
     },
-    sendEmail: parameters => {
-      emailjs
-        .sendForm("gmail", "template_4Iavwfir", parameters, "YOUR_USER_ID")
-        .then(
-          result => {
-            console.log("SUCCESS!", result.status, result.text);
-          },
-          error => {
-            console.log("FAILED...", error);
-          }
-        );
-    },
     addDonor() {
       var that = this;
       event.preventDefault();
@@ -311,56 +292,38 @@ export default {
                     createdAt: now
                   })
                   .then(function() {
-                    // console.log("Document written with ID: ", docRef.id);
-                    emailjs.send("gmail", "template_4Iavwfir", {
-                      reply_to: "nobleredlk@gmail.com",
-                      from_name: "NobleRED",
-                      to_name: that.formData.fname + " " + that.formData.lname,
-                      message_html:
-                        "HI, Thank you for registering with NobleRED",
-                      DonorEmail: that.formData.email
-                    });
+                    emailjs
+                      .send(
+                        "gmail",
+                        "template_4Iavwfir",
+                        {
+                          reply_to: "nobleredlk@gmail.com",
+                          from_name: "NobleRED",
+                          to_name: that.formData.fname,
+                          DonorEmail: that.formData.email,
+                          message_html:
+                            "HI, Thank you for registering with NobleRED"
+                        },
+                        "user_2xCHYh5oR6qnpGoMXdwFT"
+                      )
+                      .then(
+                        response => {
+                          console.log(
+                            "SUCCESS!",
+                            response.status,
+                            response.text
+                          );
+                          that.$router.go("/login");
+                        },
+                        error => {
+                          console.log("FAILED...", error);
+                        }
+                      );
                     console.log(that.formData);
-                    this.$router.push("/");
                   })
                   .catch(function(error) {
                     console.error("Error adding document: ", error);
                   });
-
-                // firebase.db
-                //   .collection("users-donor")
-                //   .add({
-                //     uid: uidTemp,
-                //     fname: that.formData.fname,
-                //     lname: that.formData.lname,
-                //     email: that.formData.email,
-                //     nic: that.formData.nic,
-                //     dob: that.formData.dob,
-                //     address: that.formData.inputAddress,
-                //     contactNo: that.formData.contactNo,
-                //     gender: that.formData.radios,
-                //     bloodType: that.formData.bloodtype,
-                //     role: "Donor",
-                //     donorID: nextDonorID,
-                //     status: "1",
-                //     createdAt: now
-                //   })
-                //   .then(function(docRef) {
-                //     console.log("Document written with ID: ", docRef.id);
-                //     emailjs.send("gmail", "template_4Iavwfir", {
-                //       reply_to: "nobleredlk@gmail.com",
-                //       from_name: "NobleRED",
-                //       to_name: that.formData.fname + " " + that.formData.lname,
-                //       message_html:
-                //         "HI, Thank you for registering with NobleRED",
-                //       DonorEmail: that.formData.email
-                //     });
-                //     console.log(that.formData);
-                //     this.$router.push("/");
-                //   })
-                //   .catch(function(error) {
-                //     console.error("Error adding document: ", error);
-                //   });
               } else {
                 this.$router.push("/signup/donor");
               }
@@ -376,6 +339,24 @@ export default {
           // ...
           console.log("Error occured : ", errorCode, errorMessage);
         });
+    },
+    ssignOut() {
+      firebase.auth.signOut().then(() => {
+        localStorage.clear();
+        this.$session.destroy();
+        // bus.$emit("changeDashboardStatus", false);
+        this.$store.commit("updateLoggedIn", false);
+        this.$store.commit("role", "visitor");
+        this.userData = "";
+        this.userRole = "visitor";
+        this.loggedIn = false;
+        this.drawer = false;
+        this.$router.go("/");
+      });
+
+      // localStorage.removeItem("userdata");
+      // localStorage.setItem("role", "visitor");
+      // localStorage.setItem("loginstatus", false);
     }
   }
 };
