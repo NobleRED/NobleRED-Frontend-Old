@@ -304,10 +304,6 @@
           >
             <v-card :color="item.color" dark>
               <v-card-title class="title">{{ item.topic }}</v-card-title>
-              <v-card-text class="white text--primary">
-                <p>{{ item.details }}</p>
-                <v-btn :color="item.color" class="mx-0" outlined>Button</v-btn>
-              </v-card-text>
             </v-card>
           </v-timeline-item>
         </v-timeline>

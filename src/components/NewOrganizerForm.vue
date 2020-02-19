@@ -103,7 +103,9 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/organizers" tag="v-btn">
-                <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+                <v-btn type="submit" @click="onSubmit" color="primary"
+                  >Submit</v-btn
+                >
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>

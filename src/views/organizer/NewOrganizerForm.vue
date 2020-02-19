@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 <template>
   <v-container>
     <v-card width="100%" height="100%">
@@ -103,7 +104,9 @@
           <v-row>
             <v-col cols="12" sm="6">
               <router-link to="/admin/campaigns" tag="v-btn">
-                <v-btn type="submit" @click="addOrganizer()" color="primary">Submit</v-btn>
+                <v-btn type="submit" @click="addOrganizer()" color="primary"
+                  >Submit</v-btn
+                >
               </router-link>
               <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
             </v-col>
