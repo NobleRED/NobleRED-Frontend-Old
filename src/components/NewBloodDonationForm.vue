@@ -1,6 +1,11 @@
 <template>
+<<<<<<< Updated upstream
   <v-container>
     <v-card width="100%" height="100%">
+=======
+  <v-container class="mt-10 mb-10">
+    <v-card width="100%" height="100%" class="mt-10 mb-10">
+>>>>>>> Stashed changes
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>New Blood Need Post Form</v-toolbar-title>
       </v-toolbar>
@@ -256,8 +261,13 @@
 </template>
 
 <script>
+<<<<<<< Updated upstream
 import firebase from "../plugins/firebaseConfig";
 import Axios from "axios";
+=======
+//import firebase from "../plugins/firebaseConfig";
+import axios from "axios";
+>>>>>>> Stashed changes
 
 var moment = require("moment");
 moment().format();
@@ -284,9 +294,13 @@ export default {
         userID: "",
         userName: "",
         bloodType: "",
+<<<<<<< Updated upstream
         contact: "",
         publishedDateTime: "",
         PostID: ""
+=======
+        contact: ""
+>>>>>>> Stashed changes
       }
     };
   },
@@ -299,6 +313,7 @@ export default {
       console.log("time :" + now);
       var nextPostID;
 
+<<<<<<< Updated upstream
       Axios.get("http://localhost:4200/api/posts/nextId").then(respone => {
         nextPostID = respone.data;
         firebase.db
@@ -321,6 +336,40 @@ export default {
           })
           .catch(function(error) {
             console.error("Error adding document: ", error);
+=======
+      axios
+        .get("http://localhost:4200/api/admins/bloodNeedPosts/NextId")
+        .then(response => {
+          _this.nextPostID = response.data;
+
+          axios
+            .post("http://localhost:4200/api/addBloodPosts", {
+              postID: this.nextPostID,
+              userID: this.formData.userID,
+              userName: this.formData.userName,
+              bloodType: this.formData.bloodType,
+              contact: this.formData.contact,
+              publishedDateTime: now,
+              imgSrc: this.select_image(this.formData.bloodType)
+            })
+
+            .then(function(docRef) {
+              console.log("Document written with ID: ", docRef.id);
+              _this.value = docRef.id;
+              _this.$router.push({
+                name: "AdminBloodDonationPosts"
+              });
+            })
+            .catch(function(error) {
+              console.error("Error adding document:", error);
+            });
+        })
+
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+          _this.$router.push({
+            name: "AdminBloodDonationPosts"
+>>>>>>> Stashed changes
           });
       });
 

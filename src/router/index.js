@@ -11,7 +11,6 @@ import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
-
 import AdminMap from "../components/Map-admin.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
@@ -179,14 +178,7 @@ const routes = [
   {
     path: "/admin/organizers",
     name: "adminOrganizers",
-    component: AdminOrganizers,
-    beforeEnter: (to, from, next) => {
-      if (!localStorage.loginstatus) {
-        next("/");
-      } else {
-        next();
-      }
-    }
+    component: AdminOrganizers
   },
   {
     path: "/admin/BloodDonationPosts",

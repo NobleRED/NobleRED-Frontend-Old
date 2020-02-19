@@ -83,7 +83,21 @@
             </td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
+<<<<<<< Updated upstream
               <v-btn class="ma-1" text icon small color="error" @click="ondelete(row.item.postID)">
+=======
+              <v-btn class="ma-1" text icon small color="primary">
+                <v-icon dark>mdi-pencil</v-icon>
+              </v-btn>
+              <v-btn
+                class="ma-1"
+                text
+                icon
+                small
+                color="error"
+                @click="deletePosts(row.item)"
+              >
+>>>>>>> Stashed changes
                 <v-icon dark>mdi-delete</v-icon>
               </v-btn>
             </td>
@@ -120,7 +134,11 @@ export default {
         { text: "Delete", value: "" }
       ],
       blood_need_posts: [],
+<<<<<<< Updated upstream
       detailsArray: []
+=======
+      selectedDocument: []
+>>>>>>> Stashed changes
     };
   },
   methods: {
@@ -140,6 +158,7 @@ export default {
           console.log("Error: " + e);
         });
     },
+<<<<<<< Updated upstream
     open() {
       this.snack = true;
       this.snackColor = "info";
@@ -186,6 +205,21 @@ export default {
           console.log("Error occured", error);
         });
       this.$router.push("/admin/BloodDonationPosts");
+=======
+    deletePosts: function(post_id) {
+      console.log(post_id);
+      this.selectedDocument = post_id;
+      axios
+        .delete(
+          "http://localhost:4200pi/posts/deleteNeedPosts/" +
+            this.selectedDocument.postID
+        )
+        .then(function() {
+          this.router.push({
+            name: "AdminBloodDonationPosts"
+          });
+        });
+>>>>>>> Stashed changes
     }
   },
 
