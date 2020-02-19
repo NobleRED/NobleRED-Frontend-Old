@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import firebase from "../plugins/firebaseConfig";
+import firebase from "../../plugins/firebaseConfig";
 import { mapGetters } from "vuex";
 import moment from "moment";
 import axios from "axios";
