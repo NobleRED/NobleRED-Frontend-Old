@@ -65,7 +65,7 @@ const routes = [
     name: "adminAdministrators",
     component: AdminAdmins,
     beforeEnter: (to, from, next) => {
-      if (localStorage.role === 'Organizer') {
+      if (localStorage.getItem('role') == 'Organizer') {
         next('/')
       } else {
         next()

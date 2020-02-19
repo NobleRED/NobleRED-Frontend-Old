@@ -48,6 +48,7 @@
       >
         <template v-slot:item="row">
           <tr>
+            <td>{{ row.item.requestID }}</td>
             <td>{{ row.item.organizerID }}</td>
             <td>{{ row.item.organizerName }}</td>
             <td>{{ row.item.address }}</td>
@@ -114,6 +115,7 @@
 <script>
 import axios from "axios";
 import firebase from "../../plugins/firebaseConfig";
+var moment = require("moment");
 // import NewCampaignForm from "../NewCampaignForm";
 
 export default {
@@ -194,6 +196,7 @@ export default {
     },
     acceptCampaign(item) {
       var selected = item;
+      var now = moment().format();
       // var _this = this;
       // console.log(this.selectedRequest.organizerID);
       // axios
@@ -210,16 +213,36 @@ export default {
       firebase.db
         .collection("campaigns")
         .add({
-          selected
+          organizerID: selected.organizerID,
+          organizerName: selected.organizerName,
+          address: selected.address,
+          contactNo: selected.contactNo,
+          province: selected.province,
+          district: selected.district,
+          date: selected.date,
+          time: selected.time,
+          publishedDateTime: now,
+          lat: selected.lat,
+          lng: selected.lng
         })
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
-
-          this.$router.go("/");
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
+
+      firebase.db
+        .collection("campaigns-requests")
+        .doc(selected.requestID.toString())
+        .update({
+          status: "accepted"
+        })
+        .then(() => {
+          console.log("Updated");
+        });
+
+      this.$router.go("/");
     }
   },
   beforeMount() {
