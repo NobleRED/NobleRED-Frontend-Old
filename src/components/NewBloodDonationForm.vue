@@ -1,11 +1,6 @@
 <template>
 
-  <v-container>
-    <v-card width="100%" height="100%">
-
-  <v-container class="mt-10 mb-10">
-    <v-card width="100%" height="100%" class="mt-10 mb-10">
-
+  
 
   <v-container>
     <v-card width="100%" height="100%">
