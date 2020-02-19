@@ -14,6 +14,8 @@ import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 
 import AdminMap from "../components/Map-admin.vue";
+import OrgMap from "../components/Map-org.vue";
+import DonorMap from "../components/Map-donor.vue";
 import AdminProfile from '../views/admin/AdminUserProfile.vue'
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
@@ -214,7 +216,16 @@ const routes = [
       }
     }
   },
-
+  {
+    path: "/organizer/map",
+    name: "orgMap",
+    component: OrgMap
+  },
+  {
+    path: "/donor/map",
+    name: "DonorMap",
+    component: DonorMap
+  },
   {
     path: "/about",
     name: "about",

@@ -8,18 +8,16 @@
 import axios from "axios";
 const google = window.google;
 var map;
-// var campaigns;
-// var geocoder;
-var infowindow;
-// var __this = this;
-// var userType;
-// var _this_;
-// var pos;
+// var infowindow;
 var srilankan_bounds = {
   north: 10.02,
   south: 5.715,
   west: 79.4,
   east: 82
+};
+var sl_center = {
+  lat: 7.8731,
+  lng: 80.7718
 };
 export default {
   name: "VisitorMap",
@@ -30,7 +28,6 @@ export default {
       userType: "admin",
       pos: [],
       image: "blue.png"
-      // loading: true //organizer
     };
   },
   mounted: function() {
@@ -61,8 +58,7 @@ export default {
 
     map = new google.maps.Map(document.getElementById("campaignMap"), {
       zoom: 6,
-      // center: adrs.center,
-      // scrollwheel: true,
+      center: sl_center,
       gestureHandling: "cooperative",
       //map doesn't go away from sri lanka
       restriction: {
@@ -70,56 +66,8 @@ export default {
         strictBounds: false
       }
     });
-    var _this = this;
-    // var infowindow = new google.maps.InfoWindow();
-
-    // geocoder =
+    // var _this = this;
     new google.maps.Geocoder();
-
-    // HTML5 GEOLOCATION
-    if (navigator.geolocation) {
-      // infowindow = new google.maps.InfoWindow();
-      navigator.geolocation.getCurrentPosition(
-        function(position) {
-          _this.pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          // _this_ = this;
-          // __this.infoWindow.setPosition(pos);
-          // __this.infoWindow.setContent("Your Location");
-          // __this.infoWindow.open(map);
-          map.setCenter(_this.pos);
-          // new google.maps.Circle({
-          //   strokeColor: "#FF0000",
-          //   strokeOpacity: 0.8,
-          //   strokeWeight: 2,
-          //   fillColor: "#FF0000",
-          //   fillOpacity: 0.2,
-          //   map: map,
-          //   center: _this.pos,
-          //   radius: 5000
-          // });
-          new google.maps.Marker({
-            position: { lat: _this.pos.lat, lng: _this.pos.lng },
-            map: map,
-            animation: google.maps.Animation.DROP,
-            title: "Campaign Marker"
-            // icon: "https://img.icons8.com/officel/16/000000/map-pin.png",
-            // size: [500, 500]
-          });
-          console.log("HEReeeeeeeE", _this.pos);
-        },
-        function() {
-          // handleLocationError(true, infowindow, map.getCenter());
-        }
-      );
-    } else {
-      // if browser doesn't support Geolocation
-      this.handleLocationError(false, infowindow, map.getCenter());
-    }
-
-    // if (userType === "organizer" || userType === "donor") {
   },
   methods: {
     loadMarkers: function() {
@@ -137,15 +85,6 @@ export default {
         .catch(e => {
           console.log("Error: " + e);
         });
-    },
-    handleLocationError: function(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(
-        browserHasGeolocation
-          ? "Error: The Geolocation service failed."
-          : "Error: Your browser doesn't support geolocation."
-      );
-      infoWindow.open(map);
     }
   },
   beforeMount() {
