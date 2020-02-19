@@ -1,6 +1,6 @@
 <template>
-  <v-container class="mt-10">
-    <v-card width="100%" height="100%" class="mt-5 mb-3">
+  <v-container>
+    <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Create A Donor Account</v-toolbar-title>
       </v-toolbar>
@@ -102,18 +102,6 @@
                 <v-radio label="Female" value="female"></v-radio>
               </v-radio-group>
             </v-col>
-
-            <!-- <v-col cols="12" md="6">
-              <v-file-input
-                id="img"
-                placeholder="Add Image"
-                show-size="true"
-                chips="true"
-                prepend-icon="mdi-camera"
-                label="Profile Image"
-                outlined
-              ></v-file-input>
-            </v-col>-->
           </v-row>
 
           <v-row>
@@ -306,7 +294,7 @@ export default {
                     contactNo: that.formData.contactNo,
                     gender: that.formData.radios,
                     bloodType: that.formData.bloodtype,
-                    role: "donor",
+                    role: "Donor",
                     donorID: nextDonorID,
                     status: "1",
                     createdAt: now
