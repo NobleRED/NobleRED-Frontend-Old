@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import firebase from "../../plugins/firebaseConfig";
+// import firebase from "../../plugins/firebaseConfig";
 import { mapGetters } from "vuex";
 export default {
   name: "UserProfile",

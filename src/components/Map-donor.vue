@@ -83,9 +83,7 @@ export default {
         this.campaigns.forEach(campaign => {
           var Deff = campaign.dateDeff;
           var i;
-          if (Deff <= 4 && Deff > 0) {
-            i = 0;
-          } else if (Deff <= 0 && Deff > -4) {
+          if (Deff <= 0 && Deff > -4) {
             i = 1;
           } else if (parseInt(Deff) <= -4 && parseInt(Deff) > -8) {
             i = 2;
