@@ -286,11 +286,13 @@ export default {
             .then(response => {
               nextDonorID = response.data;
               console.log("send to login", sendToLogin);
+              console.log(nextDonorID);
 
               if (sendToLogin == true) {
                 firebase.db
                   .collection("users-donor")
-                  .add({
+                  .doc(nextDonorID)
+                  .set({
                     uid: uidTemp,
                     fname: that.formData.fname,
                     lname: that.formData.lname,
@@ -304,10 +306,11 @@ export default {
                     role: "Donor",
                     donorID: nextDonorID,
                     status: "1",
+                    lastDonatedDate: "",
                     createdAt: now
                   })
-                  .then(function(docRef) {
-                    console.log("Document written with ID: ", docRef.id);
+                  .then(function() {
+                    // console.log("Document written with ID: ", docRef.id);
                     emailjs.send("gmail", "template_4Iavwfir", {
                       reply_to: "nobleredlk@gmail.com",
                       from_name: "NobleRED",
@@ -322,6 +325,41 @@ export default {
                   .catch(function(error) {
                     console.error("Error adding document: ", error);
                   });
+
+                // firebase.db
+                //   .collection("users-donor")
+                //   .add({
+                //     uid: uidTemp,
+                //     fname: that.formData.fname,
+                //     lname: that.formData.lname,
+                //     email: that.formData.email,
+                //     nic: that.formData.nic,
+                //     dob: that.formData.dob,
+                //     address: that.formData.inputAddress,
+                //     contactNo: that.formData.contactNo,
+                //     gender: that.formData.radios,
+                //     bloodType: that.formData.bloodtype,
+                //     role: "Donor",
+                //     donorID: nextDonorID,
+                //     status: "1",
+                //     createdAt: now
+                //   })
+                //   .then(function(docRef) {
+                //     console.log("Document written with ID: ", docRef.id);
+                //     emailjs.send("gmail", "template_4Iavwfir", {
+                //       reply_to: "nobleredlk@gmail.com",
+                //       from_name: "NobleRED",
+                //       to_name: that.formData.fname + " " + that.formData.lname,
+                //       message_html:
+                //         "HI, Thank you for registering with NobleRED",
+                //       DonorEmail: that.formData.email
+                //     });
+                //     console.log(that.formData);
+                //     this.$router.push("/");
+                //   })
+                //   .catch(function(error) {
+                //     console.error("Error adding document: ", error);
+                //   });
               } else {
                 this.$router.push("/signup/donor");
               }

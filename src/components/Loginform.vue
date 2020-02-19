@@ -148,16 +148,11 @@ export default {
         .signInWithEmailAndPassword(this.username, this.password)
         .then(() => {
           console.log("User verified");
-          // console.log(cred.user);
 
           user = firebase.auth.currentUser;
-          // if (user) {
-          //   console.log("user det:" + JSON.stringify(user));
-          // } else {
-          //   console.log("no user detected");
-          // }
           var uid = user.uid;
-          // console.log("uid:" + uid);
+          localStorage.uid = uid;
+          this.$session.set("uid", uid);
 
           axios
             .get("http://localhost:4200/api/admins/" + uid)
@@ -173,9 +168,16 @@ export default {
                   console.log(response);
                   // push data to the array
                   this.$session.start();
-                  this.$session.set("jwt", response.data);
+                  this.$session.set("loginstatus", true);
+                  this.$session.set(
+                    "username",
+                    response.data.fname + " " + response.data.lname
+                  );
+                  localStorage.username =
+                    response.data.fname + " " + response.data.lname;
+                  // this.$session.set("jwt", response.data);
                   // console.log(response.data.fname);
-                  localStorage.userdata = JSON.stringify(response.data);
+                  // localStorage.userdata = JSON.stringify(response.data);
                   bus.$emit("changeLoginStatus", true);
                   bus.$emit("sendUserData", response.data);
                 }
@@ -198,12 +200,19 @@ export default {
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
                   localStorage.userid = response.data.donorID;
+                  localStorage.username =
+                    response.data.fname + " " + response.data.lname;
                   console.log(response);
                   // push data to the array
                   this.$session.start();
-                  this.$session.set("jwt", response.data);
+                  this.$session.set("loginstatus", true);
+                  this.$session.set(
+                    "username",
+                    response.data.fname + " " + response.data.lname
+                  );
+                  // this.$session.set("jwt", response.data);
                   // console.log(response.data.fname);
-                  localStorage.userdata = JSON.stringify(response.data);
+                  // localStorage.userdata = JSON.stringify(response.data);
                   bus.$emit("changeLoginStatus", true);
                   bus.$emit("sendUserData", response.data);
                 }
@@ -226,12 +235,15 @@ export default {
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
                   localStorage.userid = response.data.organizerID;
+                  localStorage.username = response.data.organizerName;
                   console.log(response);
                   // push data to the array
                   this.$session.start();
-                  this.$session.set("jwt", response.data);
+                  this.$session.set("loginstatus", true);
+                  this.$session.set("username", response.data.organizerName);
+                  // this.$session.set("jwt", response.data);
                   // console.log(response.data.fname);
-                  localStorage.userdata = JSON.stringify(response.data);
+                  // localStorage.userdata = JSON.stringify(response.data);
                   bus.$emit("changeLoginStatus", true);
                   bus.$emit("sendUserData", response.data);
                 }

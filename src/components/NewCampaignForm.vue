@@ -112,6 +112,7 @@
                 color="grey darken-3"
                 full-width
                 :landscape="$vuetify.breakpoint.smAndUp"
+                :min="minDate"
               ></v-date-picker>
             </v-col>
 
@@ -166,6 +167,7 @@ moment().format();
 
 export default {
   name: "NewCampaignForm",
+  minDate: "",
   components: {
     Qrcode
   },
@@ -245,6 +247,7 @@ export default {
       // using moment to get current date and time
       var now = moment().format();
       var requestID = this.getRandomRequestNo();
+      console.log("rid", requestID);
       console.log("time :" + now);
       // this.getCoords();
 
@@ -294,11 +297,17 @@ export default {
       this.formData.time = "";
     },
     getRandomRequestNo() {
-      return Math.random() * (10000 - 1) + 1;
+      return Math.floor(Math.random() * (10000 - 1) + 1);
+    },
+    getMinDate() {
+      this.minDate = moment()
+        .add(7, "days")
+        .format("YYYY-MM-DD");
     }
   },
   mounted() {
     console.log(localStorage.userid);
+    this.getMinDate();
   }
 };
 </script>
