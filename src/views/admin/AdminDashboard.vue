@@ -137,16 +137,6 @@ export default {
         text: "Campaign Organizers",
         link: "/admin/organizers"
       },
-      // {
-      //   icon: "mdi-chevron-up",
-      //   "icon-alt": "mdi-chevron-down",
-      //   text: "Posts",
-      //   model: false,
-      //   children: [
-      //     { icon: "mdi-chart-pie", text: "Donation Posts" },
-      //     { icon: "mdi-calendar-multiple-check", text: "Campaign Posts" }
-      //   ]
-      // },
       {
         icon: "mdi-map-marker-multiple",
         text: "Blood Donation Campaigns",

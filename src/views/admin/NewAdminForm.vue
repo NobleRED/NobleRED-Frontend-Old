@@ -1,6 +1,6 @@
 <template>
-  <v-container class="mt-10">
-    <v-card width="100%" height="100%" class="mt-10">
+  <v-container>
+    <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Admin Registration</v-toolbar-title>
       </v-toolbar>
@@ -14,7 +14,22 @@
                 label="First Name"
                 placeholder="John"
                 id="fname"
-                v-model="formData.fullname"
+                v-model="formData.fname"
+                type="text"
+                :rules="nameRules"
+                required
+                outlined
+                style="background-color: transparent;"
+                small
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                name="lastName"
+                label="Last Name"
+                placeholder="John"
+                id="lname"
+                v-model="formData.lname"
                 type="text"
                 :rules="nameRules"
                 required
@@ -39,9 +54,6 @@
                 outlined
               ></v-text-field>
             </v-col>
-          </v-row>
-
-          <v-row>
             <v-col cols="12" md="6">
               <v-text-field
                 name="email"
@@ -112,7 +124,8 @@ export default {
     return {
       formData: {
         uidtemp: "",
-        fullname: "",
+        fname: "",
+        lname: "",
         nic: "",
         email: "",
         password: "",
@@ -177,7 +190,7 @@ export default {
         .then(function(data) {
           data.user
             .updateProfile({
-              displayName: that.formData.fullname + " " + that.formData.lname
+              displayName: that.formData.fname + " " + that.formData.lname
             })
             .then(() => {});
 
@@ -204,10 +217,11 @@ export default {
                   .collection("users-admin")
                   .add({
                     uid: uidTemp,
-                    fullname: that.formData.fullname,
+                    fname: that.formData.fname,
+                    lname: that.formData.lname,
                     email: that.formData.email,
                     nic: that.formData.nic,
-                    role: "admin",
+                    role: "Admin",
                     status: "1",
                     adminID: nextAdminID,
                     createdAt: now
@@ -235,12 +249,6 @@ export default {
             .catch(e => {
               console.log("Error: " + e);
             });
-          // var r = confirm("Error in sign up!");
-          // if (r == true) {
-          //   this.router.push("/login");
-          // } else {
-          //   this.router.push("/signup/donor");
-          // }
         })
         .catch(function(error) {
           // Handle Errors here.

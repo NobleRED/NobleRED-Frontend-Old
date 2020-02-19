@@ -1,23 +1,5 @@
 <template>
   <v-container>
-    <!-- <b-button variant="success" v-b-modal.newCampaignForm class="mb-5 mt-5">Add New Campaign</b-button>
-    <div class="text-center">
-      <b-spinner
-        variant="secondary"
-        style="width: 3rem; height: 3rem;"
-        label="loadSpinner"
-        v-show="spinner"
-      ></b-spinner>
-    </div>
-    <b-modal
-      id="newCampaignForm"
-      size="xl"
-      title="New Blood Donation Campaign"
-      class="modalTitle"
-      centered
-    >
-      <NewCampaignForm></NewCampaignForm>
-    </b-modal>-->
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
@@ -29,7 +11,7 @@
           class="ml-5"
         ></v-text-field>
         <v-spacer></v-spacer>
-        <v-btn small color="success" class="ml-3" to="/admin/newcampaign">
+        <v-btn small color="success" class="ml-3" to="/newCampaignForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
@@ -41,7 +23,7 @@
         :loading="loading"
       >
         <template v-slot:item="row">
-          <tr @click="showAlert(row.item)">
+          <tr>
             <td>{{ row.item.organizerID }}</td>
             <td>{{ row.item.organizerName }}</td>
             <td>{{ row.item.address }}</td>
@@ -82,7 +64,7 @@
         :loading="loading"
       >
         <template v-slot:item="row">
-          <tr @click="openDialog(row.item)">
+          <tr>
             <td>{{ row.item.organizerID }}</td>
             <td>{{ row.item.organizerName }}</td>
             <td>{{ row.item.address }}</td>
@@ -106,7 +88,7 @@
                 <v-icon dark>mdi-close</v-icon>
               </v-btn>
             </td>
-            <v-dialog v-model="dialog" max-width="400">
+            <!-- <v-dialog v-model="dialog" max-width="400">
               <v-card>
                 <v-card-title class="headline"
                   >Review the Campaign Request</v-card-title
@@ -124,15 +106,7 @@
                   <br />
                   <b>Requested Date</b>
                   - {{ selectedRequest.date }}
-                  <br />
-                  <v-btn
-                    color="primary"
-                    @click="dialog = false"
-                    outlined
-                    x-small
-                    >Check Medical Team Availability</v-btn
-                  >
-                  <br />
+
                   Request made {{ selectedRequest.publishedDateTimeAgo }}
                 </v-card-text>
                 <v-card-actions>
@@ -141,19 +115,19 @@
                     class="ma-1"
                     color="error"
                     small
-                    @click="acceptCampaign(row.item)"
+                    @click="dialog = false"
                     >Cancel</v-btn
                   >
                   <v-btn
                     class="ma-1"
                     color="success"
                     small
-                    @click="dialog = false"
+                    @click="acceptCampaign(row.item)"
                     >Accept</v-btn
                   >
                 </v-card-actions>
               </v-card>
-            </v-dialog>
+            </v-dialog>-->
           </tr>
         </template>
       </v-data-table>
@@ -163,6 +137,7 @@
 
 <script>
 import axios from "axios";
+import firebase from "../../plugins/firebaseConfig";
 // import NewCampaignForm from "../NewCampaignForm";
 
 export default {
@@ -189,6 +164,7 @@ export default {
         { text: "Change/Delete", value: "" }
       ],
       headers2: [
+        { text: "Request ID", value: "requestID" },
         { text: "Organizer ID", value: "organizerID" },
         { text: "Organizer Name", value: "organizerName" },
         { text: "Address", value: "address" },
@@ -241,17 +217,32 @@ export default {
       this.dialog = true;
     },
     acceptCampaign(item) {
-      this.selectedRequest = item;
-      axios
-        .post(
-          "http://localhost:4200/api/campaigns/accept/" +
-            this.selectedRequest.campaignID
-        )
-        .then(function() {
-          console.log("success!");
+      var selected = item;
+      // var _this = this;
+      // console.log(this.selectedRequest.organizerID);
+      // axios
+      //   .post(
+      //     "http://localhost:4200/api/campaigns/accept/" + this.selectedRequest
+      //   )
+      //   .then(function() {
+      //     console.log("success!");
+      //   })
+      //   .catch(function(error) {
+      //     console.error("Error updating document: ", error);
+      //   });
+
+      firebase.db
+        .collection("campaigns")
+        .add({
+          selected
+        })
+        .then(function(docRef) {
+          console.log("Document written with ID: ", docRef.id);
+
+          this.$router.go("/");
         })
         .catch(function(error) {
-          console.error("Error updating document: ", error);
+          console.error("Error adding document: ", error);
         });
     }
   },

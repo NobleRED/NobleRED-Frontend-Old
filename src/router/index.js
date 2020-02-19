@@ -4,11 +4,14 @@ import Home from "../views/Home.vue";
 
 import AdminCampaigns from "../views/admin/AdminCampaigns.vue";
 import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue";
+
+import AdminAdmins from "../views/admin/AdminAdministrators.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
 import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
+
 import AdminMap from "../components/Map-admin.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
@@ -34,22 +37,62 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: Loginform
+    component: Loginform,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/campaigns",
     name: "adminCampaigns",
-    component: AdminCampaigns
+    component: AdminCampaigns,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: "/admin/admins",
+    name: "adminAdministrators",
+    component: AdminAdmins,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.role === "Organizer") {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/donors",
     name: "adminDonors",
-    component: AdminDonors
+    component: AdminDonors,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/organizers",
     name: "adminOrganizers",
-    component: AdminOrganizers
+    component: AdminOrganizers,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/charts",
@@ -57,6 +100,13 @@ const routes = [
     components: {
       default: AdminCharts,
       donor: AdminChartsDonor
+    },
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
     }
   },
   {
@@ -68,7 +118,14 @@ const routes = [
         path: "donor",
         component: AdminChartsDonor
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/charts",
@@ -79,7 +136,14 @@ const routes = [
         path: "campaign",
         component: AdminChartsCampaign
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/charts",
@@ -90,22 +154,50 @@ const routes = [
         path: "organizers",
         component: AdminOrganizers
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/map",
     name: "adminMap",
-    component: AdminMap
+    component: AdminMap,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/organizers",
     name: "adminOrganizers",
-    component: AdminOrganizers
+    component: AdminOrganizers,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/admin/BloodDonationPosts",
     name: "adminBloodDonationPost",
-    component: AdminBloodDonationPosts
+    component: AdminBloodDonationPosts,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
 
   {
@@ -118,29 +210,57 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: "/donor/signup",
+    path: "/newDonorForm",
     name: "donorSignup",
     component: DonorSignupForm
   },
   {
     path: "/newCampaignForm",
     name: "newCampaign",
-    component: NewCampaignForm
+    component: NewCampaignForm,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/newOrganizerForm",
     name: "newOrganizerForm",
-    component: NewOrganizerForm
+    component: NewOrganizerForm,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/newAdminForm",
     name: "newAdminForm",
-    component: NewAdminForm
+    component: NewAdminForm,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/newBloodDonationForm", //newly added component,router path settings pending
     Name: "bloodDonation",
-    component: NewBloodDonationForm
+    component: NewBloodDonationForm,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/bloodNeedPost", //newly added component for show blood need post to every one
@@ -155,7 +275,14 @@ const routes = [
   {
     path: "/userProfile", //newly added component for show blood need post to every one
     name: "userProfile",
-    component: UserProfile
+    component: UserProfile,
+    beforeEnter: (to, from, next) => {
+      if (!localStorage.loginstatus) {
+        next("/");
+      } else {
+        next();
+      }
+    }
   },
   {
     path: "/visitor/map", //show map to visitors

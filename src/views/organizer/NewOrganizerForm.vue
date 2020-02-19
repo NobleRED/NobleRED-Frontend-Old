@@ -1,6 +1,6 @@
 <template>
-  <v-container class="mt-10">
-    <v-card width="100%" height="100%" class="mt-10">
+  <v-container>
+    <v-card width="100%" height="100%">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Register New Organizer</v-toolbar-title>
       </v-toolbar>
@@ -235,7 +235,7 @@ export default {
                     address: that.formData.address,
                     email: that.formData.email,
                     createdAt: now,
-                    role: "organizer",
+                    role: "Organizer",
                     password: password,
                     status: 1
                   })
@@ -271,46 +271,7 @@ export default {
           console.log("Error occured : ", errorCode, errorMessage);
         });
     },
-    // onSubmit(event) {
-    //   event.preventDefault();
-    //   var _this = this;
-    //   // using moment to get current date and time
-    //   var now = moment().format();
-    //   console.log("time :" + now);
 
-    // axios
-    //   .get("http://localhost:4200/api/organizers/nextid")
-    //   .then(response => {
-    //     // push data to the array
-    //     _this.nextOrganizerID = response.data;
-    //     axios
-    //       .post("http://localhost:4200/api/organizer", {
-    //         organizerID: _this.nextOrganizerID,
-    //         organizerName: _this.formData.organizerName,
-    //         contactPerson: _this.formData.contactPerson,
-    //         contactPersonNIC: _this.formData.contactPersonNIC,
-    //         contactNo: _this.formData.contactNo,
-    //         address: _this.formData.address,
-    //         email: _this.formData.email,
-    //         createdAt: now,
-    //         role: "organizer",
-    //         status: 1
-    //       })
-    //       .then(function(docRef) {
-    //         console.log("Document written with ID: ", docRef.id);
-    //         _this.value = docRef.id;
-    //         _this.$router.push({
-    //           name: "adminOrganizers"
-    //         });
-    //       })
-    //       .catch(function(error) {
-    //         console.error("Error adding document: ", error);
-    //       });
-    //   })
-    //   .catch(e => {
-    //     console.log("Error: " + e);
-    //   });
-    // },
     reset() {
       // reset function to clear text fields of the form
       this.$refs.form1.reset();

@@ -200,11 +200,12 @@ export default {
         .then(function(docRef) {
           console.log("Document written with ID: ", docRef.id);
           _this.value = docRef.id;
-          // this.$router.push("/admin/map");
+          this.$router.push("/");
         })
         .catch(function(error) {
           console.error("Error adding document: ", error);
         });
+      this.$router.push("/");
     },
     reset() {
       // reset function to clear text fields of the form

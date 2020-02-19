@@ -133,6 +133,12 @@ export default {
       inputRulespass: [v => v.length >= 8 || ""]
     };
   },
+  mounted() {
+    // console.log(localStorage.loginstatus);
+    // if (localStorage.loginstatus) {
+    //   this.$router.push("/");
+    // }
+  },
   methods: {
     loginUser() {
       event.preventDefault();
@@ -158,8 +164,8 @@ export default {
             .then(response => {
               if (response.status == 200) {
                 console.log(response);
-                if (response.data.role == "admin") {
-                  console.log("admin");
+                if (response.data.role == "Admin") {
+                  // console.log("admin");
                   this.$store.commit("updateRole", response.data.role);
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
@@ -186,8 +192,8 @@ export default {
             .then(response => {
               if (response.status == 200) {
                 console.log(response);
-                if (response.data.role == "donor") {
-                  console.log("donor");
+                if (response.data.role == "Donor") {
+                  // console.log("donor");
                   this.$store.commit("updateRole", response.data.role);
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
@@ -214,8 +220,8 @@ export default {
             .then(response => {
               if (response.status == 200) {
                 console.log(response);
-                if (response.data.role == "organizer") {
-                  console.log("organizer");
+                if (response.data.role == "Organizer") {
+                  // console.log("organizer");
                   this.$store.commit("updateRole", response.data.role);
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
