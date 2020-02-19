@@ -14,7 +14,9 @@
 
                 <div class="subtitle-1">{{ user.email }}</div>
                 <b>
-                  <h4 class="subtitle-1">Last donated date - {{lastDonatedDate}}</h4>
+                  <h4 class="subtitle-1">
+                    Last donated date - {{ lastDonatedDate }}
+                  </h4>
                 </b>
               </v-col>
             </v-row>
@@ -27,12 +29,14 @@
             <div v-if="!isEligible">
               <v-row>
                 <v-col>
-                  <h2 style="color:#B71C1C;">You are not eligible to donate blood until</h2>
+                  <h2 style="color:#B71C1C;">
+                    You are not eligible to donate blood until
+                  </h2>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <h1 style="color:#B71C1C;">{{nextEligibleDate}}</h1>
+                  <h1 style="color:#B71C1C;">{{ nextEligibleDate }}</h1>
                 </v-col>
               </v-row>
             </div>
@@ -51,7 +55,9 @@
             </v-row>-->
             <v-row class="mb-n2">
               <v-col cols="12">
-                <h3 style="color:">Select your last blood donated date below</h3>
+                <h3 style="color:">
+                  Select your last blood donated date below
+                </h3>
               </v-col>
             </v-row>
             <v-row class="mb-n2">
@@ -68,11 +74,9 @@
 
             <v-row>
               <v-col cols="12">
-                <v-btn
-                  color="#B71C1C"
-                  dark
-                  @click="updateLastDonatedDate()"
-                >Update the last blood donated date</v-btn>
+                <v-btn color="#B71C1C" dark @click="updateLastDonatedDate()"
+                  >Update the last blood donated date</v-btn
+                >
               </v-col>
             </v-row>
 

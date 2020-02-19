@@ -23,7 +23,7 @@ import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
 
-import UserProfile from "../components/UserProfile.vue";
+import UserProfile from "../components/userProfile.vue";
 import VisitorMap from "../views/visitor/VisitorMap.vue";
 
 Vue.use(VueRouter);
