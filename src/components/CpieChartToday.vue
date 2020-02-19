@@ -19,13 +19,16 @@
       <NewCampaignForm></NewCampaignForm>
     </b-modal>-->
     <v-card width="100%" height="100%" class>
-
-      <v-data-table :headers="headers1" :items="campaignsToday" :loading="loading">
+      <v-data-table
+        :headers="headers1"
+        :items="campaignsToday"
+        :loading="loading"
+      >
         <template v-slot:item="row">
           <tr>
-            <td>{{row.item.organizerName}}</td>
-            <td>{{row.item.address}}</td>
-            <td>{{row.item.time}}</td>
+            <td>{{ row.item.organizerName }}</td>
+            <td>{{ row.item.address }}</td>
+            <td>{{ row.item.time }}</td>
           </tr>
         </template>
       </v-data-table>
@@ -38,9 +41,7 @@ import axios from "axios";
 
 export default {
   name: "CampaignDetailsTable",
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       loading: true,
@@ -52,11 +53,9 @@ export default {
       ],
       campaigns: [],
       campaignsToday: []
-      
     };
   },
   methods: {
-    
     loadCampaigns: function() {
       // to access "this" variable in the file
       var _this = this;
@@ -67,9 +66,6 @@ export default {
         .then(response => {
           // push data to the array
           _this.campaignsToday = response.data;
-          
-         
-          
 
           _this.loading = false;
         })

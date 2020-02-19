@@ -7,7 +7,7 @@ import AdminBloodDonationPosts from "../views/admin/AdminBloodDonationPosts.vue"
 
 import AdminAdmins from "../views/admin/AdminAdministrators.vue";
 import AdminDonors from "../views/admin/AdminDonors.vue";
-import AdminOrganizers from '../views/admin/AdminOrganizers.vue'
+import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
@@ -15,18 +15,16 @@ import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
 import AdminMap from "../components/Map-admin.vue";
 
 import DonorSignupForm from "../views/donor/DonorSignupForm.vue";
-import NewAdminForm from '../views/admin/NewAdminForm.vue'
-import NewOrganizerForm from '../views/organizer/NewOrganizerForm.vue'
+import NewAdminForm from "../views/admin/NewAdminForm.vue";
+import NewOrganizerForm from "../views/organizer/NewOrganizerForm.vue";
 import NewCampaignForm from "../components/NewCampaignForm.vue";
 import NewBloodDonationForm from "../components/NewBloodDonationForm.vue";
-
 import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
 
-import UserProfile from '../components/userProfile.vue'
-import VisitorMap from '../views/visitor/VisitorMap.vue'
-
+import UserProfile from "../components/UserProfile.vue";
+import VisitorMap from "../views/visitor/VisitorMap.vue";
 
 Vue.use(VueRouter);
 
@@ -42,9 +40,9 @@ const routes = [
     component: Loginform,
     beforeEnter: (to, from, next) => {
       if (localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -54,9 +52,9 @@ const routes = [
     component: AdminCampaigns,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -68,7 +66,7 @@ const routes = [
       if (localStorage.getItem('role') == 'Organizer') {
         next('/')
       } else {
-        next()
+        next();
       }
     }
   },
@@ -78,20 +76,21 @@ const routes = [
     component: AdminDonors,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
   {
     path: "/admin/organizers",
     name: "adminOrganizers",
-    component: AdminOrganizers, beforeEnter: (to, from, next) => {
+    component: AdminOrganizers,
+    beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -101,11 +100,12 @@ const routes = [
     components: {
       default: AdminCharts,
       donor: AdminChartsDonor
-    }, beforeEnter: (to, from, next) => {
+    },
+    beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -118,11 +118,12 @@ const routes = [
         path: "donor",
         component: AdminChartsDonor
       }
-    ], beforeEnter: (to, from, next) => {
+    ],
+    beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -135,11 +136,12 @@ const routes = [
         path: "campaign",
         component: AdminChartsCampaign
       }
-    ], beforeEnter: (to, from, next) => {
+    ],
+    beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -152,24 +154,24 @@ const routes = [
         path: "organizers",
         component: AdminOrganizers
       }
-    ], beforeEnter: (to, from, next) => {
+    ],
+    beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
-  }
-  ,
+  },
   {
     path: "/admin/map",
     name: "adminMap",
     component: AdminMap,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -179,9 +181,9 @@ const routes = [
     component: AdminOrganizers,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -191,9 +193,9 @@ const routes = [
     component: AdminBloodDonationPosts,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -218,9 +220,9 @@ const routes = [
     component: NewCampaignForm,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -230,12 +232,11 @@ const routes = [
     component: NewOrganizerForm,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
-
   },
   {
     path: "/newAdminForm",
@@ -243,9 +244,9 @@ const routes = [
     component: NewAdminForm,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -255,9 +256,9 @@ const routes = [
     component: NewBloodDonationForm,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },
@@ -277,9 +278,9 @@ const routes = [
     component: UserProfile,
     beforeEnter: (to, from, next) => {
       if (!localStorage.loginstatus) {
-        next('/')
+        next("/");
       } else {
-        next()
+        next();
       }
     }
   },

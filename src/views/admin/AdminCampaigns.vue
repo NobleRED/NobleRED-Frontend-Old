@@ -3,14 +3,25 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field v-model="search1" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search1"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newCampaignForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers1" :items="campaigns" :search="search1" :loading="loading">
+      <v-data-table
+        :headers="headers1"
+        :items="campaigns"
+        :search="search1"
+        :loading="loading"
+      >
         <template v-slot:item="row">
           <tr>
             <td>{{ row.item.organizerID }}</td>
@@ -37,7 +48,13 @@
     <v-card width="100%" height="100%" class="mt-5">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Donation Campaigns Requests</v-toolbar-title>
-        <v-text-field v-model="search2" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search2"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
       </v-toolbar>
 
       <v-data-table
@@ -58,7 +75,14 @@
             <td>{{ row.item.time }}</td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
-              <v-btn class="ma-1" text icon small color="success" @click="acceptCampaign(row.item)">
+              <v-btn
+                class="ma-1"
+                text
+                icon
+                small
+                color="success"
+                @click="acceptCampaign(row.item)"
+              >
                 <v-icon dark>mdi-check</v-icon>
               </v-btn>
               <v-btn class="ma-1" text icon small color="error">

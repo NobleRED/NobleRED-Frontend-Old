@@ -97,7 +97,12 @@
           <v-row>
             <v-col cols="12" md="6">
               <!-- <p>{{ radios || 'null' }}</p>	 -->
-              <v-radio-group label="Gender" v-model="formData.radios" :mandatory="true" row>
+              <v-radio-group
+                label="Gender"
+                v-model="formData.radios"
+                :mandatory="true"
+                row
+              >
                 <v-radio label="Male" value="male"></v-radio>
                 <v-radio label="Female" value="female"></v-radio>
               </v-radio-group>
@@ -161,7 +166,9 @@
           </v-row>
 
           <v-col cols="12" md="6">
-            <v-btn type="submit" @click="addDonor" color="primary">Sign up</v-btn>
+            <v-btn type="submit" @click="addDonor" color="primary"
+              >Sign up</v-btn
+            >
             <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
           </v-col>
         </v-card-text>
