@@ -245,9 +245,7 @@ export default {
       axios
         .post(
           "http://localhost:4200/api/campaigns/accept/" +
-
             this.selectedRequest.campaignID
-
         )
         .then(function() {
           console.log("success!");

@@ -26,7 +26,17 @@ export default {
       console.log(x);
 
       this.renderChart({
-        labels: ["Central", "Western", "Southern", "Northern", "Eastern", "North-Central", "North-Western", "Sabaragamuwa","Uva"],
+        labels: [
+          "Central",
+          "Western",
+          "Southern",
+          "Northern",
+          "Eastern",
+          "North-Central",
+          "North-Western",
+          "Sabaragamuwa",
+          "Uva"
+        ],
         datasets: [
           {
             backgroundColor: [
@@ -71,8 +81,6 @@ export default {
             // response.data.forEach(element => {
             //   this.donors.push(element);
             // });
-            
-          
 
             for (var i = 0; i < _this.campaigns.length; i++) {
               console.log(_this.campaigns.province);
@@ -92,7 +100,7 @@ export default {
                 _this.countNorthWestern = _this.countNorthWestern + 1;
               } else if (_this.campaigns[i].province == "Sabaragamuwa") {
                 _this.countSabaragamuwa = _this.countSabaragamuwa + 1;
-              }else if (_this.campaigns[i].province == "Uva") {
+              } else if (_this.campaigns[i].province == "Uva") {
                 _this.countUva = _this.countUva + 1;
               }
             }

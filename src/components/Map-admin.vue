@@ -10,9 +10,7 @@
           small
           color="success"
           class="ml-3"
-
           to="/newCampaignForm"
-
         >
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
@@ -79,8 +77,6 @@ export default {
     axios
       .get("http://localhost:4200/api/maps/greymarkers")
 
-
-
       .then(response => {
         // push data to campaigns array
         this.campaigns = response.data;
@@ -108,10 +104,8 @@ export default {
               "\nTime: " +
               campaign.time,
             icon:
-
               "https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fmarker-icons%2F" +
               this.$data.colors[i]
-
           });
         });
       })

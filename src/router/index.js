@@ -99,7 +99,6 @@ const routes = [
   },
   {
     path: "/admin/organizers",
-
     name: "adminOrganizers",
     component: AdminOrganizers
   },

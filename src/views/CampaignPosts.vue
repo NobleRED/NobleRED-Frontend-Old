@@ -2,7 +2,13 @@
 <template>
   <v-container class="mt-10">
     <section>
-      <v-btn small color="success" class="mt-10" to="/newCampaignForm" align-center>
+      <v-btn
+        small
+        color="success"
+        class="mt-10"
+        to="/newCampaignForm"
+        align-center
+      >
         <v-icon class="pr-1">mdi-plus</v-icon>Create new blood donation campaign
       </v-btn>
 
@@ -25,22 +31,20 @@
                   ></v-img>
                   <v-card-text>
                     <b>Organizer :</b>
-                    {{campaign_post.organizerName}}
+                    {{ campaign_post.organizerName }}
                     <br />
                     <b>Date :</b>
-                    {{campaign_post.date}}
+                    {{ campaign_post.date }}
                     <br />
                     <b>Time :</b>
-                    {{campaign_post.time}}
+                    {{ campaign_post.time }}
                     <br />
                     <b>Address :</b>
-                    {{campaign_post.address}}
+                    {{ campaign_post.address }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
                       <small class="text-muted">
-                        {{
-                        campaign_post.publishedDateTimeAgo
-                        }}
+                        {{ campaign_post.publishedDateTimeAgo }}
                       </small>
                     </v-slot:footer>
                   </v-card-text>

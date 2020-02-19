@@ -26,7 +26,6 @@ export default new Vuex.Store({
     fetchUser({ commit }, user) {
       commit("updateLoggedIn", user !== null);
       if (user) {
-
         commit("addUser", {
           uid: user.uid,
           displayName: user.displayName,
@@ -35,8 +34,6 @@ export default new Vuex.Store({
         });
         // this.$router.push("/");
         commit("updateRole", user.role);
-
-
       } else {
         commit("addUser", null);
       }

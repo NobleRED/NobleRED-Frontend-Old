@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       donors: [],
-      females:[],
+      females: [],
       countMale: 0,
       countFemale: 0
     };
@@ -52,9 +52,8 @@ export default {
                 _this.countMale = _this.countMale + 1;
               } else if (_this.donors[i].gender == "female") {
                 _this.countFemale = _this.countFemale + 1;
-                _this.females[i]=_this.donors[i];
+                _this.females[i] = _this.donors[i];
                 console.log(_this.females[i].gender);
-                
               }
             }
             // _this.loading = false;

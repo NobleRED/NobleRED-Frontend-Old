@@ -35,10 +35,8 @@
     <!-- Content of the pages -->
 
     <v-content>
-
       <v-container class="" fluid>
         <v-row align="center" justify="center">
-
           <router-view></router-view>
           <!-- <v-tooltip right>
             <template v-slot:activator="{ on }">
@@ -134,7 +132,11 @@ export default {
         text: "Blood Donors",
         link: "/admin/donors"
       },
-      { icon: "mdi-human", text: "Campaign Organizers" },
+      {
+        icon: "mdi-human",
+        text: "Campaign Organizers",
+        link: "/admin/organizers"
+      },
       // {
       //   icon: "mdi-chevron-up",
       //   "icon-alt": "mdi-chevron-down",

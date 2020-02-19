@@ -87,7 +87,9 @@
           </v-row>
 
           <v-col cols="12" md="6">
-            <v-btn type="submit" @click="addAdmin" color="primary">Sign up</v-btn>
+            <v-btn type="submit" @click="addAdmin" color="primary"
+              >Sign up</v-btn
+            >
             <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
           </v-col>
         </v-card-text>
