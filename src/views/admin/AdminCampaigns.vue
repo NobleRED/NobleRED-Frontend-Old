@@ -5,25 +5,14 @@
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field
-          v-model="search1"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-text-field v-model="search1" label="Search" single-line hide-details class="ml-5"></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newCampaignForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
 
-      <v-data-table
-        :headers="headers1"
-        :items="campaigns"
-        :search="search1"
-        :loading="loading"
-      >
+      <v-data-table :headers="headers1" :items="campaigns" :search="search1" :loading="loading">
         <template v-slot:item="row">
           <tr>
             <td>{{ row.item.organizerID }}</td>
@@ -50,13 +39,7 @@
     <v-card width="100%" height="100%" class="mt-5">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Donation Campaigns Requests</v-toolbar-title>
-        <v-text-field
-          v-model="search2"
-          label="Search"
-          single-line
-          hide-details
-          class="ml-5"
-        ></v-text-field>
+        <v-text-field v-model="search2" label="Search" single-line hide-details class="ml-5"></v-text-field>
       </v-toolbar>
 
       <v-data-table
@@ -77,60 +60,13 @@
             <td>{{ row.item.time }}</td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
-              <v-btn
-                class="ma-1"
-                text
-                icon
-                small
-                color="success"
-                @click="acceptCampaign(row.item)"
-              >
+              <v-btn class="ma-1" text icon small color="success" @click="acceptCampaign(row.item)">
                 <v-icon dark>mdi-check</v-icon>
               </v-btn>
-              <v-btn class="ma-1" text icon small color="error">
+              <v-btn class="ma-1" text icon small color="error" @click="rejectCampaign(row.item)">
                 <v-icon dark>mdi-close</v-icon>
               </v-btn>
             </td>
-            <!-- <v-dialog v-model="dialog" max-width="400">
-              <v-card>
-                <v-card-title class="headline"
-                  >Review the Campaign Request</v-card-title
-                >
-                <v-card-text>
-                  <b>Organizer Name</b>
-                  - {{ selectedRequest.organizerName }}
-                  <br />
-                  <b>Address of the Campaign</b>
-                  <br />
-                  {{ selectedRequest.address }}
-                  <br />
-                  <b>{{ selectedRequest.province }}</b> Province
-                  <b>{{ selectedRequest.district }}</b> District
-                  <br />
-                  <b>Requested Date</b>
-                  - {{ selectedRequest.date }}
-
-                  Request made {{ selectedRequest.publishedDateTimeAgo }}
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    class="ma-1"
-                    color="error"
-                    small
-                    @click="dialog = false"
-                    >Cancel</v-btn
-                  >
-                  <v-btn
-                    class="ma-1"
-                    color="success"
-                    small
-                    @click="acceptCampaign(row.item)"
-                    >Accept</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>-->
           </tr>
         </template>
       </v-data-table>
@@ -142,13 +78,10 @@
 import axios from "axios";
 import firebase from "../../plugins/firebaseConfig";
 var moment = require("moment");
-// import NewCampaignForm from "../NewCampaignForm";
 
 export default {
   name: "CampaignDetailsTable",
-  components: {
-    // NewCampaignForm
-  },
+  components: {},
   data() {
     return {
       search1: "",
@@ -188,7 +121,7 @@ export default {
       // to access "this" variable in the file
       var _this = this;
 
-      // calling th API and get data
+      // calling th API and get campaign requests data
       axios
         .get("http://localhost:4200/api/campaigns/requests")
         .then(response => {
@@ -204,7 +137,7 @@ export default {
       // to access "this" variable in the file
       var _this = this;
 
-      // calling th API and get data
+      // calling th API and get accepted campaigns data
       axios
         .get("http://localhost:4200/api/campaigns/accepted")
         .then(response => {
@@ -223,19 +156,8 @@ export default {
     acceptCampaign(item) {
       var selected = item;
       var now = moment().format();
-      // var _this = this;
-      // console.log(this.selectedRequest.organizerID);
-      // axios
-      //   .post(
-      //     "http://localhost:4200/api/campaigns/accept/" + this.selectedRequest
-      //   )
-      //   .then(function() {
-      //     console.log("success!");
-      //   })
-      //   .catch(function(error) {
-      //     console.error("Error updating document: ", error);
-      //   });
 
+      // this will add the newly accepted campaign to the database
       firebase.db
         .collection("campaigns")
         .add({
@@ -258,6 +180,7 @@ export default {
           console.error("Error adding document: ", error);
         });
 
+      // this will change the staatus of the campaign request to accepted
       firebase.db
         .collection("campaigns-requests")
         .doc(selected.requestID.toString())
@@ -266,12 +189,26 @@ export default {
         })
         .then(() => {
           console.log("Updated");
+          this.$router.go("/admin/campaigns");
         });
+    },
+    rejectCampaign(item) {
+      var selected = item;
 
-      this.$router.go("/");
+      // this will change the staatus of the campaign request to rejected
+      firebase.db
+        .collection("campaigns-requests")
+        .doc(selected.requestID.toString())
+        .update({
+          status: "rejected"
+        })
+        .then(() => {
+          console.log("Updated");
+          this.$router.go("/admin/campaigns");
+        });
     }
   },
-  beforeMount() {
+  mounted() {
     // to call the function on load of the page
     this.loadCampaignRequests();
     this.loadCampaigns();
