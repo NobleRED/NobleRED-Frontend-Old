@@ -150,17 +150,10 @@
                 </v-list-item-content>
               </v-list-item>
             </v-list>
+            <v-divider></v-divider>
 
             <v-card-actions>
               <v-spacer></v-spacer>
-
-              <v-btn
-                small
-                color="secondary"
-                to="/userProfile"
-                v-show="loggedIn"
-                class="mb-1"
-              >View Profile</v-btn>
 
               <v-btn
                 small
