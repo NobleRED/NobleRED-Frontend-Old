@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
@@ -23,7 +24,7 @@ import BloodNeedPosts from "../views/BloodNeedPosts.vue";
 import CampaignPosts from "../views/CampaignPosts.vue";
 import Loginform from "../components/Loginform.vue";
 
-import UserProfile from "../components/UserProfile.vue";
+import UserProfile from "../views/donor/DonorUserProfile.vue";
 import VisitorMap from "../views/visitor/VisitorMap.vue";
 
 Vue.use(VueRouter);

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 <template>
   <v-app>
     <v-container bg fill-height grid-list-md text-xs-center>

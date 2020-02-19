@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 <template>
   <v-container bg fill-height grid-list-md text-xs-center>
     <v-layout row wrap align-center>
@@ -95,7 +96,7 @@
 </template>
 
 <script>
-import firebase from "../plugins/firebaseConfig";
+import firebase from "../../plugins/firebaseConfig";
 import { mapGetters } from "vuex";
 import moment from "moment";
 import axios from "axios";
