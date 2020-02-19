@@ -79,7 +79,9 @@
 
               <v-row>
                 <v-col cols="12" sm="12">
-                  <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+                  <v-btn type="submit" @click="onSubmit" color="primary"
+                    >Submit</v-btn
+                  >
                   <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
                 </v-col>
               </v-row>
@@ -112,8 +114,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -132,8 +133,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -153,8 +153,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -174,8 +173,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -194,8 +192,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -214,8 +211,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -234,8 +230,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -254,8 +249,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -268,6 +262,8 @@
 
 <script>
 import firebase from "../plugins/firebaseConfig";
+import Axios from "axios";
+
 var moment = require("moment");
 moment().format();
 
@@ -281,7 +277,7 @@ export default {
         v => !!v || "Name is required",
         v => v.length <= 50 || "Name must be less than 50 characters"
       ],
-      adrsRules: [v => !!v || "Address is required"],
+
       phnRules: [
         v => !!v || "Contact no is required",
         v => /\d{10}/.test(v) || "Contact No must have 10 digits"
@@ -294,39 +290,46 @@ export default {
         userName: "",
         bloodType: "",
         contact: "",
-        time: ""
+        publishedDateTime: "",
+        PostID: ""
       }
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      var _this = this;
+      //var _this = this;
       // using moment to get current date and time
       var now = moment().format();
       console.log("time :" + now);
+      var nextPostID;
 
-      // firebase function call to add data to the database
-      firebase.db
-        .collection("posts-blood_needed")
-        .add({
-          userID: localStorage.userid,
-          userName: this.formData.userName,
-          address: this.formData.address,
-          bloodType: this.formData.bloodType,
-          contact: this.formData.contact,
-          publishedDateTime: now,
-          imgSrc: this.select_image(this.formData.bloodType)
-        })
-        .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
-          _this.$router.push({
-            name: "AdminBloodDonationPosts"
+      Axios.get("http://localhost:4200/api/posts/nextId").then(respone => {
+        nextPostID = respone.data;
+        firebase.db
+          .collection("posts-blood_needed")
+          .doc(nextPostID)
+          .set({
+            userID: this.formData.userID,
+            userName: this.formData.userName,
+            bloodType: this.formData.bloodType,
+            contact: this.formData.contact,
+            publishedDateTime: now,
+            postID: nextPostID,
+            imgSrc: this.select_image(this.formData.bloodType)
+          })
+          .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+            this.$router.push({
+              name: "AdminBloodDonationPosts"
+            });
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
           });
-        })
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
+      });
+
+      //firebase function call to add data to the database
 
       this.$router.push("/");
     },
