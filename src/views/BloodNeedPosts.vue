@@ -39,7 +39,9 @@
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ blood_need_post.publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        blood_need_post.publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>

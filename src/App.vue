@@ -4,7 +4,7 @@
   </v-app>
 </template>
 
- <script>
+<script>
 import AppBarDashboard from "./components/AppBarDashboard";
 
 export default {

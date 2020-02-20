@@ -1,24 +1,23 @@
 /* eslint-disable prettier/prettier */
 <template>
-  <v-container bg fill-height grid-list-md text-xs-center>
+  <v-container bg fill-height grid-list-md text-xs-center class="mt-2">
     <v-layout row wrap align-center>
       <v-flex :class="`d-flex justify-center text-center`">
-        <v-card :loading="loading" class="mx-auto my-12 mt-0">
+        <v-card :loading="loading" class="mx-auto my-12 mt-10" max-width="300">
           <v-avatar color="grey" size="300" style="align: center">
             <v-img :src="user.photoURL" alt="Profile Pic"></v-img>
           </v-avatar>
 
           <v-card-text>
-            <v-row>
-              <v-col>
+            <vrow>
+              <vcol>
                 <h2>{{ user.displayName }}</h2>
-
                 <div class="subtitle-1">{{ user.email }}</div>
                 <b>
-                  <h4 class="subtitle-1">Last donated date - {{lastDonatedDate}}</h4>
+                  <h4 class="subtitle-1">Last donated date - {{ lastDonatedDate }}</h4>
                 </b>
-              </v-col>
-            </v-row>
+              </vcol>
+            </vrow>
 
             <v-row v-if="isEligible">
               <v-col>
@@ -33,7 +32,7 @@
               </v-row>
               <v-row>
                 <v-col>
-                  <h1 style="color:#B71C1C;">{{nextEligibleDate}}</h1>
+                  <h1 style="color:#B71C1C;">{{ nextEligibleDate }}</h1>
                 </v-col>
               </v-row>
             </div>
@@ -88,7 +87,11 @@
             </v-row>-->
           </v-card-text>
 
-          <v-card-actions></v-card-actions>
+          <v-divider class="mx-4"></v-divider>
+
+          <v-card-actions>
+            <v-btn color="deep-purple lighten-2" text @click="reserve">Edit</v-btn>
+          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
@@ -96,86 +99,19 @@
 </template>
 
 <script>
-import firebase from "../../plugins/firebaseConfig";
+// import firebase from "../../plugins/firebaseConfig";
 import { mapGetters } from "vuex";
-import moment from "moment";
-import axios from "axios";
 export default {
   name: "UserProfile",
   data() {
-    return {
-      now: "",
-      lastDonatedDate: "",
-      nextEligibleDate: "",
-      isEligible: false
-    };
+    return {};
   },
-  methods: {
-    allowedMonths() {
-      this.now = moment().format("YYYY-MM-DD");
-      console.log(this.now);
-    },
-    getNextEligibleDate() {
-      if (this.lastDonatedDate == "") {
-        this.isEligible = true;
-      } else {
-        var day = moment(this.lastDonatedDate);
-        this.nextEligibleDate = moment(day)
-          .add(4, "months")
-          .format("YYYY-MM-DD");
-
-        var today = moment();
-        var difference = today.diff(moment(this.nextEligibleDate));
-        if (difference >= 0) {
-          this.isEligible = true;
-        } else {
-          this.isEligible = false;
-        }
-      }
-
-      console.log("dif", this.isEligible);
-    },
-    getUserData() {
-      var uid = localStorage.uid;
-      axios
-        .get("http://localhost:4200/api/donors/" + uid)
-        .then(response => {
-          if (response.status == 200) {
-            this.lastDonatedDate = response.data.lastDonatedDate;
-            console.log("dateeee", response.data);
-            this.getNextEligibleDate();
-          }
-
-          // console.log("Role : ", this.$store.getters.role);
-        })
-        .catch(e => {
-          console.log("Error: " + e);
-        });
-    },
-    updateLastDonatedDate() {
-      var userid = localStorage.userid;
-      firebase.db
-        .collection("users-donor")
-        .doc(userid)
-        .update({
-          lastDonatedDate: this.lastDonatedDate
-        })
-        .then(() => {
-          console.log("Updated");
-          this.$router.push("/");
-        });
-    }
-  },
+  methods: {},
   computed: {
     ...mapGetters({
       user: "user",
       loggedIn: "loggedIn"
     })
-  },
-  created() {},
-  mounted() {
-    this.allowedMonths();
-    this.getUserData();
   }
 };
 </script>

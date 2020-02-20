@@ -43,7 +43,9 @@
                     {{ campaign_post.address }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ campaign_post.publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        campaign_post.publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>

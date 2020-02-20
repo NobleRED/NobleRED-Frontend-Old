@@ -257,6 +257,7 @@ export default {
           // ...
           console.log("Error occured : ", errorCode, errorMessage);
         });
+      this.$router.push("/admin/admins");
     }
   }
 };

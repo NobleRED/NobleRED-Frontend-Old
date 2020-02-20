@@ -1,24 +1,35 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable prettier/prettier */
+/* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */
 <template>
   <v-container>
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donors</v-toolbar-title>
-        <v-text-field v-model="search" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newDonorForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Donor
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers" :items="donors" :search="search" :loading="loading"></v-data-table>
+      <v-data-table
+        :headers="headers"
+        :items="donors"
+        :search="search"
+        :loading="loading"
+      ></v-data-table>
     </v-card>
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import firebase from "../../plugins/firebaseConfig";
 // import NewCampaignForm from "../NewCampaignForm";
 
 export default {
@@ -30,6 +41,7 @@ export default {
     return {
       search: "",
       loading: true,
+      dialog: false,
       headers: [
         { text: "Donor ID", value: "donorID" },
         { text: "First Name", value: "fname" },
@@ -62,6 +74,20 @@ export default {
         })
         .catch(e => {
           console.log("Error: " + e);
+        });
+    },
+    updateDOnor(item) {
+      var selected = item;
+      this.dialog = true;
+      firebase.db
+        .collection("campaigns-requests")
+        .doc(selected.requestID.toString())
+        .update({
+          status: "accepted"
+        })
+        .then(() => {
+          console.log("Updated");
+          this.$router.go("/admin/campaigns");
         });
     }
   },
