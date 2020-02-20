@@ -12,7 +12,6 @@ import AdminOrganizers from "../views/admin/AdminOrganizers.vue";
 import AdminCharts from "../views/admin/AdminCharts.vue";
 import AdminChartsDonor from "../views/admin/AdminChartsDonor.vue";
 import AdminChartsCampaign from "../views/admin/AdminChartsCampaign.vue";
-
 import AdminMap from "../components/Map-admin.vue";
 import OrgMap from "../components/Map-org.vue";
 import DonorMap from "../components/Map-donor.vue";
@@ -301,7 +300,7 @@ const routes = [
     component: BloodNeedPosts
   },
   {
-    path: "/campaignPosts", //newly added component for show blood need post to every one
+    path: "/campaignPosts",
     name: "campaignPosts",
     component: CampaignPosts
   },
@@ -334,6 +333,7 @@ const routes = [
     name: "visitorMap",
     component: VisitorMap
   }
+
   // {
   //   path: "/admin/charts/donor", //newly added component for show blood need post to every one
   //   name: "adminDonorCharts",

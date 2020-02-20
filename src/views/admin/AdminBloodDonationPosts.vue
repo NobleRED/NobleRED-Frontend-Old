@@ -1,3 +1,4 @@
+/* eslint-disable vue/require-v-for-key */
 <template>
   <v-container>
     <v-card width="100%" height="100%">
@@ -25,21 +26,75 @@
         <template v-slot:item="row">
           <tr>
             <td>{{ row.item.userID }}</td>
-            <td>{{ row.item.userName }}</td>
-            <td>{{ row.item.contact }}</td>
-            <td>{{ row.item.bloodType }}</td>
+            <td>
+              <v-edit-dialog
+                :return-value.sync="row.item.userName"
+                @save="save(row.item.postID)"
+                @cancel="cancel"
+                @open="open"
+                @close="close"
+              >
+                {{ row.item.userName }}
+                <template v-slot:input>
+                  <v-text-field
+                    v-model="row.item.userName"
+                    :rules="[max25chars]"
+                    label="Edit"
+                    single-line
+                    counter
+                  ></v-text-field>
+                </template>
+              </v-edit-dialog>
+            </td>
+            <td>
+              <v-edit-dialog
+                :return-value.sync="row.item.contact"
+                @save="save(row.item.postID)"
+                @cancel="cancel"
+                @open="open"
+                @close="close"
+              >
+                {{ row.item.contact }}
+                <template v-slot:input>
+                  <v-text-field
+                    v-model="row.item.contact"
+                    :rules="[max25chars]"
+                    label="Edit"
+                    single-line
+                    counter
+                  ></v-text-field>
+                </template>
+              </v-edit-dialog>
+            </td>
+
+            <td>
+              <v-edit-dialog
+                :return-value.sync="row.item.bloodType"
+                @save="save(row.item.postID)"
+                @cancel="cancel"
+                @open="open"
+                @close="close"
+              >
+                {{ row.item.bloodType }}
+                <template v-slot:input>
+                  <v-text-field
+                    v-model="row.item.bloodType"
+                    :rules="[max25chars]"
+                    label="Edit"
+                    single-line
+                    counter
+                  ></v-text-field>
+                </template>
+              </v-edit-dialog>
+            </td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
-              <v-btn class="ma-1" text icon small color="primary">
-                <v-icon dark>mdi-pencil</v-icon>
-              </v-btn>
-              <v-btn class="ma-1" text icon small color="error">
+              <v-btn class="ma-1" text icon small color="error" @click="ondelete(row.item.postID)">
                 <v-icon dark>mdi-delete</v-icon>
               </v-btn>
             </td>
           </tr>
         </template>
-        >
       </v-data-table>
     </v-card>
   </v-container>
@@ -47,12 +102,18 @@
 
 <script>
 import axios from "axios";
+import firebase from "../../plugins/firebaseConfig";
 
 export default {
   name: "NeededPostDetailsTable",
 
   data() {
     return {
+      snack: false,
+      snackColor: "",
+      snackText: "",
+      max25chars: v => v.length <= 25 || "Input too long!",
+      pagination: {},
       search: "",
       loading: true,
       dialog: false,
@@ -62,9 +123,10 @@ export default {
         { text: "Contact Number", value: "contact" },
         { text: "Blood Type", value: "bloodType" },
         { text: "Ago", value: "publishedDateTimeAgo" },
-        { text: "Change/Delete", value: "" }
+        { text: "Delete", value: "" }
       ],
-      blood_need_posts: []
+      blood_need_posts: [],
+      detailsArray: []
     };
   },
   methods: {
@@ -83,8 +145,56 @@ export default {
         .catch(e => {
           console.log("Error: " + e);
         });
+    },
+    open() {
+      this.snack = true;
+      this.snackColor = "info";
+      this.snackText = "Dialog opened";
+    },
+    save(id) {
+      firebase.db
+        .collection("posts-blood_needed")
+        .doc(id)
+        .update({
+          userName: this.id.userName,
+          contact: this.id.contact,
+          bloodType: this.id.bloodType
+        })
+        .then(function() {
+          console.log("Updated successfully");
+          this.$router.push("/admin/BloodDonationPosts");
+        })
+        .catch(function(error) {
+          console.log("Error occured", error);
+        });
+      this.snack = true;
+      this.snackColor = "success";
+      this.snackText = "Data saved";
+    },
+    cancel() {
+      this.snack = true;
+      this.snackColor = "error";
+      this.snackText = "Canceled";
+    },
+    close() {
+      console.log("Dialog closed");
+    },
+
+    ondelete: function(doc) {
+      firebase.db
+        .collection("posts-blood_needed")
+        .doc(doc)
+        .delete()
+        .then(function() {
+          console.log("Successfully Deleted ");
+        })
+        .catch(function(error) {
+          console.log("Error occured", error);
+        });
+      this.$router.push("/admin/BloodDonationPosts");
     }
   },
+
   beforeMount() {
     // to call the function on load of the page
     this.loadPosts();

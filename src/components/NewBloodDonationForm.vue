@@ -1,6 +1,10 @@
 <template>
+
+  
+
   <v-container>
     <v-card width="100%" height="100%">
+
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>New Blood Need Post Form</v-toolbar-title>
       </v-toolbar>
@@ -93,9 +97,9 @@
           <v-card
             v-if="formData.bloodType == ''"
             width="90%"
-            height="90%"
+            height="80%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood_requesting_campaign.png?alt=media&token=2bb0c346-559d-46b0-924b-8cd21357db5d"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -105,7 +109,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A%2B.jpg?alt=media&token=efe377c0-fa5c-4047-a130-3d601384a336"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A%2B.jpg?alt=media&token=efe377c0-fa5c-4047-a130-3d601384a336"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -124,7 +128,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A-.jpg?alt=media&token=a1ba920d-0522-4e66-877a-68d8bbd0e8ae"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20A-.jpg?alt=media&token=a1ba920d-0522-4e66-877a-68d8bbd0e8ae"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -144,7 +148,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B%2B.jpg?alt=media&token=c13b9eba-b47a-4cc6-b0fb-0e1077b735b8"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B%2B.jpg?alt=media&token=c13b9eba-b47a-4cc6-b0fb-0e1077b735b8"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -164,7 +168,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B-.jpg?alt=media&token=56349c4c-9879-4f35-be71-a4384860d538"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20B-.jpg?alt=media&token=56349c4c-9879-4f35-be71-a4384860d538"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -183,7 +187,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB-.jpg?alt=media&token=db39abab-301d-48f1-86a9-290c92f717c2"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB-.jpg?alt=media&token=db39abab-301d-48f1-86a9-290c92f717c2"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -202,7 +206,7 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB%2B.jpg?alt=media&token=b4e06190-69b2-4492-89b3-38a5fb3e080c"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20AB%2B.jpg?alt=media&token=b4e06190-69b2-4492-89b3-38a5fb3e080c"
             img-alt="Image"
             img-top
             border-variant="secondary"
@@ -221,10 +225,11 @@
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O%2B.jpg?alt=media&token=5bbd7bf4-bd54-435c-ae12-9ad94d0066e6"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O%2B.jpg?alt=media&token=5bbd7bf4-bd54-435c-ae12-9ad94d0066e6"
             img-alt="Image"
             img-top
             border-variant="secondary"
+
           >
             <v-card-text>
               Urgently required
@@ -235,15 +240,17 @@
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
           </v-card>
+
           <v-card
             v-if="formData.bloodType == 'O-'"
             width="90%"
             height="90%"
             :title="formData.bloodType"
-            img-src="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O-.jpg?alt=media&token=e8ca3834-f6ea-4cca-89f4-e60a1788e47a"
+            img="https://firebasestorage.googleapis.com/v0/b/noble-red-9d387.appspot.com/o/website_graphics%2Fblood_needed_posts%2Fblood%20needed%20O-.jpg?alt=media&token=e8ca3834-f6ea-4cca-89f4-e60a1788e47a"
             img-alt="Image"
             img-top
             border-variant="secondary"
+
           >
             <v-card-text>
               Urgently required
@@ -254,6 +261,7 @@
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
           </v-card>
+
         </v-col>
       </v-row>
     </v-card>
@@ -262,6 +270,8 @@
 
 <script>
 import firebase from "../plugins/firebaseConfig";
+import Axios from "axios";
+
 var moment = require("moment");
 moment().format();
 
@@ -275,7 +285,7 @@ export default {
         v => !!v || "Name is required",
         v => v.length <= 50 || "Name must be less than 50 characters"
       ],
-      adrsRules: [v => !!v || "Address is required"],
+
       phnRules: [
         v => !!v || "Contact no is required",
         v => /\d{10}/.test(v) || "Contact No must have 10 digits"
@@ -288,39 +298,44 @@ export default {
         userName: "",
         bloodType: "",
         contact: "",
-        time: ""
+        publishedDateTime: "",
+        PostID: ""
       }
     };
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      var _this = this;
+      //var _this = this;
       // using moment to get current date and time
       var now = moment().format();
       console.log("time :" + now);
+      var nextPostID;
 
-      // firebase function call to add data to the database
-      firebase.db
-        .collection("posts-blood_needed")
-        .add({
-          userID: localStorage.userid,
-          userName: this.formData.userName,
-          address: this.formData.address,
-          bloodType: this.formData.bloodType,
-          contact: this.formData.contact,
-          publishedDateTime: now,
-          imgSrc: this.select_image(this.formData.bloodType)
-        })
-        .then(function(docRef) {
-          console.log("Document written with ID: ", docRef.id);
-          _this.$router.push({
-            name: "AdminBloodDonationPosts"
+      Axios.get("http://localhost:4200/api/posts/nextId").then(respone => {
+        nextPostID = respone.data;
+        firebase.db
+          .collection("posts-blood_needed")
+          .doc(nextPostID)
+          .set({
+            userID: this.formData.userID,
+            userName: this.formData.userName,
+            bloodType: this.formData.bloodType,
+            contact: this.formData.contact,
+            publishedDateTime: now,
+            postID: nextPostID,
+            imgSrc: this.select_image(this.formData.bloodType)
+          })
+          .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+            this.$router.push({
+              name: "/admin/BloodDonationPosts"
+            });
+          })
+          .catch(function(error) {
+            console.error("Error adding document: ", error);
           });
-        })
-        .catch(function(error) {
-          console.error("Error adding document: ", error);
-        });
+      });
 
       this.$router.push("/");
     },
