@@ -306,7 +306,7 @@ const routes = [
     component: CampaignPosts
   },
   {
-    path: "/userProfile", //newly added component for show blood need post to every one
+    path: "/userProfile", //donor user profile
     name: "userProfile",
     component: UserProfile,
     beforeEnter: (to, from, next) => {

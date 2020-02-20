@@ -24,7 +24,7 @@
       >
         <template v-slot:item="row">
           <tr @click="showAlert(row.item)">
-             <td>{{ row.item.organizerID }}</td>
+            <td>{{ row.item.organizerID }}</td>
             <td>{{ row.item.organizerName }}</td>
             <td>{{ row.item.contactPerson }}</td>
             <td>{{ row.item.contactPersonNIC }}</td>
@@ -33,11 +33,11 @@
             <td>{{ row.item.email }}</td>
             <td>{{ row.item.registeredDateTimeAgo }}</td>
             <td>{{ row.item.status }}</td>
-            <td>
+            <!-- <td>
               <v-btn class="mx-2" fab dark x-small color="primary">
                 <v-icon dark>mdi-account-box</v-icon>
               </v-btn>
-            </td>
+            </td>-->
           </tr>
         </template>
       </v-data-table>

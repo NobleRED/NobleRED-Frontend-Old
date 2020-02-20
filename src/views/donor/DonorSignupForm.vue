@@ -98,7 +98,12 @@
           <v-row>
             <v-col cols="12" md="6">
               <!-- <p>{{ radios || 'null' }}</p>	 -->
-              <v-radio-group label="Gender" v-model="formData.radios" :mandatory="true" row>
+              <v-radio-group
+                label="Gender"
+                v-model="formData.radios"
+                :mandatory="true"
+                row
+              >
                 <v-radio label="Male" value="male"></v-radio>
                 <v-radio label="Female" value="female"></v-radio>
               </v-radio-group>
@@ -162,7 +167,9 @@
           </v-row>
 
           <v-col cols="12" md="6">
-            <v-btn type="submit" @click="addDonor" color="primary">Sign up</v-btn>
+            <v-btn type="submit" @click="addDonor" color="primary"
+              >Sign up</v-btn
+            >
             <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
           </v-col>
         </v-card-text>
@@ -175,6 +182,7 @@
 import firebase from "../../plugins/firebaseConfig";
 import emailjs from "emailjs-com";
 import axios from "axios";
+import { bus } from "../../main";
 
 var moment = require("moment");
 moment().format();
@@ -292,6 +300,23 @@ export default {
                     createdAt: now
                   })
                   .then(function() {
+                    that.$store.commit("updateRole", "Donor");
+                    bus.$emit("sendUserRole", "Donor");
+                    localStorage.role = "Donor";
+                    localStorage.userid = nextDonorID;
+                    localStorage.username =
+                      that.formData.fname + "" + that.formData.lname;
+                    // console.log(response);
+
+                    that.$session.start();
+                    that.$session.set("loginstatus", true);
+                    that.$session.set(
+                      "username",
+                      that.formData.fname + "" + that.formData.lname
+                    );
+                    console.log("here");
+                    bus.$emit("changeLoginStatus", true);
+                    // bus.$emit("sendUserData", response.data);
                     emailjs
                       .send(
                         "gmail",
@@ -313,19 +338,19 @@ export default {
                             response.status,
                             response.text
                           );
-                          that.$router.go("/login");
                         },
                         error => {
                           console.log("FAILED...", error);
                         }
                       );
+                    that.routerFunc();
                     console.log(that.formData);
                   })
                   .catch(function(error) {
                     console.error("Error adding document: ", error);
                   });
               } else {
-                this.$router.push("/signup/donor");
+                this.$router.push("/");
               }
             })
             .catch(e => {
@@ -357,6 +382,11 @@ export default {
       // localStorage.removeItem("userdata");
       // localStorage.setItem("role", "visitor");
       // localStorage.setItem("loginstatus", false);
+    },
+    routerFunc() {
+      // window.location.href = "http://localhost:8080/";
+      window.location.replace("http://localhost:8080/");
+      // this.$router.push("/");
     }
   }
 };

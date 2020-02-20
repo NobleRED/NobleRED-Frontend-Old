@@ -79,7 +79,9 @@
 
               <v-row>
                 <v-col cols="12" sm="12">
-                  <v-btn type="submit" @click="onSubmit" color="primary">Submit</v-btn>
+                  <v-btn type="submit" @click="onSubmit" color="primary"
+                    >Submit</v-btn
+                  >
                   <v-btn @click="reset" color="error" class="ml-2">Reset</v-btn>
                 </v-col>
               </v-row>
@@ -112,8 +114,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -132,8 +133,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -153,8 +153,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -174,8 +173,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -194,8 +192,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -214,8 +211,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -234,8 +230,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>
@@ -254,8 +249,7 @@
               Urgently required
               <b>{{ formData.bloodType }}</b> type of blood for patient.
               Volunteers please come forward and help us. If you are willing to
-              donate blood please contact
-              <b>{{ formData.userName }}</b> via
+              donate blood please contact <b>{{ formData.userName }}</b> via
               <b>{{ formData.contact }}</b>
               <b>. DONATE BLOOD AND SAVE LIFE</b>
             </v-card-text>

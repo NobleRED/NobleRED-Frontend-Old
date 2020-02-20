@@ -14,7 +14,12 @@
               ></v-img>
             </v-flex>
             <v-flex :class="`d-flex justify-center`">
-              <p style="font-size:24px; color:#616161" class="font-weight-medium">Log In</p>
+              <p
+                style="font-size:24px; color:#616161"
+                class="font-weight-medium"
+              >
+                Log In
+              </p>
             </v-flex>
             <v-form ref="form1">
               <v-card-text>
@@ -56,7 +61,13 @@
 
                 <v-row class="pl-2 pr-2">
                   <v-col cols="12">
-                    <v-btn block type="submit" @click="loginUser()" color="secondary">Login</v-btn>
+                    <v-btn
+                      block
+                      type="submit"
+                      @click="loginUser()"
+                      color="secondary"
+                      >Login</v-btn
+                    >
                   </v-col>
                 </v-row>
 
@@ -84,7 +95,8 @@
                     @click="goToRegistration"
                     color="error"
                     href="/newDonorForm"
-                  >Don't have an account?</v-btn>
+                    >Don't have an account?</v-btn
+                  >
                 </v-flex>
               </v-card-text>
             </v-form>
@@ -97,7 +109,6 @@
 
 <script>
 import firebase from "../plugins/firebaseConfig";
-// import emailjs from "emailjs-com";
 import axios from "axios";
 import { bus } from "../main";
 
@@ -113,12 +124,7 @@ export default {
       inputRulespass: [v => v.length >= 8 || ""]
     };
   },
-  mounted() {
-    // console.log(localStorage.loginstatus);
-    // if (localStorage.loginstatus) {
-    //   this.$router.push("/");
-    // }
-  },
+  mounted() {},
   methods: {
     loginUser() {
       event.preventDefault();
@@ -140,13 +146,12 @@ export default {
               if (response.status == 200) {
                 console.log(response);
                 if (response.data.role == "Admin") {
-                  // console.log("admin");
                   this.$store.commit("updateRole", response.data.role);
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
                   localStorage.userid = response.data.adminID;
                   console.log(response);
-                  // push data to the array
+
                   this.$session.start();
                   this.$session.set("loginstatus", true);
                   this.$session.set(
@@ -155,15 +160,11 @@ export default {
                   );
                   localStorage.username =
                     response.data.fname + " " + response.data.lname;
-                  // this.$session.set("jwt", response.data);
-                  // console.log(response.data.fname);
-                  // localStorage.userdata = JSON.stringify(response.data);
+
                   bus.$emit("changeLoginStatus", true);
                   bus.$emit("sendUserData", response.data);
                 }
               }
-
-              // console.log("Role : ", this.$store.getters.role);
             })
             .catch(e => {
               console.log("Error: " + e);
@@ -175,7 +176,6 @@ export default {
               if (response.status == 200) {
                 console.log(response);
                 if (response.data.role == "Donor") {
-                  // console.log("donor");
                   this.$store.commit("updateRole", response.data.role);
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
@@ -183,22 +183,18 @@ export default {
                   localStorage.username =
                     response.data.fname + " " + response.data.lname;
                   console.log(response);
-                  // push data to the array
+
                   this.$session.start();
                   this.$session.set("loginstatus", true);
                   this.$session.set(
                     "username",
                     response.data.fname + " " + response.data.lname
                   );
-                  // this.$session.set("jwt", response.data);
-                  // console.log(response.data.fname);
-                  // localStorage.userdata = JSON.stringify(response.data);
+
                   bus.$emit("changeLoginStatus", true);
                   bus.$emit("sendUserData", response.data);
                 }
               }
-
-              // console.log("Role : ", this.$store.getters.role);
             })
             .catch(e => {
               console.log("Error: " + e);
@@ -210,117 +206,33 @@ export default {
               if (response.status == 200) {
                 console.log(response);
                 if (response.data.role == "Organizer") {
-                  // console.log("organizer");
                   this.$store.commit("updateRole", response.data.role);
                   bus.$emit("sendUserRole", response.data.role);
                   localStorage.role = response.data.role;
                   localStorage.userid = response.data.organizerID;
                   localStorage.username = response.data.organizerName;
                   console.log(response);
-                  // push data to the array
+
                   this.$session.start();
                   this.$session.set("loginstatus", true);
                   this.$session.set("username", response.data.organizerName);
-                  // this.$session.set("jwt", response.data);
-                  // console.log(response.data.fname);
-                  // localStorage.userdata = JSON.stringify(response.data);
+
                   bus.$emit("changeLoginStatus", true);
                   bus.$emit("sendUserData", response.data);
                 }
               }
-              // // push data to the array
-              // this.$session.start();
-              // this.$session.set("jwt", response.data);
-              // // console.log(response.data.fname);
-              // localStorage.userdata = JSON.stringify(response.data);
-              // localStorage.role = response.data.role;
-
-              // this.$store.commit("updateRole", response.data.role);
-              // bus.$emit("changeLoginStatus", true);
-              // bus.$emit("sendUserRole", response.data.role);
-              // bus.$emit("sendUserData", response.data);
-
-              // console.log("Role : ", this.$store.getters.role);
             })
             .catch(e => {
               console.log("Error: " + e);
             });
 
-          // localStorage.user = user;
           localStorage.loginstatus = true;
-          // this.$store.commit("addSession", user);
-          // this.$store.commit("updateLoggedIn", true);
-
           this.$router.push("/");
-
-          // console.log("Login status: ", this.$store.getters.loggedIn);
-
-          // start the session
-          // this.$session.start();
-          // this.$store.state.user = user;
-
-          // store the token in the session
-          // this.$session.set("user", user);
-          // this.$session.set("loggedIn", true);
-
-          // redirect to the home page
-          // this.$router.push({
-          //   name: "home"
-          // });
         })
         .catch(function(error) {
           var errorCode = error.code;
-          // var errorMessage = error.message;
-
           console.log("Error, User not verified : " + errorCode);
           alert("Invalid Username or Password");
-
-          // this.$router.push({
-          //   name: "login"
-          // });
-        });
-
-      // getthe user details token
-
-      // console.log(this.$session.getAll());
-      // console.log(this.$session.get("user").email);
-    },
-    signInWithGoogle() {
-      var provider = firebase.provider;
-      // provider.addScope("profile");
-      // provider.addScope("email");
-
-      firebase.auth
-        .signInWithPopup(provider)
-        .then(function(result) {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          // var token = result.credential.accessToken;
-          // The signed-in user info.
-          // var user = result.user;
-          // this.$session.start();
-          // localStorage.userdata = JSON.stringify(result.user);
-          // this.$session.set("jwt", result.data);
-          // bus.$emit("changeLoginStatus", true);
-          // bus.$emit("sendUserData", user);
-          // localStorage.loginstatus = true;
-          // console.log(user);
-          console.log(result);
-          this.$router.replace("/");
-          // ...
-        })
-        .catch(function(error) {
-          // Handle Errors here.
-          // eslint-disable-next-line no-unused-vars
-          var errorCode = error.code;
-          // eslint-disable-next-line no-unused-vars
-          var errorMessage = error.message;
-          // The email of the user's account used.
-          // eslint-disable-next-line no-unused-vars
-          var email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          // eslint-disable-next-line no-unused-vars
-          var credential = error.credential;
-          // ...
         });
     },
 

@@ -121,6 +121,7 @@
 import firebase from "../../plugins/firebaseConfig";
 import axios from "axios";
 import generator from "generate-password";
+import emailjs from "emailjs-com";
 
 var moment = require("moment");
 moment().format();
@@ -167,27 +168,7 @@ export default {
       var that = this;
       event.preventDefault();
       var now = moment().format();
-      //   axios
-      //     .post("http://localhost:4200/api/signup/donor", {
-      //       firstName: this.$data.fname,
-      //       lastName: this.$data.lname,
-      //       nic: this.$data.nic,
-      //       dob: this.$data.dob,
-      //       address: this.$data.inputAddress,
-      //       contactNo: this.$data.contactNo,
-      //       radios: this.$data.radios,
-      //       img: this.$data.img,
-      //       email: this.$data.email,
-      //       password: this.$data.password
-      //     })
-      //     .then(function(response) {
-      //       console.log(response);
-      //     })
-      //     .catch(function(error) {
-      //       console.log(error);
-      //     });
-      // }
-      //////////////////////
+
       var uidTemp = "";
       var sendToLogin = false;
       var password = generator.generate({
@@ -243,15 +224,35 @@ export default {
                   })
                   .then(function(docRef) {
                     console.log("Document written with ID: ", docRef.id);
-                    var template_params = {
-                      reply_to: "nobleredlk@gmail.com",
-                      from_name: "NobleRED",
-                      to_name: that.formData.email,
-                      message_html:
-                        "You have successfully registered with the NobleRED! Thank you for being 'Noble'"
-                    };
+                    emailjs
+                      .send(
+                        "gmail",
+                        "template_4Iavwfir",
+                        {
+                          reply_to: "nobleredlk@gmail.com",
+                          from_name: "NobleRED",
+                          to_name: that.formData.organizerName,
+                          DonorEmail: that.formData.email,
+                          message_html:
+                            "HI, Thank you for registering with NobleRED. your login password is - " +
+                            password
+                        },
+                        "user_2xCHYh5oR6qnpGoMXdwFT"
+                      )
+                      .then(
+                        response => {
+                          console.log(
+                            "SUCCESS!",
+                            response.status,
+                            response.text
+                          );
+                          that.$router.go("/login");
+                        },
+                        error => {
+                          console.log("FAILED...", error);
+                        }
+                      );
 
-                    this.sendEmail(template_params);
                     this.$router.go("/");
                   })
                   .catch(function(error) {
@@ -272,6 +273,7 @@ export default {
           // ...
           console.log("Error occured : ", errorCode, errorMessage);
         });
+      this.$router.push("/admin/organizers");
     },
 
     reset() {

@@ -9,10 +9,32 @@
           </v-avatar>
 
           <v-card-text>
-            <h2>{{ user.displayName }}</h2>
+            <vrow>
+              <vcol>
+                <h2>{{ user.displayName }}</h2>
+                <div class="subtitle-1">{{ user.email }}</div>
+                <b>
+                  <h4 class="subtitle-1">Last donated date - {{ lastDonatedDate }}</h4>
+                </b>
+              </vcol>
+            </vrow>
 
-            <div class="subtitle-1">
-              {{ user.email }}
+            <v-row v-if="isEligible">
+              <v-col>
+                <h2 style="color:#4CAF50">You are eligible to donate blood</h2>
+              </v-col>
+            </v-row>
+            <div v-if="!isEligible">
+              <v-row>
+                <v-col>
+                  <h2 style="color:#B71C1C;">You are not eligible to donate blood until</h2>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <h1 style="color:#B71C1C;">{{ nextEligibleDate }}</h1>
+                </v-col>
+              </v-row>
             </div>
 
             <!-- <v-row align="right" class="mx-0">
@@ -26,18 +48,49 @@
               ></v-rating>
 
               <div class="grey--text ml-4">4.5 (413)</div>
-            </v-row> -->
-            <div class="subtitle-1">
-              Next Eligible Date : 2020-03-06
-            </div>
+            </v-row>-->
+            <v-row class="mb-n2">
+              <v-col cols="12">
+                <h3 style="color:">Select your last blood donated date below</h3>
+              </v-col>
+            </v-row>
+            <v-row class="mb-n2">
+              <v-col cols="12">
+                <v-date-picker
+                  v-model="lastDonatedDate"
+                  color="#B71C1C"
+                  full-width
+                  :landscape="$vuetify.breakpoint.smAndUp"
+                  :max="now"
+                ></v-date-picker>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12">
+                <v-btn
+                  color="#B71C1C"
+                  dark
+                  @click="updateLastDonatedDate()"
+                >Update the last blood donated date</v-btn>
+              </v-col>
+            </v-row>
+
+            <!-- <v-row>
+              <v-col cols="12">
+                <v-btn
+                  color="#B71C1C"
+                  dark
+                  @click="getNextEligibleDate()"
+                >Get your next eligible date</v-btn>
+              </v-col>
+            </v-row>-->
           </v-card-text>
 
           <v-divider class="mx-4"></v-divider>
 
           <v-card-actions>
-            <v-btn color="deep-purple lighten-2" text @click="reserve">
-              Edit
-            </v-btn>
+            <v-btn color="deep-purple lighten-2" text @click="reserve">Edit</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>

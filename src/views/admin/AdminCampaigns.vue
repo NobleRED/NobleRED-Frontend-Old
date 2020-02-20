@@ -1,19 +1,29 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable prettier/prettier */
+/* eslint-disable prettier/prettier */ /* eslint-disable prettier/prettier */
 <template>
   <v-container>
     <v-card width="100%" height="100%" class>
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Registered Blood Donation Campaigns</v-toolbar-title>
-        <v-text-field v-model="search1" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search1"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
         <v-spacer></v-spacer>
         <v-btn small color="success" class="ml-3" to="/newCampaignForm">
           <v-icon class="pr-1">mdi-plus</v-icon>Add New Campaign
         </v-btn>
       </v-toolbar>
 
-      <v-data-table :headers="headers1" :items="campaigns" :search="search1" :loading="loading">
-        <template v-slot:item="row">
+      <v-data-table
+        :headers="headers1"
+        :items="campaigns"
+        :search="search1"
+        :loading="loading"
+      >
+        <template v-slot:item="row" dark>
           <tr>
             <td>{{ row.item.organizerID }}</td>
             <td>{{ row.item.organizerName }}</td>
@@ -23,14 +33,6 @@
             <td>{{ row.item.date }}</td>
             <td>{{ row.item.time }}</td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
-            <td>
-              <v-btn class="ma-1" text icon small color="primary">
-                <v-icon dark>mdi-pencil</v-icon>
-              </v-btn>
-              <v-btn class="ma-1" text icon small color="error">
-                <v-icon dark>mdi-delete</v-icon>
-              </v-btn>
-            </td>
           </tr>
         </template>
       </v-data-table>
@@ -39,7 +41,13 @@
     <v-card width="100%" height="100%" class="mt-5">
       <v-toolbar flat color="grey darken-3" dark>
         <v-toolbar-title>Blood Donation Campaigns Requests</v-toolbar-title>
-        <v-text-field v-model="search2" label="Search" single-line hide-details class="ml-5"></v-text-field>
+        <v-text-field
+          v-model="search2"
+          label="Search"
+          single-line
+          hide-details
+          class="ml-5"
+        ></v-text-field>
       </v-toolbar>
 
       <v-data-table
@@ -60,10 +68,24 @@
             <td>{{ row.item.time }}</td>
             <td>{{ row.item.publishedDateTimeAgo }}</td>
             <td>
-              <v-btn class="ma-1" text icon small color="success" @click="acceptCampaign(row.item)">
+              <v-btn
+                class="ma-1"
+                text
+                icon
+                small
+                color="success"
+                @click="acceptCampaign(row.item)"
+              >
                 <v-icon dark>mdi-check</v-icon>
               </v-btn>
-              <v-btn class="ma-1" text icon small color="error" @click="rejectCampaign(row.item)">
+              <v-btn
+                class="ma-1"
+                text
+                icon
+                small
+                color="error"
+                @click="rejectCampaign(row.item)"
+              >
                 <v-icon dark>mdi-close</v-icon>
               </v-btn>
             </td>
@@ -88,6 +110,15 @@ export default {
       search2: "",
       loading: true,
       dialog: false,
+      formData: {
+        organizerID: "",
+        organizerName: "",
+        address: "",
+        province: "",
+        district: "",
+        date: new Date().toISOString().substr(0, 10),
+        time: ""
+      },
       selectedRequest: [],
       headers1: [
         { text: "Organizer ID", value: "organizerID" },
@@ -97,8 +128,7 @@ export default {
         { text: "Province", value: "province" },
         { text: "Date", value: "date" },
         { text: "Time", value: "time" },
-        { text: "Ago", value: "publishedDateTimeAgo" },
-        { text: "Change/Delete", value: "" }
+        { text: "Ago", value: "publishedDateTimeAgo" }
       ],
       headers2: [
         { text: "Request ID", value: "requestID" },
@@ -149,10 +179,7 @@ export default {
           console.log("Error: " + e);
         });
     },
-    openDialog(item) {
-      this.selectedRequest = item;
-      this.dialog = true;
-    },
+
     acceptCampaign(item) {
       var selected = item;
       var now = moment().format();

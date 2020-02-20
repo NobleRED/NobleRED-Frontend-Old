@@ -7,7 +7,13 @@
     </div>
 
     <section class="ma-5">
-      <v-card class="mx-auto pa-3" light max-width="600" outlined color="transparent">
+      <v-card
+        class="mx-auto pa-3"
+        light
+        max-width="600"
+        outlined
+        color="transparent"
+      >
         <v-flex :class="`d-flex justify-center`">
           <v-img
             src="../assets/noblered logo 30x100.png"
@@ -17,9 +23,9 @@
           ></v-img>
         </v-flex>
         <v-card-text class="headline">
-          " NobleRED is a platform for the noble sri lankans, who are willing
-          to donate blood or willing to sacrifice their time and money to
-          organize blood donation campaigns. "
+          " NobleRED is a platform for the noble sri lankans, who are willing to
+          donate blood or willing to sacrifice their time and money to organize
+          blood donation campaigns. "
         </v-card-text>
       </v-card>
     </section>
@@ -28,7 +34,9 @@
       <section>
         <v-layout column align-center>
           <div class="mt-3 text-xs-center pt-3">
-            <h2 class="headline" style="color:#B71C1C;">See where you can donate blood</h2>
+            <h2 class="headline" style="color:#B71C1C;">
+              See where you can donate blood
+            </h2>
           </div>
           <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
             <span class="subheading">Registered blood donation campaigns</span>
@@ -60,15 +68,17 @@
                   ></v-img>
                   <v-card-text>
                     Urgently required
-                    <b>{{ blood_need_posts[0].bloodType }}</b> type of blood
-                    for patient. Volunteers please come forward and help us.
-                    If you are willing to donate blood please contact
+                    <b>{{ blood_need_posts[0].bloodType }}</b> type of blood for
+                    patient. Volunteers please come forward and help us. If you
+                    are willing to donate blood please contact
                     <b>{{ blood_need_posts[0].userName }}</b> via
                     <b>{{ blood_need_posts[0].phoneNumber }}</b>
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ blood_need_posts[0].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        blood_need_posts[0].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -83,15 +93,17 @@
                   ></v-img>
                   <v-card-text>
                     Urgently required
-                    <b>{{ blood_need_posts[1].bloodType }}</b> type of blood
-                    for patient. Volunteers please come forward and help us.
-                    If you are willing to donate blood please contact
+                    <b>{{ blood_need_posts[1].bloodType }}</b> type of blood for
+                    patient. Volunteers please come forward and help us. If you
+                    are willing to donate blood please contact
                     <b>{{ blood_need_posts[1].userName }}</b> via
                     <b>{{ blood_need_posts[1].phoneNumber }}</b>
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ blood_need_posts[1].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        blood_need_posts[1].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -106,15 +118,17 @@
                   ></v-img>
                   <v-card-text>
                     Urgently required
-                    <b>{{ blood_need_posts[2].bloodType }}</b> type of blood
-                    for patient. Volunteers please come forward and help us.
-                    If you are willing to donate blood please contact
+                    <b>{{ blood_need_posts[2].bloodType }}</b> type of blood for
+                    patient. Volunteers please come forward and help us. If you
+                    are willing to donate blood please contact
                     <b>{{ blood_need_posts[2].userName }}</b> via
                     <b>{{ blood_need_posts[2].phoneNumber }}</b>
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ blood_need_posts[2].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        blood_need_posts[2].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -129,15 +143,17 @@
                   ></v-img>
                   <v-card-text>
                     Urgently required
-                    <b>{{ blood_need_posts[3].bloodType }}</b> type of blood
-                    for patient. Volunteers please come forward and help us.
-                    If you are willing to donate blood please contact
+                    <b>{{ blood_need_posts[3].bloodType }}</b> type of blood for
+                    patient. Volunteers please come forward and help us. If you
+                    are willing to donate blood please contact
                     <b>{{ blood_need_posts[3].userName }}</b> via
                     <b>{{ blood_need_posts[3].phoneNumber }}</b>
                     <b>. DONATE BLOOD AND SAVE LIFE</b>
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ blood_need_posts[3].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        blood_need_posts[3].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -148,7 +164,9 @@
       </v-layout>
       <v-layout column align-center>
         <div class="mt-0 mb-3 text-xs-center" style="color:#616161;">
-          <v-btn dark small color="#B71C1C" to="/bloodNeedPost">View More</v-btn>
+          <v-btn dark small color="#B71C1C" to="/bloodNeedPost"
+            >View More</v-btn
+          >
         </div>
       </v-layout>
     </section>
@@ -159,7 +177,9 @@
           <h2 class="headline" style="color:#B71C1C;">More about campaigns</h2>
         </div>
         <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
-          <span class="subheading">Recently added blood donation campaigns</span>
+          <span class="subheading"
+            >Recently added blood donation campaigns</span
+          >
         </div>
       </v-layout>
       <v-layout column wrap class="mt-1 my-5" align-center>
@@ -187,7 +207,9 @@
                     {{ campaign_posts[0].time }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ campaign_posts[0].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        campaign_posts[0].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -214,7 +236,9 @@
                     {{ campaign_posts[1].time }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ campaign_posts[1].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        campaign_posts[1].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -241,7 +265,9 @@
                     {{ campaign_posts[2].time }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ campaign_posts[2].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        campaign_posts[2].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -268,7 +294,9 @@
                     {{ campaign_posts[3].time }}
                     <v-spacer></v-spacer>
                     <v-slot:footer>
-                      <small class="text-muted">{{ campaign_posts[3].publishedDateTimeAgo }}</small>
+                      <small class="text-muted">{{
+                        campaign_posts[3].publishedDateTimeAgo
+                      }}</small>
                     </v-slot:footer>
                   </v-card-text>
                 </v-card>
@@ -279,7 +307,9 @@
       </v-layout>
       <v-layout column align-center>
         <div class="mt-0 mb-3 text-xs-center" style="color:#616161;">
-          <v-btn dark small color="#B71C1C" to="/campaignPosts">View More</v-btn>
+          <v-btn dark small color="#B71C1C" to="/campaignPosts"
+            >View More</v-btn
+          >
         </div>
       </v-layout>
     </section>
@@ -287,10 +317,14 @@
     <section>
       <v-layout column align-center>
         <div class="mt-7 text-xs-center pt-3">
-          <h2 class="headline" style="color:#B71C1C;">Want to become an organizer?</h2>
+          <h2 class="headline" style="color:#B71C1C;">
+            Want to become an organizer?
+          </h2>
         </div>
         <div class="mb-0 text-xs-center pb-3" style="color:#616161;">
-          <span class="subheading">This is the procedure to become an organizer</span>
+          <span class="subheading"
+            >This is the procedure to become an organizer</span
+          >
         </div>
       </v-layout>
       <v-container>

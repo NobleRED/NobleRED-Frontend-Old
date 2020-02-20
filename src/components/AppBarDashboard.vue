@@ -16,17 +16,23 @@
           style="font-size:24px; color:white"
           class="font-weight-medium"
           v-if="dashboardRole == 'Admin' || userRole == 'Admin'"
-        >Admin</p>
+        >
+          Admin
+        </p>
         <p
           style="font-size:24px; color:white"
           class="font-weight-medium"
           v-if="dashboardRole == 'Organizer' || userRole == 'Organizer'"
-        >Organizer</p>
+        >
+          Organizer
+        </p>
         <p
           style="font-size:24px; color:white"
           class="font-weight-medium"
           v-if="dashboardRole == 'Donor' || userRole == 'Donor'"
-        >Donor</p>
+        >
+          Donor
+        </p>
       </v-flex>
       <v-divider></v-divider>
 
@@ -117,7 +123,12 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="white" light>
+    <v-app-bar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      app
+      color="white"
+      light
+    >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title class="ml-0 pl-4">
         <router-link to="/">
@@ -126,9 +137,22 @@
       </v-toolbar-title>
 
       <v-spacer />
-      <v-btn outlined small color="secondary" to="/login" v-show="!loggedIn" class="mr-1">Sign In</v-btn>
+      <v-btn
+        outlined
+        small
+        color="secondary"
+        to="/login"
+        v-show="!loggedIn"
+        class="mr-1"
+        >Sign In</v-btn
+      >
       <div class="text-center" v-if="loggedIn">
-        <v-menu v-model="menu" :close-on-content-click="false" :nudge-width="200" offset-x>
+        <v-menu
+          v-model="menu"
+          :close-on-content-click="false"
+          :nudge-width="200"
+          offset-x
+        >
           <template v-slot:activator="{ on }">
             <v-btn icon large v-show="loggedIn" v-on="on">
               <v-avatar size="32px" item>
@@ -162,7 +186,8 @@
                 @click="signOut"
                 v-show="loggedIn"
                 class="mb-1"
-              >Sign Out</v-btn>
+                >Sign Out</v-btn
+              >
             </v-card-actions>
           </v-card>
         </v-menu>
